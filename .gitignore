@@ -1,0 +1,84 @@
+################################################################################
+# AUDIOPHILE E-COMMERCE - MONOREPO GITIGNORE
+################################################################################
+
+# --- System Files ---
+.DS_Store
+.DS_Store?
+._*
+.AppleDouble
+.LSOverride
+Icon
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# --- Development Tools ---
+.continue
+.idea
+.vscode
+*.sublime-project
+*.sublime-workspace
+antigravity-figma-mcp
+figma
+no_deploy
+
+# --- Package Managers (pnpm focus) ---
+node_modules
+**/node_modules
+.pnpm-debug.log*
+.pnpm-store
+# We COMMIT pnpm-lock.yaml, so it is NOT ignored.
+
+# --- Environment & Secrets ---
+.env
+.env*.local
+.env.production
+.env.development
+*.pem
+license.txt
+
+# --- Next.js / Frontend ---
+frontend/.next/
+frontend/out/
+frontend/.vercel
+frontend/next-env.d.ts
+*.tsbuildinfo
+.eslintcache
+
+# --- Strapi / Backend ---
+backend/.cache/
+backend/build/
+backend/dist/
+backend/.tmp/
+backend/.strapi/
+backend/.strapi-updater.json
+backend/.strapi-cloud.json
+backend/exports/
+# Ignore the local SQLite database
+backend/.tmp/data.db
+backend/database/*.db
+backend/database/*.sqlite
+# Cloudinary/Uploads
+backend/public/uploads/*
+!backend/public/uploads/.gitkeep
+
+# --- Build & Logs ---
+dist
+build
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lcov.info
+coverage/
+
+# --- Misc / OS ---
+*.7z
+*.zip
+*.tar.gz
+*.iso
