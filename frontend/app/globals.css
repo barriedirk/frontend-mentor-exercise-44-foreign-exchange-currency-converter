@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  /* Neutral Colors */
+  /* --- PRIMITIVOS (DESIGN SYSTEM) --- */
   --color-neutral-50: #FFFFFF;
   --color-neutral-100: #C6C6C6;
   --color-neutral-200: #9D9D9D;
@@ -12,96 +12,139 @@
   --color-neutral-700: #171719;
   --color-neutral-900: #0A0A0A;
 
-  /* Accent & Status Colors */
   --color-lime-500: #CEF739;
   --color-lime-800: #283300;
   --color-red-500: #FF4141;
   --color-green-500: #42EB05;
 
-  /* Spacing (converted from px to rem: value / 16) */
+  /* Spacing */
   --spacing-0: 0;
-  --spacing-025: 0.125rem;  /* 2px */
-  --spacing-050: 0.25rem;   /* 4px */
-  --spacing-075: 0.375rem;  /* 6px */
-  --spacing-100: 0.5rem;    /* 8px */
-  --spacing-125: 0.625rem;  /* 10px */
-  --spacing-150: 0.75rem;   /* 12px */
-  --spacing-200: 1rem;      /* 16px */
-  --spacing-250: 1.25rem;   /* 20px */
-  --spacing-300: 1.5rem;    /* 24px */
-  --spacing-400: 2rem;      /* 32px */
-  --spacing-500: 2.5rem;    /* 40px */
-  --spacing-600: 3rem;      /* 48px */
-  --spacing-800: 4rem;      /* 64px */
-  --spacing-1000: 5rem;     /* 80px */
-  --spacing-1200: 6rem;     /* 96px */
-  --spacing-1400: 7rem;     /* 112px */
-  --spacing-1600: 8rem;     /* 128px */
-  --spacing-1800: 8.75rem;  /* 140px */
+  --spacing-025: 0.125rem;
+  --spacing-050: 0.25rem;
+  --spacing-075: 0.375rem;
+  --spacing-100: 0.5rem;
+  --spacing-125: 0.625rem;
+  --spacing-150: 0.75rem;
+  --spacing-200: 1rem;
+  --spacing-250: 1.25rem;
+  --spacing-300: 1.5rem;
+  --spacing-400: 2rem;
+  --spacing-500: 2.5rem;
+  --spacing-600: 3rem;
+  --spacing-800: 4rem;
+  --spacing-1000: 5rem;
+  --spacing-1200: 6rem;
+  --spacing-1400: 7rem;
+  --spacing-1600: 8rem;
+  --spacing-1800: 8.75rem;
 
-  /* Corner Radius (converted from px to rem: value / 16) */
-  --border-radius-0: 0;
-  --border-radius-2: 0.125rem;  /* 2px */
-  --border-radius-4: 0.25rem;   /* 4px */
-  --border-radius-6: 0.375rem;  /* 6px */
-  --border-radius-8: 0.5rem;    /* 8px */
-  --border-radius-10: 0.625rem; /* 10px */
-  --border-radius-12: 0.75rem;  /* 12px */
-  --border-radius-16: 1rem;     /* 16px */
-  --border-radius-20: 1.25rem;  /* 20px */
-  --border-radius-24: 1.5rem;   /* 24px */
-  --border-radius-full: 9999px; /* Pill shape */
+  /* Corner Radius (Mapeado directo para rounded-*) */
+  --radius-0: 0;
+  --radius-2: 0.125rem;
+  --radius-4: 0.25rem;
+  --radius-6: 0.375rem;
+  --radius-8: 0.5rem;
+  --radius-10: 0.625rem;
+  --radius-12: 0.75rem;
+  --radius-16: 1rem;
+  --radius-20: 1.25rem;
+  --radius-24: 1.5rem;
+  --radius-full: 9999px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--color-neutral-900);
-    --foreground: var(--color-neutral-50);
-  }
-}
-
+/* --- CAPA SEMÁNTICA (TAILWIND V4) --- */
 @theme {
-  /* Sobrescribimos el fondo y texto por defecto de Tailwind v4 */
+  /* Forzamos fondo y texto global de la app */
   --color-background: var(--color-neutral-900);
   --color-foreground: var(--color-neutral-50);
 
-  /* Superficies / Contenedores */
-  --color-surface-main: var(--color-neutral-900);    /* Fondo de la app */
-  --color-surface-card: var(--color-neutral-700);    /* Tarjetas y paneles */
-  --color-surface-input: var(--color-neutral-600);   /* Inputs y dropdowns */
-  --color-surface-hover: var(--color-neutral-500);   /* Estados hover */
+  /* Superficies */
+  --color-surface-main: var(--color-neutral-900);
+  --color-surface-card: var(--color-neutral-700);
+  --color-surface-input: var(--color-neutral-600);
+  --color-surface-hover: var(--color-neutral-500);
 
   /* Textos */
-  --color-text-primary: var(--color-neutral-50);     /* Títulos, montos principales */
-  --color-text-secondary: var(--color-neutral-200);   /* Etiquetas, fechas del gráfico */
-  --color-text-muted: var(--color-neutral-400);       /* Textos deshabilitados o secundarios */
+  --color-text-primary: var(--color-neutral-50);
+  --color-text-secondary: var(--color-neutral-200);
+  --color-text-muted: var(--color-neutral-400);
 
   /* Bordes */
-  --color-border-subtle: var(--color-neutral-600);    /* Divisiones e inputs */
-  --color-border-focus: var(--color-neutral-400);     /* Focus de inputs */
+  --color-border-subtle: var(--color-neutral-600);
+  --color-border-focus: var(--color-neutral-400);
 
-  /* Estados y Acentos */
-  --color-brand: var(--color-lime-500);              /* Verde lima cyberpunk */
-  --color-brand-muted: var(--color-lime-800);        /* Fondos sutiles con texto lima */
-  --color-success: var(--color-green-500);            /* Indicadores positivos */
-  --color-danger: var(--color-red-500);               /* Errores de validación o API */
+  /* Acentos */
+  --color-brand: var(--color-lime-500);
+  --color-brand-muted: var(--color-lime-800);
+  --color-success: var(--color-green-500);
+  --color-danger: var(--color-red-500);
 
-  /* Fuentes (Asegúrate de usar variables de Geist si usas Next.js) */
-  --font-sans: var(--font-geist-sans), Arial, sans-serif;
-  --font-mono: var(--font-geist-mono), monospace;
+  /* TIPOGRAFÍA: Forzamos JetBrains Mono como la fuente única de Tailwind v4 */
+  --font-sans: var(--font-jetbrains-mono), ui-monospace, monospace;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  /* PRESETS TIPOGRÁFICOS */
+  --font-size-preset-1: 2.5rem;
+  --font-size-preset-1--line-height: 1;
+  --font-size-preset-1--letter-spacing: -0.035em;
+
+  --font-size-preset-1-sm: 2rem;
+  --font-size-preset-1-sm--line-height: 1;
+  --font-size-preset-1-sm--letter-spacing: -0.035em;
+
+  --font-size-preset-2: 1.25rem;
+  --font-size-preset-2--line-height: 1.2;
+  --font-size-preset-2--letter-spacing: -0.035em;
+
+  --font-size-preset-2-bold: 1.25rem;
+  --font-size-preset-2-bold--line-height: 1.4;
+  --font-size-preset-2-bold--letter-spacing: -0.035em;
+
+  --font-size-preset-3: 1rem;
+  --font-size-preset-3--line-height: 1.2;
+  --font-size-preset-3--letter-spacing: 1px;
+
+  --font-size-preset-3-medium: 1rem;
+  --font-size-preset-3-medium--line-height: 1.2;
+  --font-size-preset-3-medium--letter-spacing: 1px;
+
+  --font-size-preset-3-bold: 1.125rem;
+  --font-size-preset-3-bold--line-height: 1.1;
+  --font-size-preset-3-bold--letter-spacing: 1px;
+
+  --font-size-preset-4: 0.875rem;
+  --font-size-preset-4--line-height: 1.2;
+  --font-size-preset-4--letter-spacing: 1px;
+
+  --font-size-preset-5: 0.75rem;
+  --font-size-preset-5--line-height: 1.2;
+  --font-size-preset-5--letter-spacing: 0.5px;
+
+  --font-size-preset-5-medium: 0.75rem;
+  --font-size-preset-5-medium--line-height: 1.3;
+  --font-size-preset-5-medium--letter-spacing: 0.5px;
+
+  --font-size-preset-6: 0.625rem;
+  --font-size-preset-6--line-height: 1;
+  --font-size-preset-6--letter-spacing: 0px;
+
+  /* CORRECCIÓN: Registramos los radios para que Tailwind v4 
+    genere automáticamente las clases rounded-2, rounded-4, rounded-8, etc.
+  */
+  --radius-2: var(--radius-2);
+  --radius-4: var(--radius-4);
+  --radius-6: var(--radius-6);
+  --radius-8: var(--radius-8);
+  --radius-10: var(--radius-10);
+  --radius-12: var(--radius-12);
+  --radius-16: var(--radius-16);
+  --radius-20: var(--radius-20);
+  --radius-24: var(--radius-24);
+  --radius-full: var(--radius-full);
 }
-
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans); 
 }
