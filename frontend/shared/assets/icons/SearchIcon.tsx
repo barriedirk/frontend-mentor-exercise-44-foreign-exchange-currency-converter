@@ -10,6 +10,7 @@ export function SearchIcon({ className, size = 14, ...props }: IconProps) {
       className={className}
       viewBox="0 0 14 20"
       fill="none"
+      stroke="currentColor"
       {...props}
     >
       <path

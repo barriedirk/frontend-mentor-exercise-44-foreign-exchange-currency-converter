@@ -1,3 +1,7 @@
+"use client";
+import { MarketTicker } from "@/shared/ui/MarketTicker";
+import { TickerRate } from "@/shared/types/ticker";
+
 import { Button } from "@/shared/ui/Button";
 import { CurrencySelectButton } from "@/shared/ui/CurrencySelectButton";
 import { IconButton } from "@/shared/ui/IconButton";
@@ -6,14 +10,32 @@ import {
   ExchangeIcon,
   DeleteIcon,
 } from "@/shared/assets/icons";
+import { Logo } from "@/shared/ui/Logo";
+import { TabButton } from "@/shared/ui/TabButton";
+import { SearchInput } from "@/shared/ui/SearchInput";
+import { AmountInput } from "@/shared/ui/AmountInput";
+import { InteractiveAmountWrapper } from "./_components/InteractiveAmountWrapper";
 
-export default function ButtonShowcasePage() {
+const MOCK_FX_RATES: readonly TickerRate[] = [
+  { id: "1", pair: "EUR/USD", value: "1.0824", change: -0.14 },
+  { id: "2", pair: "USD/JPY", value: "157.91", change: 0.04 },
+  { id: "3", pair: "GBP/USD", value: "1.3575", change: -0.22 },
+  { id: "4", pair: "AUD/USD", value: "0.6641", change: 0.15 },
+];
+
+export default function DesignSystemPage() {
   return (
     <main className="min-h-screen bg-surface-main p-[2.5rem] text-text-primary font-sans">
       <header className="mb-[3rem] border-b border-border-subtle pb-[1.5rem]">
-        <h1 className="text-preset-1 font-bold text-brand">
-          Button Variant System
-        </h1>
+        <h1 className="text-preset-1 font-bold text-brand">Design System</h1>
+        <div className="flex items-center gap-4 mb-4">
+          <div className="h-12 w-auto p-3">
+            <Logo />
+          </div>
+          <div className="h-12 w-auto bg-white p-3">
+            <Logo theme="light" />
+          </div>
+        </div>
         <p className="text-preset-4 text-text-secondary mt-[0.5rem]">
           Layout construido con Grid/Block para evitar el estiramiento de Flex.
         </p>
@@ -214,6 +236,158 @@ export default function ButtonShowcasePage() {
                 </IconButton>
               </div>
             </div>
+            <div>
+              <h3 className="text-preset-4 text-text-secondary mb-[0.75rem]">
+                Row ChevronDown Buttons (ChevronDownIcon)
+              </h3>
+              <div className="grid grid-cols-3 gap-[1rem] justify-items-start">
+                <IconButton intent="delete">
+                  <ChevronDownIcon />
+                </IconButton>
+                <IconButton
+                  intent="delete"
+                  className="bg-surface-hover text-danger"
+                >
+                  <ChevronDownIcon />
+                </IconButton>
+                <IconButton
+                  intent="delete"
+                  className="ring-2 ring-brand border-brand"
+                >
+                  <ChevronDownIcon />
+                </IconButton>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* --- SECCIÓN 8: TAB BUTTONS --- */}
+        <section className="border border-border-subtle p-[1.5rem] rounded-8 bg-surface-card">
+          <h2 className="text-preset-2-bold text-brand border-b border-border-subtle pb-[0.5rem] mb-[1rem]">
+            8. Tab Buttons with Count Badge
+          </h2>
+
+          <div className="bg-neutral-950 p-[3rem] rounded-12 flex flex-col gap-[2.5rem] items-start w-full max-w-[400px]">
+            {/* 1. Estado Rest / Inactivo */}
+            <div className="w-full">
+              <p className="text-preset-5 text-text-muted mb-[0.5rem] font-mono">
+                1. REST STATE
+              </p>
+              <TabButton label="History" count={4} isActive={false} />
+            </div>
+
+            {/* 2. Estado Active / Selected */}
+            <div className="w-full">
+              <p className="text-preset-5 text-text-muted mb-[0.5rem] font-mono">
+                2. ACTIVE STATE (SELECTED)
+              </p>
+              <TabButton label="History" count={4} isActive={true} />
+            </div>
+
+            {/* 3. Simulación de Focus / Borde completo */}
+            <div className="w-full">
+              <p className="text-preset-5 text-text-muted mb-[0.5rem] font-mono">
+                3. FOCUS STATE (KEYBOARD ACCESSIBLE)
+              </p>
+              {/* Forzamos las clases de focus de manera estática para la demo visual */}
+              <TabButton
+                label="History"
+                count={4}
+                isActive={false}
+                className="ring-2 ring-brand rounded-12 px-[1rem] py-[0.75rem]"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* --- SECCIÓN 9: FORM INPUTS (SEARCH) --- */}
+        <section className="border border-border-subtle p-[1.5rem] rounded-8 bg-surface-card">
+          <h2 className="text-preset-2-bold text-brand border-b border-border-subtle pb-[0.5rem] mb-[1rem]">
+            9. Form Fields (Search Input)
+          </h2>
+
+          <div className="bg-neutral-950 p-[3rem] rounded-12 flex flex-col gap-[2rem] max-w-[500px]">
+            {/* 1. Estado Rest con Placeholder */}
+            <div>
+              <p className="text-preset-5 text-text-muted mb-[0.5rem] font-mono">
+                1. REST STATE (EMPTY)
+              </p>
+              <SearchInput placeholder="Search currencies..." />
+            </div>
+
+            {/* 2. Estado Filled (Con valor simulado) */}
+            <div>
+              <p className="text-preset-5 text-text-muted mb-[0.5rem] font-mono">
+                2. FILLED STATE
+              </p>
+              <SearchInput
+                defaultValue="Euro"
+                placeholder="Search currencies..."
+              />
+            </div>
+
+            {/* 3. Simulación de Focus */}
+            <div>
+              <p className="text-preset-5 text-text-muted mb-[0.5rem] font-mono">
+                3. FOCUS STATE
+              </p>
+              {/* Forzamos de forma estática la clase focus:border-brand para visualizarlo en la grilla */}
+              <SearchInput
+                placeholder="Search currencies..."
+                className="border-brand ring-1 ring-brand"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* --- SECCIÓN 10: FORM INPUTS (AMOUNT) --- */}
+        <section className="border border-border-subtle p-[1.5rem] rounded-8 bg-surface-card">
+          <h2 className="text-preset-2-bold text-brand border-b border-border-subtle pb-[0.5rem] mb-[1rem]">
+            10. Form Fields (Financial Amount Input)
+          </h2>
+
+          <div className="bg-neutral-950 p-[3rem] rounded-12 flex flex-col gap-[2.5rem] max-w-[450px]">
+            {/* 1. Simulación Estado Rest (Vacío) */}
+            <div>
+              <p className="text-preset-5 text-text-muted mb-[0.5rem] font-mono">
+                1. REST STATE (EMPTY / PLACEHOLDER)
+              </p>
+              <AmountInput value="" onChange={() => {}} placeholder="0" />
+            </div>
+
+            {/* 2. Simulación Estado Filled con línea basal estática */}
+            <div>
+              <p className="text-preset-5 text-text-muted mb-[0.5rem] font-mono">
+                2. FILLED STATE (STATIC FIELD)
+              </p>
+              <AmountInput value="1000" onChange={() => {}} />
+            </div>
+
+            {/* 3. Campo Interactivo Real (Pruébalo escribiendo en el navegador) */}
+            <div>
+              <p className="text-preset-5 text-brand mb-[0.5rem] font-mono">
+                3. INTERACTIVE EXPERIMENT (WRITE HERE)
+              </p>
+              <InteractiveAmountWrapper />
+            </div>
+          </div>
+        </section>
+
+        {/* --- SECCIÓN 11: LIVE MARKET TICKER BAR --- */}
+        <section className="border border-border-subtle p-[1.5rem] rounded-8 bg-surface-card col-span-full">
+          <h2 className="text-preset-2-bold text-brand border-b border-border-subtle pb-[0.5rem] mb-[1rem]">
+            11. Live Financial Market Ticker Bar
+          </h2>
+
+          <p className="text-preset-4 text-text-muted mb-[1.5rem]">
+            Componente agnóstico de mercado. Procesa automáticamente la
+            dirección y los colores basados en el valor del atributo{" "}
+            <code className="text-brand">change</code>.
+          </p>
+
+          {/* Inyección directa del componente en la UI */}
+          <div className="border border-border-subtle rounded-12 overflow-hidden">
+            <MarketTicker rates={MOCK_FX_RATES} />
           </div>
         </section>
       </div>
