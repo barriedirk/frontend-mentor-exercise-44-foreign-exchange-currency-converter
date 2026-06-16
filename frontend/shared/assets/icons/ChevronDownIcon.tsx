@@ -1,9 +1,16 @@
-export function ChevronDownIcon({ className }: { readonly className?: string }) {
+interface IconProps extends Readonly<React.SVGProps<SVGSVGElement>> {
+  readonly size?: number | string;
+}
+
+export function ChevronDownIcon({ className, size = 12, ...props }: IconProps) {
   return (
     <svg
+      width={size}
+      height={size}
       className={className}
       viewBox="0 0 12 12"
       fill="none"
+      {...props}
     >
       <path
         fill="currentColor"

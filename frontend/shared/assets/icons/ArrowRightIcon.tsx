@@ -1,13 +1,20 @@
-export function ArrowRightIcon({ className }: { readonly className?: string }) {
+interface IconProps extends Readonly<React.SVGProps<SVGSVGElement>> {
+  readonly size?: number | string;
+}
+
+export function ArrowRightIcon({ className, size = 11, ...props }: IconProps) {
   return (
     <svg
-      className={className}
+      width={size}
+      height={size}
       viewBox="0 0 11 11"
       fill="none"
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      className={className}
+      {...props}
     >
       <path
         fill="currentColor"

@@ -1,4 +1,3 @@
-// src/app/page.tsx
 import { Button } from "@/shared/ui/Button";
 import { CurrencySelectButton } from "@/shared/ui/CurrencySelectButton";
 import { IconButton } from "@/shared/ui/IconButton";

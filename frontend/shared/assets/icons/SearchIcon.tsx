@@ -1,9 +1,16 @@
-export function SearchIcon({ className }: { readonly className?: string }) {
+interface IconProps extends Readonly<React.SVGProps<SVGSVGElement>> {
+  readonly size?: number | string;
+}
+
+export function SearchIcon({ className, size = 14, ...props }: IconProps) {
   return (
     <svg
+      width={size}
+      height={size}
       className={className}
       viewBox="0 0 14 20"
       fill="none"
+      {...props}
     >
       <path
         fill="currentColor"

@@ -1,9 +1,16 @@
-export function StarFilledIcon({ className }: { readonly className?: string }) {
+interface IconProps extends Readonly<React.SVGProps<SVGSVGElement>> {
+  readonly size?: number | string;
+}
+
+export function StarFilledIcon({ className, size = 16, ...props }: IconProps) {
   return (
     <svg
+      width={size}
+      height={size}
       className={className}
       viewBox="0 0 16 16"
       fill="none"
+      {...props}
     >
       <path
         fill="currentColor"
