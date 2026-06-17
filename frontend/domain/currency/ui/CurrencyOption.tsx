@@ -25,10 +25,23 @@ export function CurrencyOption({
       )}
       {...props}
     >
-      <div className="size-[1.5rem] rounded-full overflow-hidden shrink-0 bg-neutral-800 flex items-center justify-center">
+      {/* <div className="size-[1.5rem] rounded-full overflow-hidden shrink-0 bg-neutral-800 flex items-center justify-center">
         {currency.flagSvg ?? (
           <span className="text-[0.6rem]">{currency.code.slice(0, 2)}</span>
         )}
+      </div> */}
+
+      <div className="size-[1.5rem] rounded-full overflow-hidden shrink-0 bg-neutral-800 flex items-center justify-center">
+        {/* Inyectamos las clases nativas de flag-icons.
+          'fi' inicializa la librería y 'fi-[code]' carga el SVG optimizado mediante background-image.
+        */}
+        <span
+          className={cn(
+            "fi",
+            `fi-${currency.code.slice(0, 2)}`,
+            "w-full h-full object-cover escala-bandera",
+          )}
+        />
       </div>
 
       <span className="text-preset-3-bold text-text-primary tracking-wider uppercase">
