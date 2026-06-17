@@ -1,20 +1,15 @@
-import * as React from "react";
 import { cn } from "@/shared/utils/cn";
-import { TickerRate } from "../types/ticker";
-import { TrendUpLinearIcon } from "../assets/icons/TrendUpLinearIcon";
-import { TrendDownLinearIcon } from "../assets/icons/TrendDownLinearIcon";
+import type { TickerRate } from "../ticker";
+import { TrendUpLinearIcon } from "@/shared/assets/icons/TrendUpLinearIcon";
+import { TrendDownLinearIcon } from "@/shared/assets/icons/TrendDownLinearIcon";
 
-interface MarketTickerProps extends Readonly<
+interface DataTickerProps extends Readonly<
   React.HTMLAttributes<HTMLDivElement>
 > {
   readonly rates: readonly TickerRate[];
 }
 
-export function MarketTicker({
-  className,
-  rates,
-  ...props
-}: MarketTickerProps) {
+export function DataTicker({ className, rates, ...props }: DataTickerProps) {
   return (
     <div
       className={cn(
@@ -39,13 +34,8 @@ export function MarketTicker({
               key={item.id}
               className="flex items-center gap-[1rem] px-[2rem] h-full font-mono text-preset-3 shrink-0"
             >
-              {/* Par de Divisas */}
               <span className="text-text-muted">{item.pair}</span>
-
-              {/* Valor de cotización */}
               <span className="text-text-primary font-bold">{item.value}</span>
-
-              {/* Contenedor de la Tendencia: Cambiamos a items-center para un centrado geométrico puro */}
               <span
                 className={cn(
                   "flex items-center gap-[0.2rem] font-bold transition-colors h-full",

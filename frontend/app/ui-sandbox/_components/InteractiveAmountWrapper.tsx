@@ -1,11 +1,10 @@
-// src/app/ui-sandbox/_components/InteractiveAmountWrapper.tsx
-"use client"; // <--- Solo este sub-componente es del cliente
+"use client";
 
-import * as React from "react";
+import { useState } from "react";
 import { AmountInput } from "@/shared/ui/AmountInput";
 
 export function InteractiveAmountWrapper() {
-  const [amount, setAmount] = React.useState<string>("1000");
+  const [amount, setAmount] = useState<string>("1000");
 
   return (
     <div className="w-full">

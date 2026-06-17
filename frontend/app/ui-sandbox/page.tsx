@@ -1,9 +1,8 @@
 "use client";
-import { MarketTicker } from "@/shared/ui/MarketTicker";
-import { TickerRate } from "@/shared/types/ticker";
+import { DataTicker } from "@/domain/currency/ui/DataTicker";
 
 import { Button } from "@/shared/ui/Button";
-import { CurrencySelectButton } from "@/shared/ui/CurrencySelectButton";
+import { CurrencySelectButton } from "@/domain/currency/ui/CurrencySelectButton";
 import { IconButton } from "@/shared/ui/IconButton";
 import {
   ChevronDownIcon,
@@ -15,13 +14,8 @@ import { TabButton } from "@/shared/ui/TabButton";
 import { SearchInput } from "@/shared/ui/SearchInput";
 import { AmountInput } from "@/shared/ui/AmountInput";
 import { InteractiveAmountWrapper } from "./_components/InteractiveAmountWrapper";
-
-const MOCK_FX_RATES: readonly TickerRate[] = [
-  { id: "1", pair: "EUR/USD", value: "1.0824", change: -0.14 },
-  { id: "2", pair: "USD/JPY", value: "157.91", change: 0.04 },
-  { id: "3", pair: "GBP/USD", value: "1.3575", change: -0.22 },
-  { id: "4", pair: "AUD/USD", value: "0.6641", change: 0.15 },
-];
+import { MOCK_FX_RATES } from "@/domain/currency/mocks";
+import CurrencyDropdownWrapper from "./_components/CurrencyDropdownWrapper";
 
 export default function DesignSystemPage() {
   return (
@@ -387,7 +381,18 @@ export default function DesignSystemPage() {
 
           {/* Inyección directa del componente en la UI */}
           <div className="border border-border-subtle rounded-12 overflow-hidden">
-            <MarketTicker rates={MOCK_FX_RATES} />
+            <DataTicker rates={MOCK_FX_RATES} />
+          </div>
+        </section>
+
+        {/* --- SECCIÓN 12: DROPDOWN --- */}
+        <section className="border border-border-subtle p-[1.5rem] rounded-8 bg-surface-card col-span-full">
+          <h2 className="text-preset-2-bold text-brand border-b border-border-subtle pb-[0.5rem] mb-[1rem]">
+            12. Dropdown Currency Selector
+          </h2>
+
+          <div className="border border-border-subtle rounded-12 overflow-hidden">
+            <CurrencyDropdownWrapper />
           </div>
         </section>
       </div>
