@@ -16,6 +16,9 @@ import { AmountInput } from "@/shared/ui/AmountInput";
 import { InteractiveAmountWrapper } from "./_components/InteractiveAmountWrapper";
 import { MOCK_FX_RATES } from "@/domain/currency/mocks";
 import CurrencyDropdownWrapper from "./_components/CurrencyDropdownWrapper";
+import MarketStatsWrapper from "./_components/MarketStatCardWrapper";
+import TimeframeWrapper from "./_components/TimeframeWrapper";
+import SwapButtonWrapper from "./_components/SwapButtonWrapper";
 
 export default function DesignSystemPage() {
   return (
@@ -393,6 +396,39 @@ export default function DesignSystemPage() {
 
           <div className="border border-border-subtle rounded-12 overflow-hidden">
             <CurrencyDropdownWrapper />
+          </div>
+        </section>
+
+        {/* --- SECCIÓN 13: Market Stats --- */}
+        <section className="border border-border-subtle p-[1.5rem] rounded-8 bg-surface-card col-span-full">
+          <h2 className="text-preset-2-bold text-brand border-b border-border-subtle pb-[0.5rem] mb-[1rem]">
+            13. Market Stats
+          </h2>
+
+          <div className="border border-border-subtle rounded-12 overflow-hidden">
+            <MarketStatsWrapper />
+          </div>
+        </section>
+
+        {/* --- SECCIÓN 14: Time Frame --- */}
+        <section className="border border-border-subtle p-[1.5rem] rounded-8 bg-surface-card col-span-full">
+          <h2 className="text-preset-2-bold text-brand border-b border-border-subtle pb-[0.5rem] mb-[1rem]">
+            14. Time Frame
+          </h2>
+
+          <div className="border border-border-subtle rounded-12 overflow-hidden">
+            <TimeframeWrapper />
+          </div>
+        </section>
+
+        {/* --- SECCIÓN 15: Swap Button --- */}
+        <section className="border border-border-subtle p-[1.5rem] rounded-8 bg-surface-card col-span-full">
+          <h2 className="text-preset-2-bold text-brand border-b border-border-subtle pb-[0.5rem] mb-[1rem]">
+            15. Swap Button
+          </h2>
+
+          <div className="border border-border-subtle rounded-12 overflow-hidden">
+            <SwapButtonWrapper />
           </div>
         </section>
       </div>
