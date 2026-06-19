@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/shared/utils/cn";
 
 const iconButtonVariants = cva(
-  "inline-grid place-items-center rounded-12 transition-all cursor-pointer select-none outline-none border w-[3.5rem] h-[3.5rem]",
+  "inline-grid place-items-center rounded-12 transition-all cursor-pointer select-none outline-none border",
   {
     variants: {
       intent: {
@@ -12,9 +12,14 @@ const iconButtonVariants = cva(
         delete:
           "bg-surface-input text-text-muted border-transparent hover:bg-surface-hover hover:text-danger focus:ring-2 focus:ring-brand focus:border-brand",
       },
+      size: {
+        md: "w-[3.5rem] h-[3.5rem]",
+        sm: "w-[3rem] h-[3rem]",
+      },
     },
     defaultVariants: {
       intent: "exchange",
+      size: "md",
     },
   },
 );
@@ -27,13 +32,14 @@ export interface IconButtonProps extends Readonly<
 export function IconButton({
   className,
   intent,
+  size,
   children,
   ...props
 }: IconButtonProps) {
   return (
     <button
       type="button"
-      className={cn(iconButtonVariants({ intent }), className)}
+      className={cn(iconButtonVariants({ intent, size }), className)}
       {...props}
     >
       {children}

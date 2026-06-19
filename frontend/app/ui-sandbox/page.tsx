@@ -19,6 +19,7 @@ import CurrencyDropdownWrapper from "./_components/CurrencyDropdownWrapper";
 import MarketStatsWrapper from "./_components/MarketStatCardWrapper";
 import TimeframeWrapper from "./_components/TimeframeWrapper";
 import SwapButtonWrapper from "./_components/SwapButtonWrapper";
+import CurrencySwapButtonWrapper from "./_components/CurrencySwapButtonWrapper";
 
 export default function DesignSystemPage() {
   return (
@@ -203,6 +204,25 @@ export default function DesignSystemPage() {
                 </IconButton>
                 <IconButton
                   intent="exchange"
+                  className="ring-2 ring-brand border-brand"
+                >
+                  <ExchangeIcon />
+                </IconButton>
+              </div>
+              <div className="mt-4 grid grid-cols-3 gap-[1rem] justify-items-start">
+                <IconButton intent="exchange" size="sm">
+                  <ExchangeIcon />
+                </IconButton>
+                <IconButton
+                  intent="exchange"
+                  size="sm"
+                  className="bg-surface-hover"
+                >
+                  <ExchangeIcon />
+                </IconButton>
+                <IconButton
+                  intent="exchange"
+                  size="sm"
                   className="ring-2 ring-brand border-brand"
                 >
                   <ExchangeIcon />
@@ -429,6 +449,17 @@ export default function DesignSystemPage() {
 
           <div className="border border-border-subtle rounded-12 overflow-hidden">
             <SwapButtonWrapper />
+          </div>
+        </section>
+
+        {/* --- SECCIÓN 16: Currency Swap Button --- */}
+        <section className="border border-border-subtle p-[1.5rem] rounded-8 bg-surface-card col-span-full">
+          <h2 className="text-preset-2-bold text-brand border-b border-border-subtle pb-[0.5rem] mb-[1rem]">
+            16. Currency Swap Button
+          </h2>
+
+          <div className="border border-border-subtle rounded-12 overflow-hidden">
+            <CurrencySwapButtonWrapper />
           </div>
         </section>
       </div>
