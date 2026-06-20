@@ -8,16 +8,14 @@ import { CurrencyItem } from "@/domain/currency/currency";
 import { MOCK_CURRENCY_GROUPS } from "@/domain/currency/mocks";
 
 export default function CurrencyDropdownWrapper() {
-  // Estados para controlar el comportamiento del Dropdown/Buscador
   const [isOpen, setIsOpen] = useState(false);
   const [selectedCurrency, setSelectedCurrency] = useState<
     CurrencyItem | undefined
   >(
-    MOCK_CURRENCY_GROUPS[0].items[1], // Forzamos EUR por defecto para ver el checkmark ✓
+    MOCK_CURRENCY_GROUPS[0].items[1], // EUR
   );
   const [searchQuery, setSearchQuery] = useState("");
 
-  // 1. Lógica de filtrado en tiempo real para el buscador
   const filteredGroups = useMemo(() => {
     const cleanSearch = searchQuery.toLowerCase().trim();
     if (!cleanSearch) return MOCK_CURRENCY_GROUPS;
@@ -34,14 +32,12 @@ export default function CurrencyDropdownWrapper() {
 
   return (
     <div className="min-h-screen bg-neutral-950 text-text-primary p-[2rem] space-y-[3rem]">
-      {/* Sección del Selector de Monedas */}
       <section className="space-y-[1rem]">
         <h2 className="text-[0.75rem] font-mono text-text-muted tracking-widest uppercase">
           2. Currency Dropdown (Domain + Shared Composition)
         </h2>
 
         <div className="flex flex-col items-start gap-[1rem]">
-          {/* Implementación interactiva usando el Popover de Radix */}
           <Popover open={isOpen} onOpenChange={setIsOpen}>
             <PopoverTrigger asChild>
               <button
@@ -58,7 +54,6 @@ export default function CurrencyDropdownWrapper() {
             </PopoverTrigger>
 
             <PopoverContent className="z-50 animate-in fade-in-50 duration-200">
-              {/* Injectamos el panel de negocio de domain dentro del cascarón de shared */}
               <CurrencyDropdownPanel
                 groups={filteredGroups}
                 selectedCode={selectedCurrency?.code}
@@ -66,8 +61,8 @@ export default function CurrencyDropdownWrapper() {
                 onSearchChange={setSearchQuery}
                 onSelectCurrency={(currency) => {
                   setSelectedCurrency(currency);
-                  setIsOpen(false); // Cierra automáticamente al seleccionar
-                  setSearchQuery(""); // Limpia el buscador
+                  setIsOpen(false);
+                  setSearchQuery("");
                 }}
               />
             </PopoverContent>

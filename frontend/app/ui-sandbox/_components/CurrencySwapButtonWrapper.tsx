@@ -3,6 +3,9 @@
 import { CurrencyInputPanel } from "@/shared/components/CurrencyInputPanel";
 import { SwapButton } from "@/shared/components/SwapButton";
 
+import { MOCK_CURRENCY_GROUPS } from "@/domain/currency/mocks";
+import { CurrencyGroup } from "@/domain/currency/currency";
+
 export default function CurrencySwapButtonWrapper() {
   const handleSwap = () => {
     console.log("Swapped!");
@@ -10,6 +13,8 @@ export default function CurrencySwapButtonWrapper() {
 
   const sendAmount = "1000";
   const receiveAmount = "400";
+
+  const currencyGroups: CurrencyGroup[] = [...MOCK_CURRENCY_GROUPS];
 
   return (
     <div className="w-full max-w-[1200px] bg-[#050505] p-[1.5rem] rounded-12 border border-neutral-900">
@@ -19,6 +24,7 @@ export default function CurrencySwapButtonWrapper() {
           value={sendAmount}
           currencyCode="USD"
           onValueChange={() => {}}
+          currencyGroups={currencyGroups}
         />
 
         <div className="shrink-0 z-10">
@@ -30,6 +36,7 @@ export default function CurrencySwapButtonWrapper() {
           value={receiveAmount}
           currencyCode="EUR"
           readOnly
+          currencyGroups={currencyGroups}
         />
       </div>
     </div>

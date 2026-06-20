@@ -1,4 +1,3 @@
-import * as React from "react";
 import { cn } from "@/shared/utils/cn";
 import { CurrencyItem } from "../currency";
 import CircleWrapper from "@/shared/ui/CircleWrapper";

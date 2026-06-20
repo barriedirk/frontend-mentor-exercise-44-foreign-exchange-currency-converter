@@ -1,5 +1,11 @@
-import * as React from "react";
 import { cn } from "@/shared/utils/cn";
+import CircleWrapper from "@/shared/ui/CircleWrapper";
+import { ChevronDownIcon } from "lucide-react";
+import { Popover, PopoverTrigger, PopoverContent } from "@/shared/ui/Popover";
+import { CurrencyGroup, CurrencyItem } from "@/domain/currency/currency";
+import { useMemo, useState } from "react";
+import { ALLOWED_CURRENCIES } from "@/shared/constants/currencies";
+import { CurrencyDropdownPanel } from "@/domain/currency/ui/CurrencyDropdownPanel";
 
 interface CurrencyInputPanelProps extends Readonly<
   Omit<React.HTMLAttributes<HTMLDivElement>, "onChange">
@@ -10,6 +16,7 @@ interface CurrencyInputPanelProps extends Readonly<
   readonly onValueChange?: (value: string) => void;
   readonly onCurrencyClick?: () => void;
   readonly readOnly?: boolean;
+  readonly currencyGroups: CurrencyGroup[];
 }
 
 export function CurrencyInputPanel({
@@ -20,8 +27,34 @@ export function CurrencyInputPanel({
   onValueChange,
   onCurrencyClick,
   readOnly = false,
+  currencyGroups,
   ...props
 }: CurrencyInputPanelProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCurrency, setSelectedCurrency] = useState<
+    CurrencyItem | undefined
+  >(
+    ALLOWED_CURRENCIES.find(
+      (currency) => currency.code === currencyCode,
+    ) as CurrencyItem,
+  );
+  const filteredGroups = useMemo(() => {
+    const cleanSearch = searchQuery.toLowerCase().trim();
+    if (!cleanSearch) return currencyGroups;
+
+    return currencyGroups
+      .map((group) => ({
+        title: group.title,
+        items: group.items.filter(
+          (item) =>
+            item.code.toLowerCase().includes(cleanSearch) ||
+            item.name.toLowerCase().includes(cleanSearch),
+        ),
+      }))
+      .filter((group) => group.items.length > 0);
+  }, [searchQuery]);
+
   return (
     <div
       className={cn(
@@ -30,14 +63,10 @@ export function CurrencyInputPanel({
       )}
       {...props}
     >
-      {/* LABEL SUPERIOR */}
       <span className="text-[0.75rem] text-text-muted uppercase tracking-widest font-medium">
         {label}
       </span>
-
-      {/* CONTENEDOR DE INPUT Y SELECTOR */}
       <div className="flex items-center justify-between gap-[1rem] w-full">
-        {/* INPUT NUMÉRICO */}
         <input
           type="text"
           inputMode="decimal"
@@ -49,47 +78,49 @@ export function CurrencyInputPanel({
           className={cn(
             "w-full bg-transparent text-[2.5rem] font-bold text-text-primary outline-none tracking-tight p-0 border-none min-w-0",
             {
-              "text-brand": label === "RECEIVE", // Si en tu Figma el panel de recibir tiene un color destacado (como el verde lima de tu captura)
+              "text-brand": label === "RECEIVE",
               "cursor-default": readOnly,
             },
           )}
         />
+        <Popover open={isOpen} onOpenChange={setIsOpen}>
+          <PopoverTrigger asChild>
+            <button
+              type="button"
+              onClick={onCurrencyClick}
+              className="flex items-center gap-[0.5rem] bg-neutral-800 border border-neutral-700/50 hover:bg-neutral-700 h-[3rem] px-[1rem] rounded-12 text-text-primary font-bold text-[1rem] transition-all cursor-pointer outline-none shrink-0 select-none"
+            >
+              <CircleWrapper size="sm">
+                <span
+                  className={cn(
+                    "fi",
+                    `fi-${selectedCurrency?.code.slice(0, 2).toLowerCase()}`,
+                    "fis",
+                  )}
+                />
+              </CircleWrapper>
 
-        {/* BOTÓN SELECTOR DE MONEDA (Abre el Dropdown) */}
-        <button
-          type="button"
-          onClick={onCurrencyClick}
-          className="flex items-center gap-[0.5rem] bg-neutral-800 border border-neutral-700/50 hover:bg-neutral-700 h-[3rem] px-[1rem] rounded-12 text-text-primary font-bold text-[1rem] transition-all cursor-pointer outline-none shrink-0 select-none"
-        >
-          {/* 💡 Aquí es donde consumiremos tu lógica de banderas redondeadas */}
-          <div className="size-[1.25rem] rounded-full overflow-hidden shrink-0 bg-neutral-900 flex items-center justify-center isolation-isolate">
-            <span
-              className={cn(
-                "fi",
-                `fi-${currencyCode.slice(0, 2).toLowerCase()}`,
-                "fis",
-                "block w-full h-full rounded-full",
-              )}
+              <span className="uppercase tracking-wide">
+                {selectedCurrency?.code}
+              </span>
+
+              <ChevronDownIcon size={12} />
+            </button>
+          </PopoverTrigger>
+          <PopoverContent className="z-50 animate-in fade-in-50 duration-200">
+            <CurrencyDropdownPanel
+              groups={filteredGroups}
+              selectedCode={selectedCurrency?.code}
+              searchValue={searchQuery}
+              onSearchChange={setSearchQuery}
+              onSelectCurrency={(currency) => {
+                setSelectedCurrency(currency);
+                setIsOpen(false);
+                setSearchQuery("");
+              }}
             />
-          </div>
-
-          <span className="uppercase tracking-wide">{currencyCode}</span>
-
-          {/* Flecha hacia abajo indicando dropdown */}
-          <svg
-            className="size-[1rem] text-text-muted"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="2.5"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-            />
-          </svg>
-        </button>
+          </PopoverContent>
+        </Popover>
       </div>
     </div>
   );
