@@ -1,20 +1,23 @@
 import { cn } from "@/shared/utils/cn";
+
+import { useId, useMemo, useState } from "react";
+
 import CircleWrapper from "@/shared/ui/CircleWrapper";
 import { ChevronDownIcon } from "lucide-react";
 import { Popover, PopoverTrigger, PopoverContent } from "@/shared/ui/Popover";
 import { CurrencyGroup, CurrencyItem } from "@/domain/currency/currency";
-import { useMemo, useState } from "react";
 import { ALLOWED_CURRENCIES } from "@/shared/constants/currencies";
 import { CurrencyDropdownPanel } from "@/domain/currency/ui/CurrencyDropdownPanel";
+import { AmountInput } from "@/shared/ui/AmountInput";
 
 interface CurrencyInputPanelProps extends Readonly<
-  Omit<React.HTMLAttributes<HTMLDivElement>, "onChange">
+  Omit<React.HTMLAttributes<HTMLFieldSetElement>, "onChange">
 > {
   readonly label: "SEND" | "RECEIVE";
   readonly value: string;
   readonly currencyCode: string;
   readonly onValueChange?: (value: string) => void;
-  readonly onCurrencyClick?: () => void;
+  readonly onCurrencySelect?: (currency: CurrencyItem) => void;
   readonly readOnly?: boolean;
   readonly currencyGroups: CurrencyGroup[];
 }
@@ -25,20 +28,20 @@ export function CurrencyInputPanel({
   value,
   currencyCode,
   onValueChange,
-  onCurrencyClick,
+  onCurrencySelect,
   readOnly = false,
   currencyGroups,
   ...props
 }: CurrencyInputPanelProps) {
+  const labelId = useId();
+
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCurrency, setSelectedCurrency] = useState<
-    CurrencyItem | undefined
-  >(
-    ALLOWED_CURRENCIES.find(
-      (currency) => currency.code === currencyCode,
-    ) as CurrencyItem,
-  );
+
+  const activeCurrency = useMemo(() => {
+    return ALLOWED_CURRENCIES.find((c) => c.code === currencyCode);
+  }, [currencyCode]);
+
   const filteredGroups = useMemo(() => {
     const cleanSearch = searchQuery.toLowerCase().trim();
     if (!cleanSearch) return currencyGroups;
@@ -53,55 +56,56 @@ export function CurrencyInputPanel({
         ),
       }))
       .filter((group) => group.items.length > 0);
-  }, [searchQuery]);
+  }, [searchQuery, currencyGroups]);
 
   return (
-    <div
+    <fieldset
+      aria-labelledby={labelId}
       className={cn(
         "flex flex-col gap-[0.5rem] w-full p-[1.5rem] bg-neutral-900/40 border border-neutral-800/60 rounded-12 font-mono transition-all focus-within:border-neutral-700 focus-within:bg-neutral-900/80",
         className,
       )}
       {...props}
     >
-      <span className="text-[0.75rem] text-text-muted uppercase tracking-widest font-medium">
+      <span
+        id={labelId}
+        className="text-[0.75rem] text-text-muted uppercase tracking-widest font-medium"
+      >
         {label}
       </span>
       <div className="flex items-center justify-between gap-[1rem] w-full">
-        <input
-          type="text"
-          inputMode="decimal"
-          pattern="^[0-9]*[.,]?[0-9]*$"
-          placeholder="0.00"
+        <AmountInput
           value={value}
           readOnly={readOnly}
-          onChange={(e) => onValueChange?.(e.target.value)}
-          className={cn(
-            "w-full bg-transparent text-[2.5rem] font-bold text-text-primary outline-none tracking-tight p-0 border-none min-w-0",
-            {
-              "text-brand": label === "RECEIVE",
-              "cursor-default": readOnly,
-            },
-          )}
+          className={cn({
+            "text-brand": label === "RECEIVE",
+            "cursor-default": readOnly,
+          })}
+          onChange={onValueChange ?? (() => {})}
+          aria-label={`${label} amount`}
+          aria-readonly={readOnly}
         />
         <Popover open={isOpen} onOpenChange={setIsOpen}>
           <PopoverTrigger asChild>
             <button
               type="button"
-              onClick={onCurrencyClick}
               className="flex items-center gap-[0.5rem] bg-neutral-800 border border-neutral-700/50 hover:bg-neutral-700 h-[3rem] px-[1rem] rounded-12 text-text-primary font-bold text-[1rem] transition-all cursor-pointer outline-none shrink-0 select-none"
+              aria-haspopup="dialog"
+              aria-expanded={isOpen}
+              aria-label={`Select ${label.toLowerCase()} currency. Current: ${currencyCode}`}
             >
               <CircleWrapper size="sm">
                 <span
                   className={cn(
                     "fi",
-                    `fi-${selectedCurrency?.code.slice(0, 2).toLowerCase()}`,
+                    `fi-${activeCurrency?.code.slice(0, 2).toLowerCase()}`,
                     "fis",
                   )}
                 />
               </CircleWrapper>
 
               <span className="uppercase tracking-wide">
-                {selectedCurrency?.code}
+                {activeCurrency?.code}
               </span>
 
               <ChevronDownIcon size={12} />
@@ -110,11 +114,11 @@ export function CurrencyInputPanel({
           <PopoverContent className="z-50 animate-in fade-in-50 duration-200">
             <CurrencyDropdownPanel
               groups={filteredGroups}
-              selectedCode={selectedCurrency?.code}
+              selectedCode={activeCurrency?.code}
               searchValue={searchQuery}
               onSearchChange={setSearchQuery}
               onSelectCurrency={(currency) => {
-                setSelectedCurrency(currency);
+                onCurrencySelect?.(currency);
                 setIsOpen(false);
                 setSearchQuery("");
               }}
@@ -122,6 +126,6 @@ export function CurrencyInputPanel({
           </PopoverContent>
         </Popover>
       </div>
-    </div>
+    </fieldset>
   );
 }

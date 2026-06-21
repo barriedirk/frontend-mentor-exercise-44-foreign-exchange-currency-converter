@@ -5,14 +5,19 @@ import { SwapButton } from "@/shared/components/SwapButton";
 
 import { MOCK_CURRENCY_GROUPS } from "@/domain/currency/mocks";
 import { CurrencyGroup } from "@/domain/currency/currency";
+import { useState } from "react";
 
 export default function CurrencySwapButtonWrapper() {
-  const handleSwap = () => {
-    console.log("Swapped!");
-  };
+  const [sendAmount, setSendAmount] = useState("1000");
+  const [sendCurrencyCode, setSendCurrencyCode] = useState("USD");
 
-  const sendAmount = "1000";
-  const receiveAmount = "400";
+  const [receiveAmount, setReceiveAmount] = useState("400");
+  const [receiveCurrencyCode, setReceiveCurrencyCode] = useState("EUR");
+
+  const handleSwap = () => {
+    setSendCurrencyCode(receiveCurrencyCode);
+    setReceiveCurrencyCode(sendCurrencyCode);
+  };
 
   const currencyGroups: CurrencyGroup[] = [...MOCK_CURRENCY_GROUPS];
 
@@ -22,8 +27,9 @@ export default function CurrencySwapButtonWrapper() {
         <CurrencyInputPanel
           label="SEND"
           value={sendAmount}
-          currencyCode="USD"
-          onValueChange={() => {}}
+          currencyCode={sendCurrencyCode}
+          onValueChange={(value) => setSendAmount(value)}
+          onCurrencySelect={(currency) => setSendCurrencyCode(currency.code)}
           currencyGroups={currencyGroups}
         />
 
@@ -34,8 +40,10 @@ export default function CurrencySwapButtonWrapper() {
         <CurrencyInputPanel
           label="RECEIVE"
           value={receiveAmount}
-          currencyCode="EUR"
+          currencyCode={receiveCurrencyCode}
           readOnly
+          onValueChange={(value) => setReceiveAmount(value)}
+          onCurrencySelect={(currency) => setReceiveCurrencyCode(currency.code)}
           currencyGroups={currencyGroups}
         />
       </div>

@@ -1,5 +1,5 @@
-import * as React from "react";
 import { cn } from "@/shared/utils/cn";
+import { useId } from "react";
 
 interface AmountInputProps extends Readonly<
   Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange" | "value">
@@ -15,6 +15,8 @@ export function AmountInput({
   placeholder = "0",
   ...props
 }: AmountInputProps) {
+  const inputId = useId();
+
   const formatDisplayValue = (val: string): string => {
     if (!val) return "";
 
@@ -41,6 +43,7 @@ export function AmountInput({
   return (
     <div className="relative inline-block w-full max-w-[24rem]">
       <input
+        id={inputId}
         type="text"
         inputMode="decimal"
         value={formatDisplayValue(value)}
