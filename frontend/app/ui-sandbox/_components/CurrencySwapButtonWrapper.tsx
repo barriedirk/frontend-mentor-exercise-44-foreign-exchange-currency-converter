@@ -7,6 +7,8 @@ import { MOCK_CURRENCY_GROUPS } from "@/domain/currency/mocks";
 import { CurrencyGroup } from "@/domain/currency/currency";
 import { useState } from "react";
 
+const CURRENCY_GROUPS: readonly CurrencyGroup[] = MOCK_CURRENCY_GROUPS;
+
 export default function CurrencySwapButtonWrapper() {
   const [sendAmount, setSendAmount] = useState("1000");
   const [sendCurrencyCode, setSendCurrencyCode] = useState("USD");
@@ -17,12 +19,16 @@ export default function CurrencySwapButtonWrapper() {
   const handleSwap = () => {
     setSendCurrencyCode(receiveCurrencyCode);
     setReceiveCurrencyCode(sendCurrencyCode);
+
+    setSendAmount(receiveAmount);
+    setReceiveAmount(sendAmount);
   };
 
-  const currencyGroups: CurrencyGroup[] = [...MOCK_CURRENCY_GROUPS];
-
   return (
-    <div className="w-full max-w-[1200px] bg-[#050505] p-[1.5rem] rounded-12 border border-neutral-900">
+    <section
+      aria-label="Currency converter calculator"
+      className="w-full max-w-[1200px] bg-neutral-950 p-[1.5rem] rounded-12 border border-border-subtle"
+    >
       <div className="flex flex-col sm:flex-row items-center gap-[1.5rem] w-full">
         <CurrencyInputPanel
           label="SEND"
@@ -30,7 +36,7 @@ export default function CurrencySwapButtonWrapper() {
           currencyCode={sendCurrencyCode}
           onValueChange={(value) => setSendAmount(value)}
           onCurrencySelect={(currency) => setSendCurrencyCode(currency.code)}
-          currencyGroups={currencyGroups}
+          currencyGroups={CURRENCY_GROUPS as CurrencyGroup[]}
         />
 
         <div className="shrink-0 z-10">
@@ -44,9 +50,9 @@ export default function CurrencySwapButtonWrapper() {
           readOnly
           onValueChange={(value) => setReceiveAmount(value)}
           onCurrencySelect={(currency) => setReceiveCurrencyCode(currency.code)}
-          currencyGroups={currencyGroups}
+          currencyGroups={CURRENCY_GROUPS as CurrencyGroup[]}
         />
       </div>
-    </div>
+    </section>
   );
 }
