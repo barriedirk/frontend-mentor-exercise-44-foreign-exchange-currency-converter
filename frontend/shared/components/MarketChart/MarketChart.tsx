@@ -39,7 +39,7 @@ export function MarketChart({
             {baseCurrency}/{quoteCurrency}
           </h2>
         </div>
-        <div className="flex flex-col items-end gap-[0.25rem]">
+        <div className="flex flex-row items-end gap-[0.25rem]">
           <span className="text-[1.125rem] font-bold text-brand tracking-tight">
             {latestRate.toFixed(4)}
           </span>
@@ -75,7 +75,10 @@ export function MarketChart({
               tickLine={false}
               axisLine={false}
               stroke="var(--color-text-muted, #737373)"
-              style={{ fontSize: "0.75rem", fontFamily: "monospace" }}
+              style={{
+                fontSize: "0.625rem",
+                fontFamily: "JetBrains Mono, monospace",
+              }}
               dy={10}
             />
 
@@ -85,7 +88,10 @@ export function MarketChart({
               tickLine={false}
               axisLine={false}
               stroke="var(--color-text-muted, #737373)"
-              style={{ fontSize: "0.75rem", fontFamily: "monospace" }}
+              style={{
+                fontSize: "0.625rem",
+                fontFamily: "JetBrains Mono, monospace",
+              }}
               dx={-10}
               tickCount={4}
             />
@@ -94,15 +100,15 @@ export function MarketChart({
               contentStyle={{
                 backgroundColor: "#0a0a0a",
                 borderColor: "var(--color-border-subtle, #1f1f1f)",
-                borderRadius: "8px",
-                fontFamily: "monospace",
+                fontFamily: "JetBrains Mono, monospace",
+                fontSize: "10px",
               }}
               labelStyle={{ color: "var(--color-text-muted)" }}
               itemStyle={{ color: "var(--color-brand)" }}
             />
 
             <Area
-              type="monotone"
+              type="linear"
               dataKey="rate"
               stroke="var(--color-brand, #bef264)"
               strokeWidth={2}
