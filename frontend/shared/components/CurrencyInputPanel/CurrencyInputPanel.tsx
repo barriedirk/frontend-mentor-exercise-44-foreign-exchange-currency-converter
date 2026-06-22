@@ -69,7 +69,7 @@ export function CurrencyInputPanel({
     >
       <span
         id={labelId}
-        className="text-[0.75rem] text-text-muted uppercase tracking-widest font-medium"
+        className="text-preset-5 text-text-muted uppercase tracking-widest font-medium"
       >
         {label}
       </span>
@@ -89,7 +89,7 @@ export function CurrencyInputPanel({
           <PopoverTrigger asChild>
             <button
               type="button"
-              className="flex items-center gap-[0.5rem] bg-neutral-800 border border-neutral-700/50 hover:bg-neutral-700 h-[3rem] px-[1rem] rounded-12 text-text-primary font-bold text-[1rem] transition-all cursor-pointer outline-none shrink-0 select-none"
+              className="flex items-center gap-[0.5rem] bg-neutral-800 border border-neutral-700/50 hover:bg-neutral-700 h-[3rem] px-[1rem] rounded-12 text-text-primary font-bold text-preset-3 transition-all cursor-pointer outline-none shrink-0 select-none"
               aria-haspopup="dialog"
               aria-expanded={isOpen}
               aria-label={`Select ${label.toLowerCase()} currency. Current: ${currencyCode}`}

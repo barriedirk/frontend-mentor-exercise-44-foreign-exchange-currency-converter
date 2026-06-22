@@ -33,7 +33,7 @@ export default function CurrencyDropdownWrapper() {
   return (
     <div className="min-h-screen bg-neutral-950 text-text-primary p-[2rem] space-y-[3rem]">
       <section className="space-y-[1rem]">
-        <h2 className="text-[0.75rem] font-mono text-text-muted tracking-widest uppercase">
+        <h2 className="text-preset-5 font-mono text-text-muted tracking-widest uppercase">
           2. Currency Dropdown (Domain + Shared Composition)
         </h2>
 

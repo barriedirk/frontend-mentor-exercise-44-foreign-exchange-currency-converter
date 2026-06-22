@@ -51,7 +51,7 @@ export default function MarketStatsWrapper() {
       </div>
 
       <div className="flex flex-col gap-[1rem] max-w-[300px]">
-        <h2 className="text-text-muted font-mono text-[0.75rem] uppercase tracking-widest">
+        <h2 className="text-text-muted font-mono text-preset-5 uppercase tracking-widest">
           Individual Variants
         </h2>
         <MarketStatCard

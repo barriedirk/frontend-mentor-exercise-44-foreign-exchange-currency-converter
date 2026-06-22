@@ -41,17 +41,18 @@ export function MarketChart({
     >
       <div className="flex items-center justify-between w-full">
         <div className="flex flex-col gap-[0.25rem]">
-          <h2 className="text-[1rem] font-bold text-text-primary tracking-wider uppercase">
+          <h2 className="text-preset-3 font-bold text-text-primary tracking-wider uppercase">
             {baseCurrency}/{quoteCurrency}
           </h2>
         </div>
-        <div className="flex flex-row items-end gap-[0.25rem]">
-          <span className="text-[0.75rem] font-bold text-brand tracking-tight">
+        <div className="flex flex-row items-end gap-2 text-neutral-200 text-preset-5 ">
+          <span className="font-bold tracking-tight">
             {latestRate.toFixed(4)}
           </span>
-          <span className="text-[0.75rem] text-text-muted uppercase tracking-wider">
-            {updatedAt}
+          <span aria-hidden="true" className="text-primary">
+            ·
           </span>
+          <span className="uppercase tracking-wider">{updatedAt}</span>
         </div>
       </div>
 
@@ -80,7 +81,7 @@ export function MarketChart({
               dataKey="date"
               tickLine={false}
               axisLine={false}
-              stroke="var(--color-text-muted, #737373)"
+              stroke="var(--color-text-secondary, #737373)"
               style={{
                 fontSize: "0.625rem",
                 fontFamily: "JetBrains Mono, monospace",
@@ -93,7 +94,7 @@ export function MarketChart({
               orientation="left"
               tickLine={false}
               axisLine={false}
-              stroke="var(--color-text-muted, #737373)"
+              stroke="var(--color-text-secondary, #737373)"
               style={{
                 fontSize: "0.625rem",
                 fontFamily: "JetBrains Mono, monospace",

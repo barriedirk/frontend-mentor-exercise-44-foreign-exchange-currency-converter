@@ -35,7 +35,7 @@ export function TimeframeTabs({
             type="button"
             onClick={() => onChange(tf)}
             className={cn(
-              "h-[2rem] px-[0.75rem] flex items-center justify-center font-mono text-[0.75rem] font-medium rounded-6 transition-all cursor-pointer outline-none",
+              "h-[2rem] px-[0.75rem] flex items-center justify-center font-mono text-preset-5 font-medium rounded-6 transition-all cursor-pointer outline-none",
               {
                 // Estado Inactivo
                 "text-text-muted bg-transparent hover:text-text-primary hover:bg-neutral-800/50":
