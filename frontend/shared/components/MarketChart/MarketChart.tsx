@@ -1,7 +1,9 @@
 "use client";
 
-import { MarketChartBase } from "@/shared/types/MarketChartRate";
 import { useMemo } from "react";
+
+import { MarketChartBase } from "@/shared/types/MarketChartRate";
+import { cn } from "@/shared/utils/cn";
 import {
   ResponsiveContainer,
   AreaChart,
@@ -20,6 +22,7 @@ export function MarketChart({
   baseCurrency,
   quoteCurrency,
   updatedAt = "Just now",
+  className,
   data = [],
 }: MarketChartProps) {
   const latestRate = useMemo(() => {
@@ -30,8 +33,11 @@ export function MarketChart({
 
   return (
     <section
-      aria-label="Market historical trend chart"
-      className="w-full bg-neutral-950 p-[1.5rem] rounded-12 border border-border-subtle font-mono flex flex-col gap-[1.5rem]"
+      aria-label={`Market historical trend chart - ${baseCurrency}/${quoteCurrency}`}
+      className={cn(
+        "w-full bg-neutral-950 p-[1.5rem] rounded-12 border border-border-subtle font-mono flex flex-col gap-[1.5rem]",
+        className,
+      )}
     >
       <div className="flex items-center justify-between w-full">
         <div className="flex flex-col gap-[0.25rem]">
@@ -40,7 +46,7 @@ export function MarketChart({
           </h2>
         </div>
         <div className="flex flex-row items-end gap-[0.25rem]">
-          <span className="text-[1.125rem] font-bold text-brand tracking-tight">
+          <span className="text-[0.75rem] font-bold text-brand tracking-tight">
             {latestRate.toFixed(4)}
           </span>
           <span className="text-[0.75rem] text-text-muted uppercase tracking-wider">
