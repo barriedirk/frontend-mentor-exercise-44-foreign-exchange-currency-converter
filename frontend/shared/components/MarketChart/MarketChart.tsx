@@ -1,5 +1,6 @@
 "use client";
 
+import { MarketChartBase } from "@/shared/types/MarketChartRate";
 import { useMemo } from "react";
 import {
   ResponsiveContainer,
@@ -10,40 +11,28 @@ import {
   Tooltip,
 } from "recharts";
 
-// Mock Data adaptado de la estructura de series de tiempo de la API (ej: USD/EUR)
-const MOCK_CHART_DATA = [
-  { date: "Apr 14", rate: 0.857 },
-  { date: "Apr 17", rate: 0.851 },
-  { date: "Apr 21", rate: 0.846 },
-  { date: "Apr 24", rate: 0.8495 },
-  { date: "Apr 28", rate: 0.843 },
-  { date: "May 02", rate: 0.858 },
-  { date: "May 06", rate: 0.8515 },
-  { date: "May 10", rate: 0.8612 },
-  { date: "May 14", rate: 0.853 },
-];
-
-interface MarketChartProps {
-  readonly baseCurrency?: string;
-  readonly quoteCurrency?: string;
+interface MarketChartProps extends MarketChartBase {
+  readonly className?: string;
+  readonly updatedAt?: string;
 }
 
 export function MarketChart({
-  baseCurrency = "USD",
-  quoteCurrency = "EUR",
+  baseCurrency,
+  quoteCurrency,
+  updatedAt = "Just now",
+  data = [],
 }: MarketChartProps) {
-  // Obtenemos el último valor para el header del gráfico
   const latestRate = useMemo(() => {
-    if (MOCK_CHART_DATA.length === 0) return 0;
-    return MOCK_CHART_DATA[MOCK_CHART_DATA.length - 1].rate;
-  }, []);
+    if (data.length === 0) return 0;
+
+    return data.at(-1)?.rate ?? 0;
+  }, [data]);
 
   return (
     <section
       aria-label="Market historical trend chart"
       className="w-full bg-neutral-950 p-[1.5rem] rounded-12 border border-border-subtle font-mono flex flex-col gap-[1.5rem]"
     >
-      {/* HEADER DEL GRÁFICO */}
       <div className="flex items-center justify-between w-full">
         <div className="flex flex-col gap-[0.25rem]">
           <h2 className="text-[1rem] font-bold text-text-primary tracking-wider uppercase">
@@ -55,20 +44,18 @@ export function MarketChart({
             {latestRate.toFixed(4)}
           </span>
           <span className="text-[0.75rem] text-text-muted uppercase tracking-wider">
-            May 14 16:00 CET
+            {updatedAt}
           </span>
         </div>
       </div>
 
-      {/* CONTENEDOR DEL GRÁFICO */}
-      <div className="w-full h-[300px] -ml-[1.5rem] sm:-ml-[2rem]">
+      <div className="w-full h-[300px] -ml-[0.5rem] sm:-ml-[2rem]">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart
-            data={MOCK_CHART_DATA}
+            data={data}
             margin={{ top: 10, right: 10, left: 10, bottom: 0 }}
           >
             <defs>
-              {/* 💡 GRADIENTE PERSONALIZADO: Aplica el color brand arriba y se desvanece a 0 opacidad abajo */}
               <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
                 <stop
                   offset="0%"
@@ -78,12 +65,11 @@ export function MarketChart({
                 <stop
                   offset="100%"
                   stopColor="var(--color-brand, #bef264)"
-                  stopOpacity={0.0}
+                  stopOpacity={0}
                 />
               </linearGradient>
             </defs>
 
-            {/* EJE X */}
             <XAxis
               dataKey="date"
               tickLine={false}
@@ -93,7 +79,6 @@ export function MarketChart({
               dy={10}
             />
 
-            {/* EJE Y */}
             <YAxis
               domain={["dataMin - 0.005", "dataMax + 0.005"]}
               orientation="left"
@@ -105,7 +90,6 @@ export function MarketChart({
               tickCount={4}
             />
 
-            {/* TOOLTIP INTERACTIVO */}
             <Tooltip
               contentStyle={{
                 backgroundColor: "#0a0a0a",
@@ -117,7 +101,6 @@ export function MarketChart({
               itemStyle={{ color: "var(--color-brand)" }}
             />
 
-            {/* ÁREA DEL GRÁFICO */}
             <Area
               type="monotone"
               dataKey="rate"

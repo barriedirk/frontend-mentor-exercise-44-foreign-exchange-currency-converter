@@ -20,6 +20,8 @@ import MarketStatsWrapper from "./_components/MarketStatCardWrapper";
 import TimeframeWrapper from "./_components/TimeframeWrapper";
 import SwapButtonWrapper from "./_components/SwapButtonWrapper";
 import CurrencySwapButtonWrapper from "./_components/CurrencySwapButtonWrapper";
+import { MarketChart } from "@/shared/components/MarketChart/MarketChart";
+import { MarketChartWrapper } from "./_components/MarketChartWrapper";
 
 export default function DesignSystemPage() {
   return (
@@ -460,6 +462,17 @@ export default function DesignSystemPage() {
 
           <div className="border border-border-subtle rounded-12 overflow-hidden">
             <CurrencySwapButtonWrapper />
+          </div>
+        </section>
+
+        {/* --- SECCIÓN 17: Market Chart --- */}
+        <section className="border border-border-subtle p-[1.5rem] rounded-8 bg-surface-card col-span-full">
+          <h2 className="text-preset-2-bold text-brand border-b border-border-subtle pb-[0.5rem] mb-[1rem]">
+            17. Market Chart
+          </h2>
+
+          <div className="border border-border-subtle rounded-12 overflow-hidden">
+            <MarketChartWrapper />
           </div>
         </section>
       </div>
