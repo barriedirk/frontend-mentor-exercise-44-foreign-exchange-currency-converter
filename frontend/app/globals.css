@@ -2,7 +2,6 @@
 @import "flag-icons/css/flag-icons.min.css";
 
 :root {
-  /* --- PRIMITIVOS (DESIGN SYSTEM) --- */
   --color-neutral-50: #FFFFFF;
   --color-neutral-100: #C6C6C6;
   --color-neutral-200: #9D9D9D;
@@ -18,7 +17,6 @@
   --color-red-500: #FF4141;
   --color-green-500: #42EB05;
 
-  /* Spacing */
   --spacing-0: 0;
   --spacing-025: 0.125rem;
   --spacing-050: 0.25rem;
@@ -39,7 +37,6 @@
   --spacing-1600: 8rem;
   --spacing-1800: 8.75rem;
 
-  /* Corner Radius (Mapeado directo para rounded-*) */
   --radius-0: 0;
   --radius-2: 0.125rem;
   --radius-4: 0.25rem;
@@ -53,38 +50,30 @@
   --radius-full: 9999px;
 }
 
-/* --- CAPA SEMÁNTICA (TAILWIND V4) --- */
 @theme {
-  /* Forzamos fondo y texto global de la app */
   --color-background: var(--color-neutral-900);
   --color-foreground: var(--color-neutral-50);
 
-  /* Superficies */
   --color-surface-main: var(--color-neutral-900);
   --color-surface-card: var(--color-neutral-700);
   --color-surface-input: var(--color-neutral-600);
   --color-surface-hover: var(--color-neutral-500);
 
-  /* Textos */
   --color-text-primary: var(--color-neutral-50);
   --color-text-secondary: var(--color-neutral-200);
   --color-text-muted: var(--color-neutral-400);
 
-  /* Bordes */
   --color-border-subtle: var(--color-neutral-600);
   --color-border-focus: var(--color-neutral-400);
 
-  /* Acentos */
   --color-brand: var(--color-lime-500);
   --color-brand-muted: var(--color-lime-800);
   --color-success: var(--color-green-500);
   --color-danger: var(--color-red-500);
 
-  /* TIPOGRAFÍA: Forzamos JetBrains Mono como la fuente única de Tailwind v4 */
   --font-sans: var(--font-jetbrains-mono), ui-monospace, monospace;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 
-  /* PRESETS TIPOGRÁFICOS */
   --font-size-preset-1: 2.5rem;
   --font-size-preset-1--line-height: 1;
   --font-size-preset-1--letter-spacing: -0.035em;
@@ -129,9 +118,6 @@
   --font-size-preset-6--line-height: 1;
   --font-size-preset-6--letter-spacing: 0px;
 
-  /* CORRECCIÓN: Registramos los radios para que Tailwind v4 
-    genere automáticamente las clases rounded-2, rounded-4, rounded-8, etc.
-  */
   --radius-2: var(--radius-2);
   --radius-4: var(--radius-4);
   --radius-6: var(--radius-6);
@@ -148,4 +134,74 @@ body {
   background-color: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans); 
+}
+
+@utility text-preset-1 {
+  font-size: var(--font-size-preset-1);
+  line-height: var(--font-size-preset-1--line-height);
+  letter-spacing: var(--font-size-preset-1--letter-spacing);
+}
+
+@utility text-preset-1-sm {
+  font-size: var(--font-size-preset-1-sm);
+  line-height: var(--font-size-preset-1-sm--line-height);
+  letter-spacing: var(--font-size-preset-1-sm--letter-spacing);
+}
+
+@utility text-preset-2 {
+  font-size: var(--font-size-preset-2);
+  line-height: var(--font-size-preset-2--line-height);
+  letter-spacing: var(--font-size-preset-2--letter-spacing);
+}
+
+@utility text-preset-2-bold {
+  font-size: var(--font-size-preset-2-bold);
+  line-height: var(--font-size-preset-2-bold--line-height);
+  letter-spacing: var(--font-size-preset-2-bold--letter-spacing);
+  font-weight: 700;
+}
+
+@utility text-preset-3 {
+  font-size: var(--font-size-preset-3);
+  line-height: var(--font-size-preset-3--line-height);
+  letter-spacing: var(--font-size-preset-3--letter-spacing);
+}
+
+@utility text-preset-3-medium {
+  font-size: var(--font-size-preset-3-medium);
+  line-height: var(--font-size-preset-3-medium--line-height);
+  letter-spacing: var(--font-size-preset-3-medium--letter-spacing);
+  font-weight: 500;
+}
+
+@utility text-preset-3-bold {
+  font-size: var(--font-size-preset-3-bold);
+  line-height: var(--font-size-preset-3-bold--line-height);
+  letter-spacing: var(--font-size-preset-3-bold--letter-spacing);
+  font-weight: 700;
+}
+
+@utility text-preset-4 {
+  font-size: var(--font-size-preset-4);
+  line-height: var(--font-size-preset-4--line-height);
+  letter-spacing: var(--font-size-preset-4--letter-spacing);
+}
+
+@utility text-preset-5 {
+  font-size: var(--font-size-preset-5);
+  line-height: var(--font-size-preset-5--line-height);
+  letter-spacing: var(--font-size-preset-5--letter-spacing);
+}
+
+@utility text-preset-5-medium {
+  font-size: var(--font-size-preset-5-medium);
+  line-height: var(--font-size-preset-5-medium--line-height);
+  letter-spacing: var(--font-size-preset-5-medium--letter-spacing);
+  font-weight: 500;
+}
+
+@utility text-preset-6 {
+  font-size: var(--font-size-preset-6);
+  line-height: var(--font-size-preset-6--line-height);
+  letter-spacing: var(--font-size-preset-6--letter-spacing);
 }
