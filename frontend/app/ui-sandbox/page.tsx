@@ -20,7 +20,6 @@ import MarketStatsWrapper from "./_components/MarketStatCardWrapper";
 import TimeframeWrapper from "./_components/TimeframeWrapper";
 import SwapButtonWrapper from "./_components/SwapButtonWrapper";
 import CurrencySwapButtonWrapper from "./_components/CurrencySwapButtonWrapper";
-import { MarketChart } from "@/shared/components/MarketChart/MarketChart";
 import { MarketChartWrapper } from "./_components/MarketChartWrapper";
 
 export default function DesignSystemPage() {

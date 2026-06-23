@@ -1,10 +1,12 @@
 import Dashboard from "@/features/dashboard/dashboard";
-import Header from "./_components/header";
+import Header from "./_components/Header";
+import LiveMarkets from "./_components/LiveMarkets";
 
 export default function HomePage() {
   return (
     <>
       <Header />
+      <LiveMarkets />
       <main>
         <Dashboard />
       </main>

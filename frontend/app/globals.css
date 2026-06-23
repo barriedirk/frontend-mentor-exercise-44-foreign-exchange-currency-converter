@@ -128,6 +128,13 @@
   --radius-20: var(--radius-20);
   --radius-24: var(--radius-24);
   --radius-full: var(--radius-full);
+
+  --animate-ticker: ticker 25s linear infinite;
+
+  @keyframes ticker {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
 }
 
 body {
