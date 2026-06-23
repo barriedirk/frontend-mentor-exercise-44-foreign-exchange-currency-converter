@@ -18,18 +18,19 @@ export function DataTicker({ className, rates, ...props }: DataTickerProps) {
       )}
       {...props}
     >
-      <div className="h-full bg-brand px-[1.25rem] flex items-center gap-[0.5rem] shrink-0 z-10">
-        <span className="size-[0.5rem] bg-neutral-950 rounded-full animate-pulse" />
-        <span className="font-mono text-preset-6 sm:text-preset-4 text-neutral-950 uppercase tracking-wider">
+      <div className="h-full bg-brand px-[var(--spacing-250)] flex items-center gap-[var(--spacing-100)] shrink-0 z-10">
+        <span className="size-[var(--spacing-100)] bg-neutral-950 rounded-full animate-pulse" />
+        <span className="font-mono text-preset-6 sm:text-preset-4 text-neutral-950 uppercase font-bold tracking-wider">
           Live Markets
         </span>
       </div>
+
       <div className="flex w-max items-center animate-ticker hover:[animation-play-state:paused] cursor-pointer">
         {[...new Array(2)].map((_, i) => (
           <div
             key={i}
             aria-hidden={i > 0}
-            className="flex items-center h-full divide-x divide-border-subtle overflow-x-auto no-scrollbar scroll-smooth w-full text-preset-6 sm:text-preset-4"
+            className="flex items-center h-full divide-x divide-border-subtle shrink-0 text-preset-6 sm:text-preset-5"
           >
             {rates.map((item) => {
               const isPositive = item.change >= 0;
@@ -40,7 +41,7 @@ export function DataTicker({ className, rates, ...props }: DataTickerProps) {
                   className="flex items-center gap-[1rem] px-[2rem] h-full font-mono shrink-0"
                 >
                   <span className="text-text-muted">{item.pair}</span>
-                  <span className="text-text-primary font-bold">
+                  <span className="text-text-primary font-bold tabular-nums">
                     {item.value}
                   </span>
                   <span
