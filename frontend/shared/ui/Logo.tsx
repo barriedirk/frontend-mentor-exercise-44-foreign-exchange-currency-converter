@@ -1,4 +1,3 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/shared/utils/cn";
 
@@ -24,7 +23,11 @@ export function Logo({ className, theme, ...props }: LogoProps) {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 139 26"
-      className={cn("h-[1.625rem] w-auto", logoVariants({ theme }), className)}
+      className={cn(
+        "h-auto w-[103px] sm:w-[139px]",
+        logoVariants({ theme }),
+        className,
+      )}
       fill="none"
       {...props}
     >
