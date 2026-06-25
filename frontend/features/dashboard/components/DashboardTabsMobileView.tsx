@@ -1,6 +1,6 @@
 "use client";
 
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useId, useState } from "react";
 import { cn } from "@/shared/utils/cn";
 import { TabId, TabItem } from "./types";
 
@@ -16,13 +16,21 @@ export function DashboardTabsMobileView({
 }: DashboardTabsMobileViewProps) {
   const [isOpen, setIsOpen] = useState(false);
 
+  const buttonId = useId();
+  const menuId = useId();
+
   const currentTabLabel = tabItems.find((tab) => tab.id === activeTab)?.label;
 
   return (
     <div className="relative w-full sm:hidden px-[var(--spacing-300)] py-[var(--spacing-200)]">
       <button
+        id={buttonId}
         type="button"
         onClick={() => setIsOpen(!isOpen)}
+        aria-haspopup="menu"
+        aria-expanded={isOpen}
+        aria-controls={menuId}
+        aria-label="Select dashboard tab"
         className="w-full h-[40px] px-[var(--spacing-300)] bg-neutral-700 border border-border-subtle rounded-8 flex items-center justify-between text-preset-5 text-text-primary uppercase font-bold tracking-wider"
       >
         <span>{currentTabLabel}</span>
@@ -43,11 +51,17 @@ export function DashboardTabsMobileView({
 
       {/* Listado desplegable */}
       {isOpen && (
-        <ul className="absolute left-[var(--spacing-300)] right-[var(--spacing-300)] mt-[var(--spacing-050)] bg-neutral-700 border border-border-subtle rounded-8 overflow-hidden z-50 shadow-xl divide-y divide-border-subtle">
+        <div
+          id={menuId}
+          role="menu"
+          aria-labelledby={buttonId}
+          className="absolute left-[var(--spacing-300)] right-[var(--spacing-300)] mt-[var(--spacing-050)] bg-neutral-700 border border-border-subtle rounded-8 overflow-hidden z-50 shadow-xl divide-y divide-border-subtle"
+        >
           {tabItems.map((tab) => (
             <li key={tab.id}>
               <button
                 type="button"
+                role="menuitem"
                 onClick={() => {
                   setActiveTab(tab.id);
                   setIsOpen(false);
@@ -68,7 +82,7 @@ export function DashboardTabsMobileView({
               </button>
             </li>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

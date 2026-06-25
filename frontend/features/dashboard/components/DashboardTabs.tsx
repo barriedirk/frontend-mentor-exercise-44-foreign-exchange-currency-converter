@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { cn } from "@/shared/utils/cn";
+import { useEffect, useState } from "react";
 import { DashboardTabsMobileView } from "./DashboardTabsMobileView";
 import { DashboardTabsView } from "./DashboardTabsView";
 
@@ -22,20 +21,39 @@ const TABS_CONFIG: readonly TabItem[] = [
 
 export function DashboardTabs() {
   const [activeTab, setActiveTab] = useState<TabId>("compare");
+  const [isMobile, setIsMobile] = useState(true);
+
+  useEffect(() => {
+    const mediaQuery = globalThis.matchMedia("(max-width: 639px)");
+
+    setIsMobile(mediaQuery.matches);
+
+    const handleResize = (e: MediaQueryListEvent) => {
+      setIsMobile(e.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleResize);
+
+    return () => mediaQuery.removeEventListener("change", handleResize);
+  }, []);
 
   return (
     <div className="w-full font-mono">
-      <DashboardTabsMobileView
-        tabItems={TABS_CONFIG}
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-      />
+      <div aria-hidden={!isMobile}>
+        <DashboardTabsMobileView
+          tabItems={TABS_CONFIG}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />
+      </div>
 
-      <DashboardTabsView
-        tabItems={TABS_CONFIG}
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-      />
+      <div aria-hidden={isMobile}>
+        <DashboardTabsView
+          tabItems={TABS_CONFIG}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />
+      </div>
 
       {/* ========================================================================= */}
       {/* 📦 DINAMIC CONTENT CONTAINER                                             */}
