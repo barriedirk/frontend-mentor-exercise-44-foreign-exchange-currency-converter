@@ -48,6 +48,8 @@
   --radius-20: 1.25rem;
   --radius-24: 1.5rem;
   --radius-full: 9999px;
+
+  --max-inner-container: 68.75rem;
 }
 
 @theme {
@@ -61,6 +63,7 @@
 
   --color-text-primary: var(--color-neutral-50);
   --color-text-secondary: var(--color-neutral-200);
+  --color-text-tertiary: var(--color-neutral-100);
   --color-text-muted: var(--color-neutral-400);
 
   --color-border-subtle: var(--color-neutral-600);

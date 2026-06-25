@@ -1,4 +1,4 @@
-import Dashboard from "@/features/dashboard/dashboard";
+import Dashboard from "@/features/dashboard/Dashboard";
 import Header from "./_components/Header";
 import LiveMarkets from "./_components/LiveMarkets";
 

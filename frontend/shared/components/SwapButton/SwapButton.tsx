@@ -1,4 +1,3 @@
-import * as React from "react";
 import { ExchangeVerticalIcon } from "@/shared/assets/icons";
 import { IconButton } from "@/shared/ui/IconButton";
 
@@ -15,7 +14,7 @@ export function SwapButton({ className, ...props }: SwapButtonProps) {
       size="sm"
       {...props}
     >
-      <ExchangeVerticalIcon className="rotate-90" />
+      <ExchangeVerticalIcon className="sm:rotate-90" />
     </IconButton>
   );
 }

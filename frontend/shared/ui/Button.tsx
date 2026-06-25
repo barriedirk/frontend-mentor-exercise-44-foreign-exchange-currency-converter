@@ -3,11 +3,10 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/shared/utils/cn";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center font-mono uppercase tracking-wider transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-30 cursor-pointer h-fit w-fit select-none rounded-8",
+  "inline-flex items-center justify-center gap-3 font-mono uppercase tracking-wider transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-30 cursor-pointer h-fit w-fit select-none rounded-8",
   {
     variants: {
       variant: {
-        // CORRECCIÓN: Forzamos el redondeado con brackets para saltarnos las restricciones de twMerge
         action:
           "bg-transparent text-text-primary border border-brand hover:bg-surface-hover active:bg-brand active:text-neutral-900 focus:ring-2 focus:ring-brand focus:ring-offset-2 focus:ring-offset-surface-main rounded-[0.5rem]",
         actionActive:

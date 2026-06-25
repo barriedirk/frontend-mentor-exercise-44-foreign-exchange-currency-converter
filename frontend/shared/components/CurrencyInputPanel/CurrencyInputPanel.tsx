@@ -62,14 +62,14 @@ export function CurrencyInputPanel({
     <fieldset
       aria-labelledby={labelId}
       className={cn(
-        "flex flex-col gap-[0.5rem] w-full p-[1.5rem] bg-neutral-900/40 border border-neutral-800/60 rounded-12 font-mono transition-all focus-within:border-neutral-700 focus-within:bg-neutral-900/80",
+        "flex flex-col gap-[0.5rem] w-full p-[var(--spacing-250)] bg-surface-input border border-neutral-800/60 rounded-12 font-mono transition-all focus-within:border-neutral-700 focus-within:bg-neutral-900/80",
         className,
       )}
       {...props}
     >
       <span
         id={labelId}
-        className="text-preset-5 text-text-muted uppercase tracking-widest font-medium"
+        className="text-preset-4 text-text-tertiary uppercase tracking-widest font-medium"
       >
         {label}
       </span>
@@ -77,10 +77,13 @@ export function CurrencyInputPanel({
         <AmountInput
           value={value}
           readOnly={readOnly}
-          className={cn({
-            "text-brand": label === "RECEIVE",
-            "cursor-default": readOnly,
-          })}
+          className={cn(
+            {
+              "text-brand": label === "RECEIVE",
+              "cursor-default": readOnly,
+            },
+            "text-preset-2",
+          )}
           onChange={onValueChange ?? (() => {})}
           aria-label={`${label} amount`}
           aria-readonly={readOnly}
