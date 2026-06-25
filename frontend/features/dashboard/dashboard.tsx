@@ -1,4 +1,5 @@
 import CurrencyExchange from "../currency-exchange/CurrencyExchange";
+import { DashboardTabs } from "./components/DashboardTabs";
 
 export default function Dashboard() {
   return (
@@ -7,6 +8,7 @@ export default function Dashboard() {
         CHECK THE RATE
       </h1>
       <CurrencyExchange />
+      <DashboardTabs />
     </section>
   );
 }
