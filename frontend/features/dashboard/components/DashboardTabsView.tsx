@@ -3,6 +3,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { cn } from "@/shared/utils/cn";
 import { TabId, TabItem } from "./types";
+import { useTabsKeyboardNavigation } from "@/shared/hooks/useTabsKeyboardNavigation";
 
 interface DashboardTabsViewProps {
   readonly tabItems: readonly TabItem[];
@@ -15,13 +16,26 @@ export function DashboardTabsView({
   activeTab,
   setActiveTab,
 }: DashboardTabsViewProps) {
+  const activeIdx = tabItems.findIndex((tab) => tab.id === activeTab);
+
+  const { tabListRef, tabRefs } = useTabsKeyboardNavigation({
+    itemCount: tabItems.length,
+    activeIdx,
+    onTabChange: (index) => {
+      const targetTab = tabItems[index];
+      if (targetTab) setActiveTab(targetTab.id);
+    },
+  });
+
   return (
-    <div className="hidden sm:flex items-center w-full border-b border-border-subtle px-[var(--spacing-400)]">
-      <nav
+    <div className="hidden sm:flex items-center w-full border-b border-border-subtle px-[var(--spacing-200)]">
+      <div
+        ref={tabListRef}
+        role="tablist"
         className="flex gap-[var(--spacing-400)]"
         aria-label="Dashboard navigation tabs"
       >
-        {tabItems.map((tab) => {
+        {tabItems.map((tab, idx) => {
           const isActive = tab.id === activeTab;
           const tabId = `tab-${tab.id}`;
           const panelId = `panel-${tab.id}`;
@@ -30,6 +44,9 @@ export function DashboardTabsView({
             <button
               key={tab.id}
               id={tabId}
+              ref={(el) => {
+                tabRefs.current[idx] = el;
+              }}
               type="button"
               role="tab"
               aria-selected={isActive}
@@ -37,7 +54,7 @@ export function DashboardTabsView({
               tabIndex={isActive ? 0 : -1}
               onClick={() => setActiveTab(tab.id)}
               className={cn(
-                "relative py-[var(--spacing-300)] text-preset-4 uppercase tracking-wider font-bold transition-all flex items-center gap-[var(--spacing-100)] border-b-2",
+                "relative py-[var(--spacing-300)] text-preset-3 uppercase tracking-wider font-bold transition-all flex items-center gap-[var(--spacing-100)] border-b-2",
                 isActive
                   ? "border-brand text-text-primary"
                   : "border-transparent text-text-secondary hover:text-text-primary",
@@ -61,7 +78,7 @@ export function DashboardTabsView({
             </button>
           );
         })}
-      </nav>
+      </div>
     </div>
   );
 }
