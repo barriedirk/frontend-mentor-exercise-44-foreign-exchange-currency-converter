@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { DashboardTabsMobileView } from "./DashboardTabsMobileView";
 import { DashboardTabsView } from "./DashboardTabsView";
+import HistoryChart from "../history-chart/HistoryChart";
 
 type TabId = "history" | "compare" | "favorites" | "log";
 
@@ -20,7 +21,7 @@ const TABS_CONFIG: readonly TabItem[] = [
 ] as const;
 
 export function DashboardTabs() {
-  const [activeTab, setActiveTab] = useState<TabId>("compare");
+  const [activeTab, setActiveTab] = useState<TabId>("history");
   const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {
@@ -38,7 +39,7 @@ export function DashboardTabs() {
   }, []);
 
   return (
-    <div className="w-full font-mono">
+    <div className="w-full flex flex-col gap-[var(--spacing-100)]">
       <div aria-hidden={!isMobile}>
         <DashboardTabsMobileView
           tabItems={TABS_CONFIG}
@@ -55,11 +56,8 @@ export function DashboardTabs() {
         />
       </div>
 
-      {/* ========================================================================= */}
-      {/* 📦 DINAMIC CONTENT CONTAINER                                             */}
-      {/* ========================================================================= */}
-      <div className="p-[var(--spacing-300)] sm:p-[var(--spacing-400)]">
-        {activeTab === "history" && <div>History Panel Content</div>}
+      <div className="mt-10">
+        {activeTab === "history" && <HistoryChart />}
         {activeTab === "compare" && <div>Compare Panel Content</div>}
         {activeTab === "favorites" && <div>Favorites Panel Content</div>}
         {activeTab === "log" && <div>Log Panel Content</div>}

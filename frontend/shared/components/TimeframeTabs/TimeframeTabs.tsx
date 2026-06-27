@@ -21,7 +21,7 @@ export function TimeframeTabs({
   return (
     <div
       className={cn(
-        "flex items-center gap-[0.25rem] p-[0.25rem] bg-neutral-900 rounded-8 border border-neutral-800/50 w-fit select-none",
+        "flex items-center gap-[0.25rem] p-[0.25rem] bg-surface-card rounded-8 border border-neutral-800/50 h-fit w-fit select-none",
         className,
       )}
       {...props}
@@ -35,12 +35,10 @@ export function TimeframeTabs({
             type="button"
             onClick={() => onChange(tf)}
             className={cn(
-              "h-[2rem] px-[0.75rem] flex items-center justify-center font-mono text-preset-5 font-medium rounded-6 transition-all cursor-pointer outline-none",
+              "h-[2rem] px-[0.75rem] flex items-center justify-center font-mono text-preset-5 rounded-6 transition-all cursor-pointer outline-none",
               {
-                // Estado Inactivo
-                "text-text-muted bg-transparent hover:text-text-primary hover:bg-neutral-800/50":
+                "text-text-secondary bg-transparent hover:text-text-primary hover:bg-neutral-800/50":
                   !isActive,
-                // Estado Activo (Replicando el foco sutil gris de tu captura)
                 "text-text-primary bg-neutral-800 border border-neutral-700/30 shadow-sm":
                   isActive,
               },

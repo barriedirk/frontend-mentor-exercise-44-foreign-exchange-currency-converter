@@ -53,6 +53,7 @@ export function useTabsKeyboardNavigation({
     };
 
     tabList.addEventListener("keydown", handleKeyDown);
+
     return () => tabList.removeEventListener("keydown", handleKeyDown);
   }, [activeIdx, itemCount, onTabChange]);
 

@@ -1,5 +1,5 @@
 import CurrencyExchange from "../currency-exchange/CurrencyExchange";
-import { DashboardTabs } from "./components/DashboardTabs";
+import { DashboardTabs } from "./components/tabs/DashboardTabs";
 
 export default function Dashboard() {
   return (
