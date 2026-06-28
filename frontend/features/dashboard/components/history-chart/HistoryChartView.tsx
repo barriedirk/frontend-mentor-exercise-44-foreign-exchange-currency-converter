@@ -1,8 +1,8 @@
 "use client";
 
+import Timeframe from "../time-frame/TimeFrame";
 import { MarketStatCard } from "@/shared/components/MarketStatCard";
 import { SandboxStat } from "./types";
-import Timeframe from "../time-frame/TimeFrame";
 import { MarketChart } from "../market-chart/MarketChart";
 
 interface HistoryChartViewProps {

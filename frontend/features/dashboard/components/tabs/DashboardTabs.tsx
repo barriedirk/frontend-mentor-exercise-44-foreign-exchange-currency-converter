@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { DashboardTabsMobileView } from "./DashboardTabsMobileView";
 import { DashboardTabsView } from "./DashboardTabsView";
 import HistoryChart from "../history-chart/HistoryChart";
+import { Compare } from "../compare/Compare";
 
 type TabId = "history" | "compare" | "favorites" | "log";
 
@@ -21,7 +22,7 @@ const TABS_CONFIG: readonly TabItem[] = [
 ] as const;
 
 export function DashboardTabs() {
-  const [activeTab, setActiveTab] = useState<TabId>("history");
+  const [activeTab, setActiveTab] = useState<TabId>("compare");
   const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {
@@ -56,9 +57,9 @@ export function DashboardTabs() {
         />
       </div>
 
-      <div className="mt-10">
+      <div className="mt-5">
         {activeTab === "history" && <HistoryChart />}
-        {activeTab === "compare" && <div>Compare Panel Content</div>}
+        {activeTab === "compare" && <Compare />}
         {activeTab === "favorites" && <div>Favorites Panel Content</div>}
         {activeTab === "log" && <div>Log Panel Content</div>}
       </div>
