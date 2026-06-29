@@ -1,0 +1,68 @@
+import { LogEntryItem } from "./types";
+
+export const MOCK_LOGS: LogEntryItem[] = [
+  {
+    id: "1",
+    timestamp: "20M",
+    fromCode: "USD",
+    toCode: "EUR",
+    fromAmount: 1000,
+    toAmount: 853.02,
+  },
+  {
+    id: "2",
+    timestamp: "34M",
+    fromCode: "EUR",
+    toCode: "JPY",
+    fromAmount: 500.0,
+    toAmount: 92490.0,
+  },
+  {
+    id: "3",
+    timestamp: "50M",
+    fromCode: "GBP",
+    toCode: "USD",
+    fromAmount: 250.0,
+    toAmount: 339.38,
+  },
+  {
+    id: "4",
+    timestamp: "1H",
+    fromCode: "USD",
+    toCode: "GBP",
+    fromAmount: 1500.0,
+    toAmount: 1104.95,
+  },
+  {
+    id: "5",
+    timestamp: "2H",
+    fromCode: "BDT",
+    toCode: "USD",
+    fromAmount: 50000.0,
+    toAmount: 406.77,
+  },
+  {
+    id: "6",
+    timestamp: "4H",
+    fromCode: "EUR",
+    toCode: "INR",
+    fromAmount: 100.0,
+    toAmount: 11127.43,
+  },
+  {
+    id: "7",
+    timestamp: "13 May",
+    fromCode: "AUD",
+    toCode: "USD",
+    fromAmount: 2000.0,
+    toAmount: 1441.6,
+  },
+  {
+    id: "8",
+    timestamp: "11 May",
+    fromCode: "CHF",
+    toCode: "USD",
+    fromAmount: 750.0,
+    toAmount: 824.36,
+  },
+];
