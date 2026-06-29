@@ -1,6 +1,6 @@
 import { cn } from "@/shared/utils/cn";
 import { CurrencyItem } from "../currency";
-import CircleWrapper from "@/shared/ui/CircleWrapper";
+import { CurrencyBadge } from "@/shared/ui/CurrencyBadge";
 
 interface CurrencyOptionProps extends Readonly<
   React.HTMLAttributes<HTMLButtonElement>
@@ -25,15 +25,7 @@ export function CurrencyOption({
       )}
       {...props}
     >
-      <CircleWrapper>
-        <span
-          className={cn(
-            "fi",
-            `fi-${currency.code.slice(0, 2).toLowerCase()}`,
-            "fis",
-          )}
-        />
-      </CircleWrapper>
+      <CurrencyBadge code={currency.code.slice(0, 2).toLowerCase()} size="md" />
 
       <span className="text-preset-3-bold text-text-primary tracking-wider uppercase">
         {currency.code}

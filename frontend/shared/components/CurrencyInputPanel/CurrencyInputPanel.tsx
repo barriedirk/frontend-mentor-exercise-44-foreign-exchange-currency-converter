@@ -2,13 +2,13 @@ import { cn } from "@/shared/utils/cn";
 
 import { useId, useMemo, useState } from "react";
 
-import CircleWrapper from "@/shared/ui/CircleWrapper";
 import { ChevronDownIcon } from "lucide-react";
 import { Popover, PopoverTrigger, PopoverContent } from "@/shared/ui/Popover";
 import { CurrencyGroup, CurrencyItem } from "@/domain/currency/currency";
 import { ALLOWED_CURRENCIES } from "@/shared/constants/currencies";
 import { CurrencyDropdownPanel } from "@/domain/currency/ui/CurrencyDropdownPanel";
 import { AmountInput } from "@/shared/ui/AmountInput";
+import { CurrencyBadge } from "@/shared/ui/CurrencyBadge";
 
 interface CurrencyInputPanelProps extends Readonly<
   Omit<React.HTMLAttributes<HTMLFieldSetElement>, "onChange">
@@ -97,15 +97,10 @@ export function CurrencyInputPanel({
               aria-expanded={isOpen}
               aria-label={`Select ${label.toLowerCase()} currency. Current: ${currencyCode}`}
             >
-              <CircleWrapper size="sm">
-                <span
-                  className={cn(
-                    "fi",
-                    `fi-${activeCurrency?.code.slice(0, 2).toLowerCase()}`,
-                    "fis",
-                  )}
-                />
-              </CircleWrapper>
+              <CurrencyBadge
+                size="sm"
+                code={activeCurrency?.code.slice(0, 2).toLowerCase()}
+              />
 
               <span className="uppercase tracking-wide">
                 {activeCurrency?.code}

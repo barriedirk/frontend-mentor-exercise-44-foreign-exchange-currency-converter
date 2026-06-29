@@ -4,9 +4,9 @@ import { cn } from "@/shared/utils/cn";
 import { ComparePanelProps } from "./types";
 import { IconButton } from "@/shared/ui/IconButton";
 import { StarFilledIcon, StarIcon } from "@/shared/assets/icons";
-import { CurrencyBadge } from "@/shared/ui/CurrencyBadge";
+import CircleWrapper from "@/shared/ui/CircleWrapper";
 
-export function CompareView({
+export function FavoritesView({
   conversion,
   pairs,
   onToggleFavorite,
@@ -35,10 +35,15 @@ export function CompareView({
               className="flex items-center justify-between bg-neutral-800 border border-border-subtle rounded-8 p-[var(--spacing-100)] hover:border-neutral-600 transition-colors"
             >
               <div className="flex items-center gap-[var(--spacing-200)]">
-                <CurrencyBadge
-                  size="sm"
-                  code={currency.code.slice(0, 2).toLowerCase()}
-                />
+                <CircleWrapper size="sm">
+                  <span
+                    className={cn(
+                      "fi",
+                      `fi-${currency.code?.slice(0, 2).toLowerCase()}`,
+                      "fis",
+                    )}
+                  />
+                </CircleWrapper>
 
                 <div className="flex flex-col gap-[var(--spacing-025)]">
                   <span className="text-preset-4 text-text-primary uppercase tracking-wide">
