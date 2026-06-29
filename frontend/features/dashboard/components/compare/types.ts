@@ -1,13 +1,4 @@
-export type CurrencyCode =
-  | "USD"
-  | "GBP"
-  | "JPY"
-  | "CHF"
-  | "CAD"
-  | "AUD"
-  | "INR"
-  | "CNY"
-  | "BDT";
+import { CurrencyCode } from "@/shared/types/CurrencyCode";
 
 export interface CurrencyInfo {
   readonly code: CurrencyCode;

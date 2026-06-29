@@ -1,61 +1,84 @@
-import { CurrencyPairRate, ConversionState } from "./types";
+import { FavoritePairItem } from "./types";
 
-export const MOCK_CONVERSION_STATE: ConversionState = {
-  baseAmount: 1000,
-  baseCurrency: "USD",
-};
-
-export const MOCK_CURRENCY_PAIRS: CurrencyPairRate[] = [
+export const MOCK_FAVORITE_PAIRS: FavoritePairItem[] = [
   {
-    currency: { code: "GBP", name: "British Pound", flagUrl: "/flags/gbp.svg" },
-    rate: 0.7366,
+    id: "USD-EUR",
+    fromCode: "USD",
+    toCode: "EUR",
+    rate: 0.853,
+    changePercent: 0.16,
     isFavorite: true,
   },
   {
-    currency: { code: "JPY", name: "Japanese Yen", flagUrl: "/flags/jpy.svg" },
+    id: "GBP-USD",
+    fromCode: "GBP",
+    toCode: "USD",
+    rate: 1.3575,
+    changePercent: -0.22,
+    isFavorite: true,
+  },
+  {
+    id: "USD-JPY",
+    fromCode: "USD",
+    toCode: "JPY",
     rate: 157.91,
+    changePercent: 0.04,
     isFavorite: true,
   },
   {
-    currency: { code: "CHF", name: "Swiss Franc", flagUrl: "/flags/chf.svg" },
-    rate: 0.9098,
-    isFavorite: false,
-  },
-  {
-    currency: {
-      code: "CAD",
-      name: "Canadian Dollar",
-      flagUrl: "/flags/cad.svg",
-    },
-    rate: 1.3815,
-    isFavorite: false,
-  },
-  {
-    currency: {
-      code: "AUD",
-      name: "Australian Dollar",
-      flagUrl: "/flags/aud.svg",
-    },
-    rate: 1.3874,
-    isFavorite: false,
-  },
-  {
-    currency: { code: "INR", name: "Indian Rupee", flagUrl: "/flags/inr.svg" },
-    rate: 94.91,
-    isFavorite: true,
-  },
-  {
-    currency: { code: "CNY", name: "Chinese Yuan", flagUrl: "/flags/cny.svg" },
-    rate: 7.21,
-    isFavorite: false,
-  },
-  {
-    currency: {
-      code: "BDT",
-      name: "Bangladeshi Taka",
-      flagUrl: "/flags/bdt.svg",
-    },
+    id: "USD-BDT",
+    fromCode: "USD",
+    toCode: "BDT",
     rate: 122.92,
+    changePercent: 0.18,
+    isFavorite: true,
+  },
+  {
+    id: "EUR-GBP",
+    fromCode: "EUR",
+    toCode: "GBP",
+    rate: 0.8633,
+    changePercent: 0.11,
+    isFavorite: true,
+  },
+  {
+    id: "AUD-NZD",
+    fromCode: "AUD",
+    toCode: "NZD",
+    rate: 1.2217,
+    changePercent: 0.23,
+    isFavorite: true,
+  },
+  {
+    id: "USD-INR",
+    fromCode: "USD",
+    toCode: "INR",
+    rate: 94.91,
+    changePercent: 0.05,
+    isFavorite: true,
+  },
+  {
+    id: "EUR-CHF",
+    fromCode: "EUR",
+    toCode: "CHF",
+    rate: 1.0668,
+    changePercent: -0.15,
+    isFavorite: true,
+  },
+  {
+    id: "GBP-JPY",
+    fromCode: "GBP",
+    toCode: "JPY",
+    rate: 213.21,
+    changePercent: 0.13,
+    isFavorite: true,
+  },
+  {
+    id: "USD-TRY",
+    fromCode: "USD",
+    toCode: "TRY",
+    rate: 38.642,
+    changePercent: 0.54,
     isFavorite: true,
   },
 ];

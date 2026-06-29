@@ -1,90 +1,91 @@
 "use client";
 
 import { cn } from "@/shared/utils/cn";
-import { ComparePanelProps } from "./types";
+import { FavoritePairItem } from "./types";
 import { IconButton } from "@/shared/ui/IconButton";
 import { StarFilledIcon, StarIcon } from "@/shared/assets/icons";
-import CircleWrapper from "@/shared/ui/CircleWrapper";
+
+export interface FavoritesViewProps {
+  readonly favoritePairs: readonly FavoritePairItem[];
+  readonly onToggleFavorite: (id: string) => void;
+}
 
 export function FavoritesView({
-  conversion,
-  pairs,
+  favoritePairs,
   onToggleFavorite,
-}: ComparePanelProps) {
-  const { baseAmount, baseCurrency } = conversion;
-
+}: FavoritesViewProps) {
   return (
     <div className="w-full bg-surface-card border border-border-subtle rounded-12 p-[var(--spacing-200)] shadow-2xl flex flex-col gap-[var(--spacing-200)]">
-      <div className="flex flex-col items-start sm:flex-row sm:items-center justify-between text-text-secondary gap-[var(--spacing-100)] text-preset-4 font-bold tracking-widest uppercase">
-        <p>
-          <span>Multi-Currency</span>{" "}
-          <span className="text-text-primary tabular-nums font-extrabold">
-            {Intl.NumberFormat("en-US").format(baseAmount)} From {baseCurrency}
-          </span>
-        </p>
-        <div className="tabular-nums">{pairs.length} Pairs</div>
+      <div className="flex items-start justify-between text-text-secondary gap-[var(--spacing-100)] text-preset-4 font-bold tracking-widest uppercase">
+        <span>Pinned Pairs</span>
+        <div className="tabular-nums">{favoritePairs.length} Favorites</div>
       </div>
 
-      <ul className="flex flex-col gap-[var(--spacing-200)]">
-        {pairs.map(({ currency, rate, isFavorite }) => {
-          const convertedValue = baseAmount * rate;
+      {favoritePairs.length === 0 ? (
+        <div className="text-center py-[var(--spacing-800)] text-text-secondary text-preset-4">
+          No pinned pairs available.
+        </div>
+      ) : (
+        <ul className="flex flex-col gap-[var(--spacing-200)]">
+          {favoritePairs.map((pair) => {
+            const isPositive = pair.changePercent >= 0;
 
-          return (
-            <li
-              key={currency.code}
-              className="flex items-center justify-between bg-neutral-800 border border-border-subtle rounded-8 p-[var(--spacing-100)] hover:border-neutral-600 transition-colors"
-            >
-              <div className="flex items-center gap-[var(--spacing-200)]">
-                <CircleWrapper size="sm">
-                  <span
-                    className={cn(
-                      "fi",
-                      `fi-${currency.code?.slice(0, 2).toLowerCase()}`,
-                      "fis",
-                    )}
-                  />
-                </CircleWrapper>
-
-                <div className="flex flex-col gap-[var(--spacing-025)]">
-                  <span className="text-preset-4 text-text-primary uppercase tracking-wide">
-                    {currency.code}
-                  </span>
-                  <span className="text-preset-5 text-text-secondary">
-                    {currency.name}
-                  </span>
-                </div>
-              </div>
-
-              <div className="flex items-center ml-auto mr-[var(--spacing-100)]">
-                <div className="flex flex-col gap-[var(--spacing-025)] items-end">
-                  <span className="text-preset-3 text-text-primary tabular-nums text-align-right">
-                    {Intl.NumberFormat("en-US", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    }).format(convertedValue)}
-                  </span>
-                  <span className="text-preset-6 text-text-secondary tabular-nums">
-                    @ {rate.toFixed(4)}
-                  </span>
-                </div>
-              </div>
-              <IconButton
-                onClick={() => onToggleFavorite(currency.code)}
-                aria-pressed={isFavorite}
-                aria-label={`Toggle favorite status for ${currency.name}`}
-                className={cn(
-                  "flex items-center justify-center w-8 h-8 rounded-8 border transition-all outline-none focus-visible:ring-2 focus-visible:ring-brand",
-                  isFavorite
-                    ? "border-brand bg-brand-muted text-brand"
-                    : "border-border-subtle text-text-secondary hover:text-text-primary hover:border-text-secondary",
-                )}
+            return (
+              <li
+                key={pair.id}
+                className="flex items-center justify-between bg-neutral-800 border border-border-subtle rounded-8 p-[var(--spacing-100)] hover:border-neutral-600 transition-colors"
               >
-                {isFavorite ? <StarFilledIcon /> : <StarIcon />}
-              </IconButton>
-            </li>
-          );
-        })}
-      </ul>
+                <div className="flex items-center gap-[var(--spacing-150)] text-preset-4 text-text-primary font-bold uppercase tracking-wide">
+                  <span>{pair.fromCode}</span>
+                  <span className="text-text-secondary font-normal text-preset-4">
+                    →
+                  </span>
+                  <span>{pair.toCode}</span>
+                </div>
+
+                <div className="flex items-center gap-[var(--spacing-300)] ml-auto mr-[var(--spacing-300)]">
+                  <div className="flex flex-col items-end gap-[var(--spacing-100)]">
+                    <span className="text-preset-3 text-text-primary font-bold tabular-nums">
+                      {pair.rate.toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 4,
+                      })}
+                    </span>
+
+                    <span
+                      className={cn(
+                        "text-preset-6 font-bold tabular-nums flex items-center gap-1",
+                        isPositive ? "text-emerald-500" : "text-rose-500",
+                      )}
+                      aria-label={`Daily change: ${isPositive ? "up" : "down"} ${Math.abs(pair.changePercent)}%`}
+                    >
+                      <span>{isPositive ? "▲" : "▼"}</span>
+                      <span>
+                        {isPositive ? "+" : ""}
+                        {pair.changePercent.toFixed(2)}%
+                      </span>
+                    </span>
+                  </div>
+                </div>
+
+                <IconButton
+                  onClick={() => onToggleFavorite(pair.id)}
+                  aria-pressed={pair.isFavorite}
+                  aria-label={`Remove ${pair.fromCode} to ${pair.toCode} pair from favorites`}
+                  className={cn(
+                    "flex items-center justify-center w-8 h-8 rounded-8 border transition-all outline-none focus-visible:ring-2 focus-visible:ring-brand",
+                    pair.isFavorite
+                      ? "border-brand bg-brand-muted text-brand"
+                      : "border-border-subtle text-text-secondary hover:text-text-primary hover:border-text-secondary",
+                  )}
+                >
+                  {pair.isFavorite ? <StarFilledIcon /> : <StarIcon />}
+                </IconButton>
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 }
