@@ -1,54 +1,96 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useCurrencyGroups } from "./hooks/useCurrencyGroups";
+import { useExchangeRate } from "./hooks/useExchangeRate";
+import { CurrencyCode } from "@/shared/types/CurrencyCode";
 
-import { MOCK_CURRENCY_GROUPS } from "@/domain/currency/mocks";
-import { CurrencyGroup } from "@/domain/currency/currency";
 import CurrencyExchangeView from "./CurrencyExchangeView";
 
-const CURRENCY_GROUPS: readonly CurrencyGroup[] = MOCK_CURRENCY_GROUPS;
-
 export default function CurrencyExchange() {
-  const [sendAmount, setSendAmount] = useState("1000");
-  const [sendCurrencyCode, setSendCurrencyCode] = useState("USD");
+  const { data: currencyGroups = [] } = useCurrencyGroups();
 
-  const [receiveAmount, setReceiveAmount] = useState("400");
-  const [receiveCurrencyCode, setReceiveCurrencyCode] = useState("EUR");
-
+  const [sendCurrencyCode, setSendCurrencyCode] = useState<CurrencyCode>("USD");
+  const [receiveCurrencyCode, setReceiveCurrencyCode] =
+    useState<CurrencyCode>("EUR");
   const [isActionActive, setIsActionActive] = useState(false);
 
+  const [amount, setAmount] = useState<string>("1000");
+  const [independentField, setIndependentField] = useState<"send" | "receive">(
+    "send",
+  );
+
+  const { data: rate = 1 } = useExchangeRate(
+    sendCurrencyCode,
+    receiveCurrencyCode,
+  );
+
+  const isSameCurrency = sendCurrencyCode === receiveCurrencyCode;
+
+  const { sendAmount, receiveAmount } = useMemo(() => {
+    const numericAmount = Number(amount) || 0;
+
+    if (independentField === "send") {
+      const calculatedReceive = isSameCurrency
+        ? numericAmount
+        : numericAmount * rate;
+      return {
+        sendAmount: amount,
+        receiveAmount:
+          calculatedReceive === 0 ? "" : calculatedReceive.toFixed(2),
+      };
+    } else {
+      const calculatedSend = isSameCurrency
+        ? numericAmount
+        : numericAmount / rate;
+      return {
+        sendAmount: calculatedSend === 0 ? "" : calculatedSend.toFixed(2),
+        receiveAmount: amount,
+      };
+    }
+  }, [amount, independentField, rate, isSameCurrency]);
+
   const conversionRate = useMemo(() => {
-    // TODO: implement conversion rate calculation
-    return `${sendAmount} ${sendCurrencyCode} = ${receiveAmount} ${receiveCurrencyCode}`;
-  }, [sendAmount, sendCurrencyCode, receiveAmount, receiveCurrencyCode]);
+    return `1 ${sendCurrencyCode} = ${rate.toFixed(4)} ${receiveCurrencyCode}`;
+  }, [sendCurrencyCode, receiveCurrencyCode, rate]);
+
+  const handleSetSendAmount = (val: string) => {
+    setIndependentField("send");
+    setAmount(val);
+  };
+
+  const handleSetReceiveAmount = (val: string) => {
+    setIndependentField("receive");
+    setAmount(val);
+  };
 
   const handleSwap = () => {
     setSendCurrencyCode(receiveCurrencyCode);
     setReceiveCurrencyCode(sendCurrencyCode);
-    setSendAmount(receiveAmount);
-    setReceiveAmount(sendAmount);
+    setIndependentField(independentField === "send" ? "receive" : "send");
   };
 
   const handleActionActive = () => {
-    // TODO: implement action active
-    setIsActionActive(!isActionActive);
+    setIsActionActive((prev) => !prev);
   };
 
   const handleLogConversion = () => {
-    // TODO: implement log conversion
+    console.log(
+      `Log: ${sendAmount} ${sendCurrencyCode} -> ${receiveAmount} ${receiveCurrencyCode}`,
+    );
   };
 
   return (
     <CurrencyExchangeView
       sendAmount={sendAmount}
-      setSendAmount={setSendAmount}
+      setSendAmount={handleSetSendAmount}
       sendCurrencyCode={sendCurrencyCode}
       setSendCurrencyCode={setSendCurrencyCode}
       receiveAmount={receiveAmount}
-      setReceiveAmount={setReceiveAmount}
+      setReceiveAmount={handleSetReceiveAmount}
       receiveCurrencyCode={receiveCurrencyCode}
       setReceiveCurrencyCode={setReceiveCurrencyCode}
-      currencyGroups={CURRENCY_GROUPS}
+      currencyGroups={currencyGroups}
       conversionRate={conversionRate}
       isActionActive={isActionActive}
       onSwap={handleSwap}

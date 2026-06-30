@@ -6,8 +6,14 @@ export type CurrencyCode =
   | "CHF"
   | "CAD"
   | "AUD"
-  | "INR"
-  | "CNY"
-  | "TRY"
   | "NZD"
-  | "BDT";
+  | "CNY"
+  | "PEN"
+  | "BRL"
+  | "ARS"
+  | "MXN"
+  | "COP"
+  | "CLP"
+  | "INR"
+  | "BDT"
+  | (string & {});

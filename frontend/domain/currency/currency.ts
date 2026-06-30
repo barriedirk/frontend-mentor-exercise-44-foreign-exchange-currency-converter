@@ -1,11 +1,7 @@
-export interface CurrencyItem {
-  readonly code: string;
-  readonly name: string;
-  readonly flagUrl?: string;
-  readonly flagSvg?: React.ReactNode;
-}
+import { CurrencyMetadata } from "@/shared/types/CurrencyMetadata";
 
 export interface CurrencyGroup {
+  readonly id: string;
   readonly title: string;
-  readonly items: readonly CurrencyItem[];
+  readonly currencies: readonly CurrencyMetadata[];
 }

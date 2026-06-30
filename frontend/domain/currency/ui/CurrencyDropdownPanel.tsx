@@ -1,15 +1,15 @@
-import * as React from "react";
 import { cn } from "@/shared/utils/cn";
 import { SearchInput } from "@/shared/ui/SearchInput";
-import { CurrencyGroup, CurrencyItem } from "@/domain/currency/currency";
+import { CurrencyGroup } from "@/domain/currency/currency";
 import { CurrencyOption } from "./CurrencyOption";
+import { CurrencyMetadata } from "@/shared/types/CurrencyMetadata";
 
 interface CurrencyDropdownPanelProps extends Readonly<
   React.HTMLAttributes<HTMLDivElement>
 > {
   readonly groups: readonly CurrencyGroup[];
   readonly selectedCode?: string;
-  readonly onSelectCurrency: (currency: CurrencyItem) => void;
+  readonly onSelectCurrency: (currency: CurrencyMetadata) => void;
   readonly searchValue: string;
   readonly onSearchChange: (value: string) => void;
 }
@@ -40,16 +40,18 @@ export function CurrencyDropdownPanel({
 
       <div className="flex-1 overflow-y-auto max-h-[28rem] pr-[0.25rem] space-y-[1.25rem] no-scrollbar">
         {groups.map((group) => {
-          if (group.items.length === 0) return null;
+          if (group.currencies?.length === 0) return null;
 
           return (
             <div key={group.title} className="space-y-[0.5rem]">
               <div className="flex items-center justify-between px-[0.5rem] font-mono text-preset-5 text-text-muted uppercase tracking-widest border-b border-border-subtle/30 pb-[0.25rem]">
                 <span>{group.title}</span>
-                <span className="tabular-nums">{group.items.length}</span>
+                <span className="tabular-nums">
+                  {group.currencies?.length || 0}
+                </span>
               </div>
               <div className="space-y-[0.25rem]">
-                {group.items.map((currency) => (
+                {group.currencies?.map((currency) => (
                   <CurrencyOption
                     key={currency.code}
                     currency={currency}

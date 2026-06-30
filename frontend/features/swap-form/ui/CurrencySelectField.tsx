@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { Popover, PopoverContent, PopoverTrigger } from "@/shared/ui/Popover";
 import { CurrencyDropdownPanel } from "@/domain/currency/ui/CurrencyDropdownPanel";
-import type { CurrencyItem } from "@/domain/currency/currency";
+import { CurrencyItem } from "@/shared/types/CurrencyItem";
 
 export function CurrencySelectField() {
   const [isOpen, setIsOpen] = useState(false);

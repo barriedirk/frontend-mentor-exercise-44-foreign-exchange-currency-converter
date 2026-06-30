@@ -11,11 +11,11 @@ import { StarIcon, StarFilledIcon } from "@/shared/assets/icons";
 interface CurrencyExchangeProps {
   readonly conversionRate: string;
   readonly sendAmount: string;
-  readonly setSendAmount: Dispatch<SetStateAction<string>>;
+  readonly setSendAmount: (value: string) => void;
   readonly sendCurrencyCode: string;
   readonly setSendCurrencyCode: Dispatch<SetStateAction<string>>;
   readonly receiveAmount: string;
-  readonly setReceiveAmount: Dispatch<SetStateAction<string>>;
+  readonly setReceiveAmount: (value: string) => void;
   readonly receiveCurrencyCode: string;
   readonly setReceiveCurrencyCode: Dispatch<SetStateAction<string>>;
   readonly currencyGroups: readonly CurrencyGroup[];

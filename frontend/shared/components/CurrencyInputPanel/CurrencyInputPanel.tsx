@@ -4,11 +4,12 @@ import { useId, useMemo, useState } from "react";
 
 import { ChevronDownIcon } from "lucide-react";
 import { Popover, PopoverTrigger, PopoverContent } from "@/shared/ui/Popover";
-import { CurrencyGroup, CurrencyItem } from "@/domain/currency/currency";
+import { CurrencyGroup } from "@/domain/currency/currency";
 import { ALLOWED_CURRENCIES } from "@/shared/constants/currencies";
 import { CurrencyDropdownPanel } from "@/domain/currency/ui/CurrencyDropdownPanel";
 import { AmountInput } from "@/shared/ui/AmountInput";
 import { CurrencyBadge } from "@/shared/ui/CurrencyBadge";
+import { CurrencyMetadata } from "@/shared/types/CurrencyMetadata";
 
 interface CurrencyInputPanelProps extends Readonly<
   Omit<React.HTMLAttributes<HTMLFieldSetElement>, "onChange">
@@ -17,7 +18,7 @@ interface CurrencyInputPanelProps extends Readonly<
   readonly value: string;
   readonly currencyCode: string;
   readonly onValueChange?: (value: string) => void;
-  readonly onCurrencySelect?: (currency: CurrencyItem) => void;
+  readonly onCurrencySelect?: (currency: CurrencyMetadata) => void;
   readonly readOnly?: boolean;
   readonly currencyGroups: CurrencyGroup[];
 }
@@ -49,13 +50,13 @@ export function CurrencyInputPanel({
     return currencyGroups
       .map((group) => ({
         title: group.title,
-        items: group.items.filter(
+        currencies: group.currencies.filter(
           (item) =>
-            item.code.toLowerCase().includes(cleanSearch) ||
-            item.name.toLowerCase().includes(cleanSearch),
+            item.code.toLowerCase().startsWith(cleanSearch) ||
+            item.name.toLowerCase().startsWith(cleanSearch),
         ),
       }))
-      .filter((group) => group.items.length > 0);
+      .filter((group) => group.currencies.length > 0);
   }, [searchQuery, currencyGroups]);
 
   return (
@@ -111,7 +112,7 @@ export function CurrencyInputPanel({
           </PopoverTrigger>
           <PopoverContent className="z-50 animate-in fade-in-50 duration-200">
             <CurrencyDropdownPanel
-              groups={filteredGroups}
+              groups={filteredGroups as readonly CurrencyGroup[]}
               selectedCode={activeCurrency?.code}
               searchValue={searchQuery}
               onSearchChange={setSearchQuery}
