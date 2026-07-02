@@ -28,8 +28,10 @@ export function DashboardTabsMobileView({
       setIsOpen,
     });
 
-  const currentTabLabel = tabItems.find((tab) => tab.id === activeTab)?.label;
   const activeIdx = tabItems.findIndex((tab) => tab.id === activeTab);
+  const currentTab = tabItems.find((tab) => tab.id === activeTab);
+  const currentTabLabel = currentTab?.label;
+  const currentBadgeLabel = currentTab?.badge;
 
   return (
     <nav
@@ -48,7 +50,15 @@ export function DashboardTabsMobileView({
         aria-label="Select dashboard tab"
         className="w-full h-[40px] px-[var(--spacing-300)] bg-neutral-700 border border-border-subtle rounded-8 flex items-center justify-between text-preset-5 text-text-primary uppercase font-bold tracking-wider"
       >
-        <span className="text-preset-3 text-foreground">{currentTabLabel}</span>
+        <span className="text-preset-3 text-foreground flex gap-2">
+          {currentTabLabel}
+
+          {currentBadgeLabel !== undefined && (
+            <span className="text-preset-6 px-[6px] py-[2px] rounded-full bg-brand-muted text-brand font-bold tabular-nums">
+              {currentBadgeLabel}
+            </span>
+          )}
+        </span>
         <svg
           className={cn("w-4 h-4 transition-transform", isOpen && "rotate-180")}
           fill="none"
