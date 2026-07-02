@@ -8,9 +8,11 @@ import { Compare } from "../compare/Compare";
 import { Favorites } from "../favorites/Favorites";
 import { Log } from "../log/Log";
 import { TabId } from "./types";
-import { TABS_CONFIG } from "./constant";
+import { useTabsConfig } from "./hooks/useTabsConfig";
 
 export function DashboardTabs() {
+  const tabsConfig = useTabsConfig();
+
   const [activeTab, setActiveTab] = useState<TabId>("history");
   const [isMobile, setIsMobile] = useState(true);
 
@@ -32,7 +34,7 @@ export function DashboardTabs() {
     <div className="w-full flex flex-col gap-[var(--spacing-100)]">
       <div aria-hidden={!isMobile}>
         <DashboardTabsMobileView
-          tabItems={TABS_CONFIG}
+          tabItems={tabsConfig}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
         />
@@ -40,7 +42,7 @@ export function DashboardTabs() {
 
       <div aria-hidden={isMobile}>
         <DashboardTabsView
-          tabItems={TABS_CONFIG}
+          tabItems={tabsConfig}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
         />
