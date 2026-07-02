@@ -34,7 +34,7 @@ export const useExchangeStore = create<ExchangeState>()(
       sendCurrencyCode: "USD",
       receiveCurrencyCode: "EUR",
       timeframe: "1M",
-      favorites: [],
+      favorites: ["USD-EUR", "GBP-USD", "USD-JPY", "EUR-GBP"],
       history: [],
 
       setSendCurrencyCode: (code) => set({ sendCurrencyCode: code }),
