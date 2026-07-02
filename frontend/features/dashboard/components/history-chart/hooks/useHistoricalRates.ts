@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useExchangeStore } from "@/app/_store/useExchangeStore";
-import { Timeframe } from "@/shared/types/UITimeframe";
+import { UITimeframe } from "@/shared/types/UITimeframe";
 
 export interface HistoricalChartPoint {
   readonly date: string;
@@ -24,7 +24,7 @@ interface FrankfurterV2Rate {
   readonly rate: number;
 }
 
-export function calculateDateRange(timeframe: Timeframe): {
+export function calculateDateRange(timeframe: UITimeframe): {
   readonly startDate: string;
   readonly endDate: string;
 } {
