@@ -1,25 +1,39 @@
-import { useState } from "react";
-import { MOCK_FAVORITE_PAIRS } from "./mockData";
-
+import { useExchangeStore } from "@/app/_store/useExchangeStore";
+import { useFavoritesData } from "./hooks/useFavoritesData";
 import { FavoritesView } from "./FavoriteView";
 
 export function Favorites() {
-  const [favoritePairs, setFavoritePairs] = useState(MOCK_FAVORITE_PAIRS);
+  const toggleFavorite = useExchangeStore((state) => state.toggleFavorite);
+  const { data: favoritePairs, isLoading, hasError } = useFavoritesData();
 
-  const handleToggleFavorite = (id: string) => {
-    setFavoritePairs((prevPairs) =>
-      prevPairs.map((pair) =>
-        pair.id === id ? { ...pair, isFavorite: !pair.isFavorite } : pair,
-      ),
+  if (isLoading) {
+    return (
+      <div className="p-6 text-center text-sm text-gray-500 animate-pulse">
+        Updating your favorite markets...
+      </div>
     );
-  };
+  }
 
-  const activeFavorites = favoritePairs.filter((pair) => pair.isFavorite);
+  if (hasError) {
+    return (
+      <div className="p-6 text-center text-sm text-red-500">
+        Error synchronizing exchange rates.
+      </div>
+    );
+  }
+
+  if (favoritePairs.length === 0) {
+    return (
+      <div className="p-8 text-center text-sm text-gray-400 border border-dashed rounded-xl">
+        No favorite currency pairs saved yet.
+      </div>
+    );
+  }
 
   return (
     <FavoritesView
-      favoritePairs={activeFavorites}
-      onToggleFavorite={handleToggleFavorite}
+      favoritePairs={favoritePairs}
+      onToggleFavorite={(id) => toggleFavorite(id)} // Modifica el array global en Zustand
     />
   );
 }
