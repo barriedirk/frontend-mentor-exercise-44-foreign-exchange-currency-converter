@@ -7,24 +7,11 @@ import HistoryChart from "../history-chart/HistoryChart";
 import { Compare } from "../compare/Compare";
 import { Favorites } from "../favorites/Favorites";
 import { Log } from "../log/Log";
-
-type TabId = "history" | "compare" | "favorites" | "log";
-
-interface TabItem {
-  id: TabId;
-  label: string;
-  badge?: number;
-}
-
-const TABS_CONFIG: readonly TabItem[] = [
-  { id: "history", label: "History" },
-  { id: "compare", label: "Compare" },
-  { id: "favorites", label: "Favorites", badge: 10 },
-  { id: "log", label: "Log", badge: 8 },
-] as const;
+import { TabId } from "./types";
+import { TABS_CONFIG } from "./constant";
 
 export function DashboardTabs() {
-  const [activeTab, setActiveTab] = useState<TabId>("log");
+  const [activeTab, setActiveTab] = useState<TabId>("history");
   const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {

@@ -1,39 +1,58 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useCurrencyGroups } from "./hooks/useCurrencyGroups";
-import { useExchangeRate } from "./hooks/useExchangeRate";
-import { CurrencyCode } from "@/shared/types/CurrencyCode";
+
+import { useDebounce } from "@/shared/hooks/useDebounce";
+import { useHydratedStore } from "@/shared/hooks/useHydratedStore";
 
 import CurrencyExchangeView from "./CurrencyExchangeView";
+import { useCurrencyGroups } from "./hooks/useCurrencyGroups";
+import { useExchangeStore } from "@/app/_store/useExchangeStore";
+import { useExchangeRate } from "./hooks/useExchangeRate";
+import { CurrencyCode } from "@/shared/types/CurrencyCode";
 
 export default function CurrencyExchange() {
   const { data: currencyGroups = [] } = useCurrencyGroups();
 
-  const [sendCurrencyCode, setSendCurrencyCode] = useState<CurrencyCode>("USD");
-  const [receiveCurrencyCode, setReceiveCurrencyCode] =
-    useState<CurrencyCode>("EUR");
-  const [isActionActive, setIsActionActive] = useState(false);
+  const store = useExchangeStore();
+  const sendCurrencyCode =
+    (useHydratedStore(
+      useExchangeStore,
+      (s) => s.sendCurrencyCode,
+    ) as CurrencyCode) ?? "USD";
+  const receiveCurrencyCode =
+    (useHydratedStore(
+      useExchangeStore,
+      (s) => s.receiveCurrencyCode,
+    ) as CurrencyCode) ?? "EUR";
+  const favorites =
+    (useHydratedStore(useExchangeStore, (s) => s.favorites) as string[]) ?? [];
 
   const [amount, setAmount] = useState<string>("1000");
   const [independentField, setIndependentField] = useState<"send" | "receive">(
     "send",
   );
 
+  const debouncedAmount = useDebounce(amount, 350);
   const { data: rate = 1 } = useExchangeRate(
     sendCurrencyCode,
     receiveCurrencyCode,
   );
-
   const isSameCurrency = sendCurrencyCode === receiveCurrencyCode;
 
+  const currentPair = `${sendCurrencyCode}-${receiveCurrencyCode}`;
+  const isFavorited = useMemo(
+    () => favorites.includes(currentPair),
+    [favorites, currentPair],
+  );
+
   const { sendAmount, receiveAmount } = useMemo(() => {
-    const numericAmount = Number(amount) || 0;
+    const debouncedNumeric = Number(debouncedAmount) || 0;
 
     if (independentField === "send") {
       const calculatedReceive = isSameCurrency
-        ? numericAmount
-        : numericAmount * rate;
+        ? debouncedNumeric
+        : debouncedNumeric * rate;
       return {
         sendAmount: amount,
         receiveAmount:
@@ -41,14 +60,14 @@ export default function CurrencyExchange() {
       };
     } else {
       const calculatedSend = isSameCurrency
-        ? numericAmount
-        : numericAmount / rate;
+        ? debouncedNumeric
+        : debouncedNumeric / rate;
       return {
         sendAmount: calculatedSend === 0 ? "" : calculatedSend.toFixed(2),
         receiveAmount: amount,
       };
     }
-  }, [amount, independentField, rate, isSameCurrency]);
+  }, [amount, debouncedAmount, independentField, rate, isSameCurrency]);
 
   const conversionRate = useMemo(() => {
     return `1 ${sendCurrencyCode} = ${rate.toFixed(4)} ${receiveCurrencyCode}`;
@@ -64,20 +83,16 @@ export default function CurrencyExchange() {
     setAmount(val);
   };
 
-  const handleSwap = () => {
-    setSendCurrencyCode(receiveCurrencyCode);
-    setReceiveCurrencyCode(sendCurrencyCode);
-    setIndependentField(independentField === "send" ? "receive" : "send");
-  };
-
-  const handleActionActive = () => {
-    setIsActionActive((prev) => !prev);
-  };
-
   const handleLogConversion = () => {
-    console.log(
-      `Log: ${sendAmount} ${sendCurrencyCode} -> ${receiveAmount} ${receiveCurrencyCode}`,
-    );
+    if (!sendAmount || !receiveAmount) return;
+
+    store.addLog({
+      fromCurrency: sendCurrencyCode,
+      toCurrency: receiveCurrencyCode,
+      amountSent: sendAmount,
+      amountReceived: receiveAmount,
+      rate,
+    });
   };
 
   return (
@@ -85,16 +100,16 @@ export default function CurrencyExchange() {
       sendAmount={sendAmount}
       setSendAmount={handleSetSendAmount}
       sendCurrencyCode={sendCurrencyCode}
-      setSendCurrencyCode={setSendCurrencyCode}
+      setSendCurrencyCode={store.setSendCurrencyCode}
       receiveAmount={receiveAmount}
       setReceiveAmount={handleSetReceiveAmount}
       receiveCurrencyCode={receiveCurrencyCode}
-      setReceiveCurrencyCode={setReceiveCurrencyCode}
+      setReceiveCurrencyCode={store.setReceiveCurrencyCode}
       currencyGroups={currencyGroups}
       conversionRate={conversionRate}
-      isActionActive={isActionActive}
-      onSwap={handleSwap}
-      onActionActive={handleActionActive}
+      isFavorited={isFavorited}
+      onSwap={store.swapCurrencies}
+      onToggleFavorite={() => store.toggleFavorite(currentPair)}
       onLogConversion={handleLogConversion}
     />
   );

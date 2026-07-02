@@ -1,16 +1,13 @@
-import * as React from "react";
 import { cn } from "@/shared/utils/cn";
-
-export type Timeframe = "1D" | "1W" | "1M" | "3M" | "1Y" | "5Y";
+import type { UITimeframe } from "@/shared/types/UITimeframe";
+import { TIMEFRAMES } from "@/shared/constants/timeFrames";
 
 interface TimeframeTabsProps extends Readonly<
   Omit<React.HTMLAttributes<HTMLDivElement>, "onChange">
 > {
-  readonly activeTab: Timeframe;
-  readonly onChange: (tab: Timeframe) => void;
+  readonly activeTab: UITimeframe;
+  readonly onChange: (tab: UITimeframe) => void;
 }
-
-const TIMEFRAMES: readonly Timeframe[] = ["1D", "1W", "1M", "3M", "1Y", "5Y"];
 
 export function TimeframeTabs({
   className,

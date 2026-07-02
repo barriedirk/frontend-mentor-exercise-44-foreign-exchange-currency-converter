@@ -1,6 +1,7 @@
 import { cn } from "@/shared/utils/cn";
-import { CurrencyItem } from "../currency";
+
 import { CurrencyBadge } from "@/shared/ui/CurrencyBadge";
+import { CurrencyItem } from "@/shared/types/CurrencyItem";
 
 interface CurrencyOptionProps extends Readonly<
   React.HTMLAttributes<HTMLButtonElement>
@@ -31,7 +32,7 @@ export function CurrencyOption({
         {currency.code}
       </span>
 
-      <span className="text-preset-3 text-text-muted flex-1 truncate">
+      <span className="text-preset-3 text-text-secondary flex-1 truncate">
         {currency.name}
       </span>
 

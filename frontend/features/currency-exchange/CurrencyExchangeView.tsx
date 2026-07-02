@@ -4,7 +4,6 @@ import { CurrencyInputPanel } from "@/shared/components/CurrencyInputPanel";
 import { SwapButton } from "@/shared/components/SwapButton";
 
 import { CurrencyGroup } from "@/domain/currency/currency";
-import { Dispatch, SetStateAction } from "react";
 import { Button } from "@/shared/ui/Button";
 import { StarIcon, StarFilledIcon } from "@/shared/assets/icons";
 
@@ -13,15 +12,15 @@ interface CurrencyExchangeProps {
   readonly sendAmount: string;
   readonly setSendAmount: (value: string) => void;
   readonly sendCurrencyCode: string;
-  readonly setSendCurrencyCode: Dispatch<SetStateAction<string>>;
+  readonly setSendCurrencyCode: (value: string) => void;
   readonly receiveAmount: string;
   readonly setReceiveAmount: (value: string) => void;
   readonly receiveCurrencyCode: string;
-  readonly setReceiveCurrencyCode: Dispatch<SetStateAction<string>>;
+  readonly setReceiveCurrencyCode: (value: string) => void;
   readonly currencyGroups: readonly CurrencyGroup[];
-  readonly isActionActive: boolean;
+  readonly isFavorited: boolean;
   readonly onSwap: () => void;
-  readonly onActionActive: () => void;
+  readonly onToggleFavorite: () => void;
   readonly onLogConversion: () => void;
 }
 
@@ -36,9 +35,9 @@ export default function CurrencyExchangeView({
   receiveCurrencyCode,
   setReceiveCurrencyCode,
   currencyGroups,
-  isActionActive,
+  isFavorited,
   onSwap,
-  onActionActive,
+  onToggleFavorite,
   onLogConversion,
 }: CurrencyExchangeProps) {
   return (
@@ -73,9 +72,9 @@ export default function CurrencyExchangeView({
       <div className="text-preset-4 mt-[var(--spacing-200)] flex flex-col sm:flex-row sm:justify-between items-center gap-[var(--spacing-200)] py-[var(--spacing-300)] px-[var(--spacing-300)] border-t border-neutral-300 border-dotted">
         <p className="text-center sm:text-left w-full">{conversionRate}</p>
         <div className="flex flex-row gap-2 w-full justify-center gap-5">
-          <Button variant="actionActive" onClick={onActionActive}>
-            {isActionActive ? <StarFilledIcon /> : <StarIcon />}
-            Action Active
+          <Button variant="actionActive" onClick={onToggleFavorite}>
+            {isFavorited ? <StarFilledIcon /> : <StarIcon />}
+            Favorited
           </Button>
           <Button variant="actionDoubleBorder" onClick={onLogConversion}>
             LOG CONVERSION

@@ -44,7 +44,7 @@ export function CurrencyDropdownPanel({
 
           return (
             <div key={group.title} className="space-y-[0.5rem]">
-              <div className="flex items-center justify-between px-[0.5rem] font-mono text-preset-5 text-text-muted uppercase tracking-widest border-b border-border-subtle/30 pb-[0.25rem]">
+              <div className="flex items-center justify-between px-[0.5rem] font-mono text-preset-5 text-text-secondary uppercase tracking-widest border-b border-border-subtle/30 pb-[0.25rem]">
                 <span>{group.title}</span>
                 <span className="tabular-nums">
                   {group.currencies?.length || 0}

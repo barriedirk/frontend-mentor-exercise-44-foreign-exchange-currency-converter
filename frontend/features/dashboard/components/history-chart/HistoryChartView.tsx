@@ -3,14 +3,18 @@
 import Timeframe from "../time-frame/TimeFrame";
 import { MarketStatCard } from "@/shared/components/MarketStatCard";
 import { SandboxStat } from "./types";
-import { MarketChart } from "../market-chart/MarketChart";
+import { MarketChart } from "@/shared/components/MarketChart/MarketChart";
+import { MarketChartBase } from "@/shared/types/MarketChartRate";
+import { formatToCETStyle } from "@/shared/utils/formatToCETStyle";
 
 interface HistoryChartViewProps {
   readonly sandboxStats: readonly SandboxStat[];
+  readonly chartData: MarketChartBase;
 }
 
 export default function HistoryChartView({
   sandboxStats,
+  chartData,
 }: HistoryChartViewProps) {
   return (
     <section
@@ -32,8 +36,8 @@ export default function HistoryChartView({
           <Timeframe />
         </div>
       </div>
-      <div>
-        <MarketChart />
+      <div className="border border-border-subtle rounded-12 overflow-hidden">
+        <MarketChart updatedAt={formatToCETStyle(new Date())} {...chartData} />
       </div>
     </section>
   );

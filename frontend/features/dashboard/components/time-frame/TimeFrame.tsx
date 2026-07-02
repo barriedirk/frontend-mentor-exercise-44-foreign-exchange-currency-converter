@@ -1,13 +1,16 @@
 "use client";
 
-import * as React from "react";
-import {
-  TimeframeTabs,
-  type Timeframe,
-} from "@/shared/components/TimeframeTabs";
+import { useExchangeStore } from "@/app/_store/useExchangeStore";
+import { TimeframeTabs } from "@/shared/components/TimeframeTabs";
 
 export default function Timeframe() {
-  const [range, setRange] = React.useState<Timeframe>("1M");
+  const timeframe = useExchangeStore((state) => state.timeframe);
+  const setTimeframe = useExchangeStore((state) => state.setTimeframe);
 
-  return <TimeframeTabs activeTab={range} onChange={setRange} />;
+  return (
+    <TimeframeTabs
+      activeTab={timeframe}
+      onChange={(newRange) => setTimeframe(newRange as any)}
+    />
+  );
 }
