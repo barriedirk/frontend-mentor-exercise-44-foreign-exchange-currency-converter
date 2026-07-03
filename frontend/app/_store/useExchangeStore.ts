@@ -1,32 +1,27 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, createJSONStorage } from "zustand/middleware";
 import { CurrencyCode } from "@/shared/types/CurrencyCode";
 import { UITimeframe } from "@/shared/types/UITimeframe";
+import { LogEntry } from "@/features/dashboard/components/log/types";
 
-export interface ConversionLog {
-  readonly id: string;
-  readonly timestamp: number;
-  readonly fromCurrency: CurrencyCode;
-  readonly toCurrency: CurrencyCode;
-  readonly amountSent: string;
-  readonly amountReceived: string;
-  readonly rate: number;
-}
-
-interface ExchangeState {
+export interface ExchangeState {
   readonly sendCurrencyCode: CurrencyCode;
   readonly receiveCurrencyCode: CurrencyCode;
   readonly timeframe: UITimeframe;
   readonly favorites: readonly string[];
-  readonly history: readonly ConversionLog[];
+  readonly logs: readonly LogEntry[];
 
-  readonly setSendCurrencyCode: (code: CurrencyCode) => void;
-  readonly setReceiveCurrencyCode: (code: CurrencyCode) => void;
-  readonly setTimeframe: (timeframe: UITimeframe) => void;
-  readonly swapCurrencies: () => void;
-  readonly toggleFavorite: (pair: string) => void;
-  readonly addLog: (log: Omit<ConversionLog, "id" | "timestamp">) => void;
+  addLogEntry: (entry: Omit<LogEntry, "id" | "timestamp">) => void;
+  clearLogs: () => void;
+  deleteLogEntry: (id: string) => void;
+  setSendCurrencyCode: (code: CurrencyCode) => void;
+  setReceiveCurrencyCode: (code: CurrencyCode) => void;
+  setTimeframe: (timeframe: UITimeframe) => void;
+  swapCurrencies: () => void;
+  toggleFavorite: (pair: string) => void;
 }
+
+const MAX_LOG_ENTRIES = 50;
 
 export const useExchangeStore = create<ExchangeState>()(
   persist(
@@ -35,7 +30,29 @@ export const useExchangeStore = create<ExchangeState>()(
       receiveCurrencyCode: "EUR",
       timeframe: "1M",
       favorites: ["USD-EUR", "GBP-USD", "USD-JPY", "EUR-GBP"],
-      history: [],
+      logs: [],
+
+      addLogEntry: (entry) =>
+        set((state) => {
+          const newEntry: LogEntry = {
+            ...entry,
+            id: crypto.randomUUID(),
+            timestamp: new Date().toISOString(),
+          };
+          const updatedLogs = [newEntry, ...state.logs].slice(
+            0,
+            MAX_LOG_ENTRIES,
+          );
+
+          return { logs: updatedLogs };
+        }),
+
+      clearLogs: () => set({ logs: [] }),
+
+      deleteLogEntry: (id) =>
+        set((state) => ({
+          logs: state.logs.filter((item) => item.id !== id),
+        })),
 
       setSendCurrencyCode: (code) => set({ sendCurrencyCode: code }),
       setReceiveCurrencyCode: (code) => set({ receiveCurrencyCode: code }),
@@ -55,21 +72,14 @@ export const useExchangeStore = create<ExchangeState>()(
               : [...state.favorites, pair],
           };
         }),
-
-      addLog: (log) =>
-        set((state) => ({
-          history: [
-            {
-              ...log,
-              id: crypto.randomUUID(),
-              timestamp: Date.now(),
-            },
-            ...state.history,
-          ],
-        })),
     }),
     {
       name: "global-forex-storage",
+      storage: createJSONStorage(() => localStorage),
+      partialize: (state) => ({
+        favorites: state.favorites,
+        logs: state.logs,
+      }),
     },
   ),
 );

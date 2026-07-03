@@ -86,11 +86,11 @@ export default function CurrencyExchange() {
   const handleLogConversion = () => {
     if (!sendAmount || !receiveAmount) return;
 
-    store.addLog({
-      fromCurrency: sendCurrencyCode,
-      toCurrency: receiveCurrencyCode,
-      amountSent: sendAmount,
-      amountReceived: receiveAmount,
+    store.addLogEntry({
+      fromCode: sendCurrencyCode,
+      toCode: receiveCurrencyCode,
+      amountFrom: Number(sendAmount),
+      amountTo: Number(receiveAmount),
       rate,
     });
   };
