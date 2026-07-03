@@ -1,8 +1,9 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { ExchangeState, useExchangeStore } from "@/app/_store/useExchangeStore";
 import { useHydratedStore } from "@/shared/hooks/useHydratedStore";
 import { LogEntry } from "../types";
+import { formatLogTimestamp } from "@/shared/utils/formatLogTimestamp";
 
 export function useConversionLog() {
   const logs = useHydratedStore<ExchangeState, readonly LogEntry[]>(
@@ -12,23 +13,22 @@ export function useConversionLog() {
   const clearLogs = useExchangeStore((state) => state.clearLogs);
   const deleteLogEntry = useExchangeStore((state) => state.deleteLogEntry);
 
-  const dateTimeFormatter = useMemo(
-    () =>
-      new Intl.DateTimeFormat("en-US", {
-        month: "short",
-        day: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-      }),
-    [],
-  );
+  const [now, setNow] = useState(() => Date.now());
 
-  const formattedLogs = useMemo(() => {
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setNow(Date.now());
+    }, 30000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const formattedLogs = useMemo<LogEntry[]>(() => {
     return (logs ?? []).map((log) => ({
       ...log,
-      formattedDate: dateTimeFormatter.format(new Date(log.timestamp)),
+      formattedDate: formatLogTimestamp(log.timestamp, now),
     }));
-  }, [logs, dateTimeFormatter]);
+  }, [logs]);
 
   return {
     logs: formattedLogs,

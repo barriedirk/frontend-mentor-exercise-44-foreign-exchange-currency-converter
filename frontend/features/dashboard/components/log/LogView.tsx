@@ -1,10 +1,10 @@
 "use client";
 
 import { DeleteIcon } from "@/shared/assets/icons";
-import { LogEntryItem } from "./types";
+import { LogEntry } from "./types";
 
 export interface LogViewProps {
-  readonly logs: readonly LogEntryItem[];
+  readonly logs: readonly LogEntry[];
   readonly onDeleteEntry: (id: string) => void;
   readonly onClearAll: () => void;
 }
@@ -45,7 +45,7 @@ export function LogView({ logs, onDeleteEntry, onClearAll }: LogViewProps) {
               className="flex items-center bg-neutral-800 border border-border-subtle rounded-8 p-[var(--spacing-300)] text-text-secondary text-preset-4 font-medium transition-colors hover:border-neutral-600"
             >
               <div className="w-16 tabular-nums text-text-secondary font-bold text-preset-5 uppercase">
-                {log.timestamp}
+                {log.formattedDate}
               </div>
 
               <div className="flex items-center gap-[var(--spacing-150)] text-text-primary font-bold uppercase tracking-wide ml-[var(--spacing-200)]">
@@ -60,12 +60,12 @@ export function LogView({ logs, onDeleteEntry, onClearAll }: LogViewProps) {
                 <span className="text-text-secondary">
                   {Intl.NumberFormat("en-US", {
                     minimumFractionDigits: 2,
-                  }).format(log.fromAmount)}
+                  }).format(log.amountFrom)}
                 </span>
                 <span className="text-brand">
                   {Intl.NumberFormat("en-US", {
                     minimumFractionDigits: 2,
-                  }).format(log.toAmount)}
+                  }).format(log.amountTo)}
                 </span>
               </div>
 

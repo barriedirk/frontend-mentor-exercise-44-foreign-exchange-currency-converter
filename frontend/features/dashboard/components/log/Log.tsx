@@ -1,25 +1,23 @@
-import { useState } from "react";
-import { MOCK_LOGS } from "./mockData";
-
 import { LogView } from "./LogView";
-import { LogEntryItem } from "./types";
+import { useConversionLog } from "./hooks/useConversionLog";
 
 export function Log() {
-  const [logs, setLogs] = useState<LogEntryItem[]>(MOCK_LOGS);
+  const { logs, isHydrating, clearHistory, deleteLogEntry } =
+    useConversionLog();
 
-  const handleDeleteEntry = (id: string) => {
-    setLogs((prevLogs) => prevLogs.filter((log) => log.id !== id));
-  };
-
-  const handleClearAll = () => {
-    setLogs([]);
-  };
+  if (isHydrating) {
+    return (
+      <div className="p-12 text-center text-sm text-gray-400 animate-pulse bg-gray-50/50 border border-dashed rounded-xl">
+        Loading activity register...
+      </div>
+    );
+  }
 
   return (
     <LogView
       logs={logs}
-      onDeleteEntry={handleDeleteEntry}
-      onClearAll={handleClearAll}
+      onDeleteEntry={deleteLogEntry}
+      onClearAll={clearHistory}
     />
   );
 }

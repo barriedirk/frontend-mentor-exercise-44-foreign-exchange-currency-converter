@@ -4,7 +4,7 @@ import { TabItem } from "../types";
 
 export function useTabsConfig() {
   const favoritesCount = useExchangeStore((state) => state.favorites.length);
-  const logCount = useExchangeStore((state) => state.history.length);
+  const logCount = useExchangeStore((state) => state.logs.length);
 
   const tabsConfig = useMemo<readonly TabItem[]>(() => {
     return [

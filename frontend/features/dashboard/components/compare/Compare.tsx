@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { MOCK_CONVERSION_STATE, MOCK_CURRENCY_PAIRS } from "./mockData";
-import { CurrencyCode } from "./types";
 
 import { CompareView } from "./CompareView";
+import { CurrencyCode } from "@/shared/types/CurrencyCode";
 
 export function Compare() {
   const [pairs, setPairs] = useState(MOCK_CURRENCY_PAIRS);
