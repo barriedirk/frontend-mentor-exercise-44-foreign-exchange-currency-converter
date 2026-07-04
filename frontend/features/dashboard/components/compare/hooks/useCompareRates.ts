@@ -1,11 +1,20 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "@/shared/api/apiClient";
+import { FrankfurterRateItem } from "@/shared/api/types";
 import {
-  FrankfurterRateItem,
-  FrankfurterCurrencyMeta,
-} from "@/shared/api/types";
-import { CurrencyPairRate } from "../types";
+  currenciesMapQueryKey,
+  fetchCurrenciesMap,
+} from "@/shared/api/queries/currenciesMap";
 import { CurrencyCode } from "@/shared/types/CurrencyCode";
+
+export interface CurrencyPairRate {
+  currency: {
+    code: CurrencyCode;
+    name: string;
+  };
+  rate: number;
+  isFavorite: boolean;
+}
 
 export function useCompareRates(
   baseCurrency: CurrencyCode,
@@ -19,17 +28,8 @@ export function useCompareRates(
       const currenciesMap = await queryClient.ensureQueryData<
         Record<string, string>
       >({
-        queryKey: ["currencies", "map"],
-        queryFn: async () => {
-          const { data } =
-            await apiClient.get<FrankfurterCurrencyMeta[]>("/currencies");
-
-          return data.reduce((acc, curr): Record<string, string> => {
-            acc[curr.iso_code] = curr.name;
-
-            return acc;
-          }, {});
-        },
+        queryKey: currenciesMapQueryKey,
+        queryFn: fetchCurrenciesMap,
         staleTime: Infinity,
       });
 

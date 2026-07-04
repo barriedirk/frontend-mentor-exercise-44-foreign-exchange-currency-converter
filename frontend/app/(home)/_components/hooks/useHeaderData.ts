@@ -1,7 +1,11 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect, useMemo } from "react";
 import { apiClient } from "@/shared/api/apiClient";
 import { FrankfurterRateItem } from "@/shared/api/types";
+import {
+  currenciesMapQueryKey,
+  fetchCurrenciesMap,
+} from "@/shared/api/queries/currenciesMap";
 
 interface TickerItem {
   pair: string;
@@ -10,16 +14,11 @@ interface TickerItem {
   isPositive: boolean;
 }
 
-/**
- * Función pura extraída fuera del componente.
- * Resuelve el bache de SonarQube al aplanar la lógica y usar un bucle imperativo.
- */
 function calculateNextModifiers(
   prev: Record<string, number>,
 ): Record<string, number> {
   const next = { ...prev };
 
-  // 'for...of' es una estructura de control, NO una función. Anidamiento = 0.
   for (const key of Object.keys(next)) {
     const jitter = (Math.random() - 0.5) * 0.04;
     next[key] = Number((next[key] + jitter).toFixed(2));
@@ -29,15 +28,13 @@ function calculateNextModifiers(
 }
 
 export function useHeaderData() {
-  const queryClient = useQueryClient();
+  const { data: currenciesMap } = useQuery({
+    queryKey: currenciesMapQueryKey,
+    queryFn: fetchCurrenciesMap,
+    staleTime: Infinity,
+  });
 
-  const currenciesCache = queryClient.getQueryData<Record<string, string>>([
-    "currencies",
-    "map",
-  ]);
-  const totalCurrencies = currenciesCache
-    ? Object.keys(currenciesCache).length
-    : 0;
+  const totalCurrencies = currenciesMap ? Object.keys(currenciesMap).length : 0;
 
   const { data: rawRates } = useQuery({
     queryKey: ["rates", "ticker"],
@@ -47,7 +44,7 @@ export function useHeaderData() {
       });
       return data.filter((item) => ["EUR", "JPY", "GBP"].includes(item.quote));
     },
-    staleTime: 1000 * 60 * 30,
+    staleTime: 1000 * 60 * 30, // 30 minutos de caché para datos EOD
   });
 
   const [tickerModifiers, setTickerModifiers] = useState<
@@ -89,6 +86,6 @@ export function useHeaderData() {
   return {
     totalCurrencies,
     tickerItems,
-    isLoading: !rawRates,
+    isLoading: !currenciesMap || !rawRates,
   };
 }
