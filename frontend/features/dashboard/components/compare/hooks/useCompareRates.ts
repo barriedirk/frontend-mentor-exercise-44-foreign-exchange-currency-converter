@@ -23,8 +23,10 @@ export function useCompareRates(
         queryFn: async () => {
           const { data } =
             await apiClient.get<FrankfurterCurrencyMeta[]>("/currencies");
+
           return data.reduce((acc, curr): Record<string, string> => {
             acc[curr.iso_code] = curr.name;
+
             return acc;
           }, {});
         },

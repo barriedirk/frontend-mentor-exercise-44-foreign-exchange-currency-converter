@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import { useExchangeStore } from "@/app/_store/useExchangeStore";
 import { useCompareRates } from "./useCompareRates";
-import { CurrencyPairRate } from "../types";
 import { CurrencyCode } from "@/shared/types/CurrencyCode";
 
 export function useCompareData() {
