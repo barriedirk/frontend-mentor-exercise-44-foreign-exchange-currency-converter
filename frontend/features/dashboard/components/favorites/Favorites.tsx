@@ -1,17 +1,14 @@
 import { useExchangeStore } from "@/app/_store/useExchangeStore";
 import { useFavoritesData } from "./hooks/useFavoritesData";
 import { FavoritesView } from "./FavoriteView";
+import { FavoritesSkeleton } from "./FavoritesSkeleton";
 
 export function Favorites() {
   const toggleFavorite = useExchangeStore((state) => state.toggleFavorite);
   const { data: favoritePairs, isLoading, hasError } = useFavoritesData();
 
   if (isLoading) {
-    return (
-      <div className="p-6 text-center text-sm text-gray-500 animate-pulse">
-        Updating your favorite markets...
-      </div>
-    );
+    return <FavoritesSkeleton />;
   }
 
   if (hasError) {
