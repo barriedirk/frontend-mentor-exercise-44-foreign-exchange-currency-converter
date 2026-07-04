@@ -1,12 +1,12 @@
 import { cn } from "@/shared/utils/cn";
-import type { TickerRate } from "../ticker";
+import type { TickerItem } from "../ticker";
 import { TrendUpLinearIcon } from "@/shared/assets/icons/TrendUpLinearIcon";
 import { TrendDownLinearIcon } from "@/shared/assets/icons/TrendDownLinearIcon";
 
 interface DataTickerProps extends Readonly<
   React.HTMLAttributes<HTMLDivElement>
 > {
-  readonly rates: readonly TickerRate[];
+  readonly rates: readonly TickerItem[];
 }
 
 export function DataTicker({ className, rates, ...props }: DataTickerProps) {
@@ -33,16 +33,16 @@ export function DataTicker({ className, rates, ...props }: DataTickerProps) {
             className="flex items-center h-full divide-x divide-border-subtle shrink-0 text-preset-6 sm:text-preset-5"
           >
             {rates.map((item) => {
-              const isPositive = item.change >= 0;
+              const isPositive = item.isPositive;
 
               return (
                 <div
-                  key={item.id}
+                  key={item.pair}
                   className="flex items-center gap-[1rem] px-[2rem] h-full font-mono shrink-0"
                 >
                   <span className="text-text-muted">{item.pair}</span>
                   <span className="text-text-primary font-bold tabular-nums">
-                    {item.value}
+                    {item.rate}
                   </span>
                   <span
                     className={cn(

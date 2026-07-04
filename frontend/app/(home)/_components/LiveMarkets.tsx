@@ -1,6 +1,10 @@
-import { MOCK_FX_RATES } from "@/domain/currency/mocks";
+"use client";
+
 import { DataTicker } from "@/domain/currency/ui/DataTicker";
+import { useHeaderData } from "./hooks/useHeaderData";
 
 export default function LiveMarkets() {
-  return <DataTicker rates={MOCK_FX_RATES} />;
+  const { tickerItems } = useHeaderData();
+
+  return <DataTicker rates={tickerItems} />;
 }

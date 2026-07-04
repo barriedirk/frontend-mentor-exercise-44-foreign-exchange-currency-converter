@@ -1,6 +1,6 @@
-export interface TickerRate {
-  readonly id: string;
-  readonly pair: string;
-  readonly value: number | string;
-  readonly change: number;
+export interface TickerItem {
+  pair: string;
+  rate: number;
+  change: number;
+  isPositive: boolean;
 }

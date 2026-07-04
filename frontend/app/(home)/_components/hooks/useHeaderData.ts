@@ -6,13 +6,7 @@ import {
   currenciesMapQueryKey,
   fetchCurrenciesMap,
 } from "@/shared/api/queries/currenciesMap";
-
-interface TickerItem {
-  pair: string;
-  rate: number;
-  change: number;
-  isPositive: boolean;
-}
+import { TickerItem } from "@/domain/currency/ticker";
 
 function calculateNextModifiers(
   prev: Record<string, number>,
