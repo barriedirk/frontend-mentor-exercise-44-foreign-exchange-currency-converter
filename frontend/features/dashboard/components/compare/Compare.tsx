@@ -1,27 +1,14 @@
-import { useState } from "react";
-import { MOCK_CONVERSION_STATE, MOCK_CURRENCY_PAIRS } from "./mockData";
-
 import { CompareView } from "./CompareView";
-import { CurrencyCode } from "@/shared/types/CurrencyCode";
+import { useCompareData } from "./hooks/useCompareData";
 
 export function Compare() {
-  const [pairs, setPairs] = useState(MOCK_CURRENCY_PAIRS);
-
-  const handleToggleFavorite = (code: CurrencyCode) => {
-    setPairs((prevPairs) =>
-      prevPairs.map((pair) =>
-        pair.currency.code === code
-          ? { ...pair, isFavorite: !pair.isFavorite }
-          : pair,
-      ),
-    );
-  };
+  const { conversion, pairs, toggleFavorite } = useCompareData();
 
   return (
     <CompareView
-      conversion={MOCK_CONVERSION_STATE}
+      conversion={conversion}
       pairs={pairs}
-      onToggleFavorite={handleToggleFavorite}
+      onToggleFavorite={toggleFavorite}
     />
   );
 }

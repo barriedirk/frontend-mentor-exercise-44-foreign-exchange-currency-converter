@@ -7,17 +7,17 @@ export const MOCK_CONVERSION_STATE: ConversionState = {
 
 export const MOCK_CURRENCY_PAIRS: CurrencyPairRate[] = [
   {
-    currency: { code: "GBP", name: "British Pound", flagUrl: "/flags/gbp.svg" },
+    currency: { code: "GBP", name: "British Pound" },
     rate: 0.7366,
     isFavorite: true,
   },
   {
-    currency: { code: "JPY", name: "Japanese Yen", flagUrl: "/flags/jpy.svg" },
+    currency: { code: "JPY", name: "Japanese Yen" },
     rate: 157.91,
     isFavorite: true,
   },
   {
-    currency: { code: "CHF", name: "Swiss Franc", flagUrl: "/flags/chf.svg" },
+    currency: { code: "CHF", name: "Swiss Franc" },
     rate: 0.9098,
     isFavorite: false,
   },
@@ -25,7 +25,6 @@ export const MOCK_CURRENCY_PAIRS: CurrencyPairRate[] = [
     currency: {
       code: "CAD",
       name: "Canadian Dollar",
-      flagUrl: "/flags/cad.svg",
     },
     rate: 1.3815,
     isFavorite: false,
@@ -34,18 +33,17 @@ export const MOCK_CURRENCY_PAIRS: CurrencyPairRate[] = [
     currency: {
       code: "AUD",
       name: "Australian Dollar",
-      flagUrl: "/flags/aud.svg",
     },
     rate: 1.3874,
     isFavorite: false,
   },
   {
-    currency: { code: "INR", name: "Indian Rupee", flagUrl: "/flags/inr.svg" },
+    currency: { code: "INR", name: "Indian Rupee" },
     rate: 94.91,
     isFavorite: true,
   },
   {
-    currency: { code: "CNY", name: "Chinese Yuan", flagUrl: "/flags/cny.svg" },
+    currency: { code: "CNY", name: "Chinese Yuan" },
     rate: 7.21,
     isFavorite: false,
   },
@@ -53,7 +51,6 @@ export const MOCK_CURRENCY_PAIRS: CurrencyPairRate[] = [
     currency: {
       code: "BDT",
       name: "Bangladeshi Taka",
-      flagUrl: "/flags/bdt.svg",
     },
     rate: 122.92,
     isFavorite: true,
