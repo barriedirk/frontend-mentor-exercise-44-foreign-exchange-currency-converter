@@ -5,7 +5,7 @@ import { FrankfurterRateItem } from "@/shared/api/types";
 import {
   currenciesMapQueryKey,
   fetchCurrenciesMap,
-} from "@/shared/api/queries/currenciesMap";
+} from "@/shared/api/queries/fetchCurrenciesMap";
 import { TickerItem } from "@/domain/currency/ticker";
 
 function calculateNextModifiers(
@@ -38,7 +38,7 @@ export function useHeaderData() {
       });
       return data.filter((item) => ["EUR", "JPY", "GBP"].includes(item.quote));
     },
-    staleTime: 1000 * 60 * 30, // 30 minutos de caché para datos EOD
+    staleTime: 1000 * 60 * 30, // 30 minutes caché for EOD
   });
 
   const [tickerModifiers, setTickerModifiers] = useState<

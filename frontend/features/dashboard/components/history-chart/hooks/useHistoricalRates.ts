@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useExchangeStore } from "@/app/_store/useExchangeStore";
 import { UITimeframe } from "@/shared/types/UITimeframe";
+import { apiClient } from "@/shared/api/apiClient";
 
 export interface HistoricalChartPoint {
   readonly date: string;
@@ -77,17 +78,17 @@ export function useHistoricalRates() {
     ],
 
     queryFn: async () => {
-      const url = `https://api.frankfurter.dev/v2/rates?from=${startDate}&to=${endDate}&base=${sendCurrencyCode}&quotes=${receiveCurrencyCode}`;
-
-      const response = await fetch(url);
-
-      if (!response.ok) {
-        throw new Error(
-          `Frankfurter v2 HTTP Error: ${response.status} ${response.statusText}`,
-        );
-      }
-
-      const data: readonly FrankfurterV2Rate[] = await response.json();
+      const { data } = await apiClient.get<readonly FrankfurterV2Rate[]>(
+        "/rates",
+        {
+          params: {
+            from: startDate,
+            to: endDate,
+            base: sendCurrencyCode,
+            quotes: receiveCurrencyCode,
+          },
+        },
+      );
 
       if (!data || data.length === 0) {
         return {
@@ -119,5 +120,6 @@ export function useHistoricalRates() {
 
     enabled: !isSameCurrency,
     staleTime: 1000 * 60 * 60,
+    refetchOnWindowFocus: false,
   });
 }

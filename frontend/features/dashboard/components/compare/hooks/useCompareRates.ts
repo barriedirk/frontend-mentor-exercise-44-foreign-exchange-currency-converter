@@ -4,7 +4,7 @@ import { FrankfurterRateItem } from "@/shared/api/types";
 import {
   currenciesMapQueryKey,
   fetchCurrenciesMap,
-} from "@/shared/api/queries/currenciesMap";
+} from "@/shared/api/queries/fetchCurrenciesMap";
 import { CurrencyCode } from "@/shared/types/CurrencyCode";
 
 export interface CurrencyPairRate {
