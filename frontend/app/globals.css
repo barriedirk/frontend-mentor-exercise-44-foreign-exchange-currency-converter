@@ -50,24 +50,60 @@
   --radius-full: 9999px;
 
   --max-inner-container: 68.75rem;
+
+  /* DEFAULT THEME (Dark) */
+  --theme-bg: var(--color-neutral-900);
+  --theme-fg: var(--color-neutral-50);
+
+  --theme-surface-main: var(--color-neutral-900);
+  --theme-surface-card: var(--color-neutral-700);
+  --theme-surface-input: var(--color-neutral-600);
+  --theme-surface-hover: var(--color-neutral-500);
+
+  --theme-text-primary: var(--color-neutral-50);
+  --theme-text-secondary: var(--color-neutral-200);
+  --theme-text-tertiary: var(--color-neutral-100);
+  --theme-text-muted: var(--color-neutral-400);
+
+  --theme-border-subtle: var(--color-neutral-600);
+  --theme-border-focus: var(--color-neutral-400);
 }
 
+[data-theme="light"] {
+  --theme-bg: var(--color-neutral-50);
+  --theme-fg: var(--color-neutral-900);
+
+  --theme-surface-main: var(--color-neutral-50);
+  --theme-surface-card: #F4F4F5; 
+  --theme-surface-input: #E4E4E7;
+  --theme-surface-hover: var(--color-neutral-100);
+
+  --theme-text-primary: var(--color-neutral-900);
+  --theme-text-secondary: var(--color-neutral-500);
+  --theme-text-tertiary: var(--color-neutral-400);
+  --theme-text-muted: var(--color-neutral-300);
+
+  --theme-border-subtle: var(--color-neutral-100);
+  --theme-border-focus: var(--color-neutral-300);
+}
+
+
 @theme {
-  --color-background: var(--color-neutral-900);
-  --color-foreground: var(--color-neutral-50);
+  --color-background: var(--theme-bg);
+  --color-foreground: var(--theme-fg);
 
-  --color-surface-main: var(--color-neutral-900);
-  --color-surface-card: var(--color-neutral-700);
-  --color-surface-input: var(--color-neutral-600);
-  --color-surface-hover: var(--color-neutral-500);
+  --color-surface-main: var(--theme-surface-main);
+  --color-surface-card: var(--theme-surface-card);
+  --color-surface-input: var(--theme-surface-input);
+  --color-surface-hover: var(--theme-surface-hover);
 
-  --color-text-primary: var(--color-neutral-50);
-  --color-text-secondary: var(--color-neutral-200);
-  --color-text-tertiary: var(--color-neutral-100);
-  --color-text-muted: var(--color-neutral-400);
+  --color-text-primary: var(--theme-text-primary);
+  --color-text-secondary: var(--theme-text-secondary);
+  --color-text-tertiary: var(--theme-text-tertiary);
+  --color-text-muted: var(--theme-text-muted);
 
-  --color-border-subtle: var(--color-neutral-600);
-  --color-border-focus: var(--color-neutral-400);
+  --color-border-subtle: var(--theme-border-subtle);
+  --color-border-focus: var(--theme-border-focus);
 
   --color-brand: var(--color-lime-500);
   --color-brand-muted: var(--color-lime-800);
