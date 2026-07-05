@@ -28,7 +28,6 @@ async function generateFlags() {
   );
 
   for (const file of files) {
-    // 💡 CORRECCIÓN: Forzamos que el token de negocio sea SIEMPRE mayúscula (ej: "usd.svg" -> "USD")
     const rawCode = path.basename(file, ".svg").toUpperCase();
     const componentName = `${toPascalCase(rawCode)}Flag`;
     const svgCode = fs.readFileSync(path.join(SVG_DIR, file), "utf-8");

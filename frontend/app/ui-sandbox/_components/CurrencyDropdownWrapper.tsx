@@ -13,7 +13,7 @@ export default function CurrencyDropdownWrapper() {
   const [selectedCurrency, setSelectedCurrency] = useState<
     CurrencyItem | undefined
   >(
-    MOCK_CURRENCY_GROUPS[0].items[1], // EUR
+    MOCK_CURRENCY_GROUPS[0].currencies[1], // EUR
   );
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -23,7 +23,7 @@ export default function CurrencyDropdownWrapper() {
 
     return MOCK_CURRENCY_GROUPS.map((group) => ({
       title: group.title,
-      items: group.items.filter(
+      items: group.currencies.filter(
         (item) =>
           item.code.toLowerCase().includes(cleanSearch) ||
           item.name.toLowerCase().includes(cleanSearch),
