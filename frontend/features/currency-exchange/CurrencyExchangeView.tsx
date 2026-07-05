@@ -3,7 +3,7 @@
 import { CurrencyInputPanel } from "@/shared/components/CurrencyInputPanel";
 import { SwapButton } from "@/shared/components/SwapButton";
 
-import { CurrencyGroup } from "@/domain/currency/currency";
+import { CurrencyGroup } from "@/shared/components/Currency/currency";
 import { Button } from "@/shared/ui/Button";
 import { StarIcon, StarFilledIcon } from "@/shared/assets/icons";
 

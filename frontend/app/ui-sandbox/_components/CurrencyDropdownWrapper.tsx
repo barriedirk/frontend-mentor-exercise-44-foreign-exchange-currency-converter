@@ -3,9 +3,9 @@
 import { useMemo, useState } from "react";
 
 import { Popover, PopoverTrigger, PopoverContent } from "@/shared/ui/Popover";
-import { CurrencyDropdownPanel } from "@/domain/currency/ui/CurrencyDropdownPanel";
-import { CurrencyGroup } from "@/domain/currency/currency";
-import { MOCK_CURRENCY_GROUPS } from "@/domain/currency/mocks";
+import { CurrencyDropdownPanel } from "@/shared/components/Currency/ui/CurrencyDropdownPanel";
+import { CurrencyGroup } from "@/shared/components/Currency/currency";
+import { MOCK_CURRENCY_GROUPS } from "@/shared/components/Currency/mocks";
 import { CurrencyItem } from "@/shared/types/CurrencyItem";
 
 export default function CurrencyDropdownWrapper() {

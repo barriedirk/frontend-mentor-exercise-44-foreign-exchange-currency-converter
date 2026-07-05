@@ -1,6 +1,6 @@
 "use client";
 
-import { DataTicker } from "@/domain/currency/ui/DataTicker";
+import { DataTicker } from "@/shared/components/Currency/ui/DataTicker";
 import { useHeaderData } from "./hooks/useHeaderData";
 
 export default function LiveMarkets() {

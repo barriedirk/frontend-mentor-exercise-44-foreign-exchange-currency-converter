@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { Popover, PopoverContent, PopoverTrigger } from "@/shared/ui/Popover";
-import { CurrencyDropdownPanel } from "@/domain/currency/ui/CurrencyDropdownPanel";
+import { CurrencyDropdownPanel } from "@/shared/components/Currency/ui/CurrencyDropdownPanel";
 import { CurrencyItem } from "@/shared/types/CurrencyItem";
 
 export function CurrencySelectField() {

@@ -3,8 +3,8 @@
 import { CurrencyInputPanel } from "@/shared/components/CurrencyInputPanel";
 import { SwapButton } from "@/shared/components/SwapButton";
 
-import { MOCK_CURRENCY_GROUPS } from "@/domain/currency/mocks";
-import { CurrencyGroup } from "@/domain/currency/currency";
+import { MOCK_CURRENCY_GROUPS } from "@/shared/components/Currency/mocks";
+import { CurrencyGroup } from "@/shared/components/Currency/currency";
 import { useState } from "react";
 
 const CURRENCY_GROUPS: readonly CurrencyGroup[] = MOCK_CURRENCY_GROUPS;

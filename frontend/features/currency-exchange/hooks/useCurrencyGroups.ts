@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { apiClient } from "@/shared/api/apiClient";
 import { FrankfurterCurrencyMeta } from "@/shared/api/types";
-import { CurrencyGroup } from "@/domain/currency/currency";
+import { CurrencyGroup } from "@/shared/components/Currency/currency";
 import { CurrencyMetadata } from "@/shared/types/CurrencyMetadata";
 import { POPULAR_CURRENCY_CODES } from "@/shared/constants/popularCurrencies";
 

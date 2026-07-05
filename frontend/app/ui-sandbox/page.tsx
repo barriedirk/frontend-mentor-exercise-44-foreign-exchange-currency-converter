@@ -1,8 +1,8 @@
 "use client";
-import { DataTicker } from "@/domain/currency/ui/DataTicker";
+import { DataTicker } from "@/shared/components/Currency/ui/DataTicker";
 
 import { Button } from "@/shared/ui/Button";
-import { CurrencySelectButton } from "@/domain/currency/ui/CurrencySelectButton";
+import { CurrencySelectButton } from "@/shared/components/Currency/ui/CurrencySelectButton";
 import { IconButton } from "@/shared/ui/IconButton";
 import {
   ChevronDownIcon,
@@ -14,7 +14,7 @@ import { TabButton } from "@/shared/ui/TabButton";
 import { SearchInput } from "@/shared/ui/SearchInput";
 import { AmountInput } from "@/shared/ui/AmountInput";
 import { InteractiveAmountWrapper } from "./_components/InteractiveAmountWrapper";
-import { MOCK_FX_RATES } from "@/domain/currency/mocks";
+import { MOCK_FX_RATES } from "@/shared/components/Currency/mocks";
 import CurrencyDropdownWrapper from "./_components/CurrencyDropdownWrapper";
 import MarketStatsWrapper from "./_components/MarketStatCardWrapper";
 import TimeframeWrapper from "./_components/TimeframeWrapper";

@@ -4,9 +4,9 @@ import { useId, useMemo, useState } from "react";
 
 import { ChevronDownIcon } from "lucide-react";
 import { Popover, PopoverTrigger, PopoverContent } from "@/shared/ui/Popover";
-import { CurrencyGroup } from "@/domain/currency/currency";
+import { CurrencyGroup } from "@/shared/components/Currency/currency";
 import { ALLOWED_CURRENCIES } from "@/shared/constants/currencies";
-import { CurrencyDropdownPanel } from "@/domain/currency/ui/CurrencyDropdownPanel";
+import { CurrencyDropdownPanel } from "@/shared/components/Currency/ui/CurrencyDropdownPanel";
 import { AmountInput } from "@/shared/ui/AmountInput";
 import { CurrencyBadge } from "@/shared/ui/CurrencyBadge";
 import { CurrencyMetadata } from "@/shared/types/CurrencyMetadata";

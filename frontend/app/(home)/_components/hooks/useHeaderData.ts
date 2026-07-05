@@ -6,7 +6,7 @@ import {
   currenciesMapQueryKey,
   fetchCurrenciesMap,
 } from "@/shared/api/queries/fetchCurrenciesMap";
-import { TickerItem } from "@/domain/currency/ticker";
+import { TickerItem } from "@/shared/components/Currency/ticker";
 
 function calculateNextModifiers(
   prev: Record<string, number>,

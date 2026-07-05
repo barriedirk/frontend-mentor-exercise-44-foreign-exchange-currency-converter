@@ -1,6 +1,6 @@
 import { cn } from "@/shared/utils/cn";
 import { SearchInput } from "@/shared/ui/SearchInput";
-import { CurrencyGroup } from "@/domain/currency/currency";
+import { CurrencyGroup } from "@/shared/components/Currency/currency";
 import { CurrencyOption } from "./CurrencyOption";
 import { CurrencyMetadata } from "@/shared/types/CurrencyMetadata";
 
