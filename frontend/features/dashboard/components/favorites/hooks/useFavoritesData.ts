@@ -1,5 +1,6 @@
 import { useQueries } from "@tanstack/react-query";
 import { useExchangeStore } from "@/app/_store/useExchangeStore";
+import { apiClient } from "@/shared/api/apiClient";
 
 export interface FavoritePairData {
   readonly id: string;
@@ -31,14 +32,17 @@ export function useFavoritesData() {
       return {
         queryKey: ["favoritePair", pairId],
         queryFn: async (): Promise<FavoritePairData> => {
-          const url = `https://api.frankfurter.dev/v2/rates?from=${format(startDate)}&to=${format(endDate)}&base=${fromCode}&quotes=${toCode}`;
-          const response = await fetch(url);
-
-          if (!response.ok) {
-            throw new Error(`Failed to fetch pair ${pairId}`);
-          }
-
-          const data: readonly FrankfurterV2Rate[] = await response.json();
+          const { data } = await apiClient.get<readonly FrankfurterV2Rate[]>(
+            "/rates",
+            {
+              params: {
+                from: format(startDate),
+                to: format(endDate),
+                base: fromCode,
+                quotes: toCode,
+              },
+            },
+          );
 
           if (!data || data.length === 0) {
             return {
