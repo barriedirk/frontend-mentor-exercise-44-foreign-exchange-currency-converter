@@ -13,14 +13,14 @@ export function DataTicker({ className, rates, ...props }: DataTickerProps) {
   return (
     <div
       className={cn(
-        "w-full h-[35px] sm:h-[40px] bg-neutral-950 border-b border-border-subtle flex items-center overflow-hidden select-none",
+        "w-full h-[35px] sm:h-[40px] bg-background border-b border-border-subtle flex items-center overflow-hidden select-none",
         className,
       )}
       {...props}
     >
       <div className="h-full bg-brand px-[var(--spacing-250)] flex items-center gap-[var(--spacing-100)] shrink-0 z-10">
-        <span className="size-[var(--spacing-100)] bg-neutral-950 rounded-full animate-pulse" />
-        <span className="font-mono text-preset-6 sm:text-preset-4 text-neutral-950 uppercase font-bold tracking-wider">
+        <span className="size-[var(--spacing-100)] bg-neutral-900 rounded-full animate-pulse" />
+        <span className="font-mono text-preset-6 sm:text-preset-4 text-neutral-900 uppercase font-bold tracking-wider">
           Live Markets
         </span>
       </div>
@@ -40,7 +40,7 @@ export function DataTicker({ className, rates, ...props }: DataTickerProps) {
                   key={item.pair}
                   className="flex items-center gap-[1rem] px-[2rem] h-full font-mono shrink-0"
                 >
-                  <span className="text-text-muted">{item.pair}</span>
+                  <span className="text-text-secondary">{item.pair}</span>
                   <span className="text-text-primary font-bold tabular-nums">
                     {item.rate}
                   </span>

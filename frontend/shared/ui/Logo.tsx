@@ -4,12 +4,13 @@ import { cn } from "@/shared/utils/cn";
 const logoVariants = cva("transition-colors duration-200", {
   variants: {
     theme: {
-      dark: "text-[#FFFFFF]",
-      light: "text-[#0A0A0A]",
+      auto: "text-text-primary",
+      dark: "text-[var(--color-neutral-50)]",
+      light: "text-[var(--color-neutral-900)]",
     },
   },
   defaultVariants: {
-    theme: "dark",
+    theme: "auto",
   },
 });
 
@@ -32,10 +33,13 @@ export function Logo({ className, theme, ...props }: LogoProps) {
       {...props}
     >
       <path
-        fill="#cef739"
-        fillRule="evenodd"
-        d="M1.947 2.145C3.223.777 5.047 0 7.228 0H18.77c2.186 0 4.012.776 5.287 2.146C25.327 3.51 26 5.406 26 7.562v10.876c0 2.156-.673 4.052-1.943 5.416C22.78 25.224 20.956 26 18.769 26H7.23c-2.187 0-4.012-.776-5.286-2.146C.673 22.49 0 20.594 0 18.438V7.562C0 5.405.676 3.51 1.947 2.145M17.314 9.02a1.026 1.026 0 1 0-1.635-1.241l-6.993 9.204a1.026 1.026 0 0 0 1.635 1.242z"
-        clipRule="evenodd"
+        fill="var(--color-brand)"
+        d="M1.947 2.145C3.223.777 5.047 0 7.228 0H18.77c2.186 0 4.012.776 5.287 2.146C25.327 3.51 26 5.406 26 7.562v10.876c0 2.156-.673 4.052-1.943 5.416C22.78 25.224 20.956 26 18.769 26H7.23c-2.187 0-4.012-.776-5.286-2.146C.673 22.49 0 20.594 0 18.438V7.562C0 5.405.676 3.51 1.947 2.145z"
+      />
+
+      <path
+        fill="var(--color-neutral-900)"
+        d="M17.314 9.02a1.026 1.026 0 1 0-1.635-1.241l-6.993 9.204a1.026 1.026 0 0 0 1.635 1.242z"
       />
 
       <path
