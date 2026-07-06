@@ -32,7 +32,7 @@ export function CompareView({
           return (
             <li
               key={currency.code}
-              className="flex items-center justify-between bg-neutral-800 border border-border-subtle rounded-8 p-[var(--spacing-100)] hover:border-neutral-600 transition-colors"
+              className="flex items-center justify-between bg-surface-main border border-border-subtle rounded-8 p-[var(--spacing-100)] hover:border-surface-input transition-colors"
             >
               <div className="flex items-center gap-[var(--spacing-200)]">
                 <CurrencyBadge

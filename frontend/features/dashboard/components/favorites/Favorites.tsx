@@ -1,6 +1,6 @@
 import { useExchangeStore } from "@/app/_store/useExchangeStore";
 import { useFavoritesData } from "./hooks/useFavoritesData";
-import { FavoritesView } from "./FavoriteView";
+import { FavoritesView } from "./FavoritesView";
 import { FavoritesSkeleton } from "./FavoritesSkeleton";
 
 export function Favorites() {

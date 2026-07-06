@@ -26,7 +26,7 @@ export function CurrencyDropdownPanel({
   return (
     <div
       className={cn(
-        "w-full max-w-[26rem] bg-[#141414] border border-border-subtle rounded-16 p-[1rem] flex flex-col gap-[1rem] shadow-2xl",
+        "w-full max-w-[26rem] bg-surface-card border border-border-subtle rounded-16 p-[1rem] flex flex-col gap-[1rem] shadow-2xl",
         className,
       )}
       {...props}

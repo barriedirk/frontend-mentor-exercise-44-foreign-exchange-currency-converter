@@ -63,7 +63,7 @@ export function CurrencyInputPanel({
     <fieldset
       aria-labelledby={labelId}
       className={cn(
-        "flex flex-col gap-[0.5rem] w-full p-[var(--spacing-250)] bg-surface-input border border-neutral-800/60 rounded-12 font-mono transition-all focus-within:border-neutral-700 focus-within:bg-neutral-900/80",
+        "flex flex-col gap-[0.5rem] w-full p-[var(--spacing-250)] bg-surface-input border border-neutral-800/60 rounded-12 font-mono transition-all focus-within:border-neutral-700 focus-within:bg-surface-input/80",
         className,
       )}
       {...props}
@@ -80,7 +80,7 @@ export function CurrencyInputPanel({
           readOnly={readOnly}
           className={cn(
             {
-              "text-brand": label === "RECEIVE",
+              "text-text-accent": label === "RECEIVE",
               "cursor-default": readOnly,
             },
             "text-preset-2",
@@ -93,7 +93,7 @@ export function CurrencyInputPanel({
           <PopoverTrigger asChild>
             <button
               type="button"
-              className="flex items-center gap-[0.5rem] bg-neutral-800 border border-neutral-700/50 hover:bg-neutral-700 h-[3rem] px-[1rem] rounded-12 text-text-primary font-bold text-preset-3 transition-all cursor-pointer outline-none shrink-0 select-none"
+              className="flex items-center gap-[0.5rem] bg-surface-card border border-surface-hover/50 hover:bg-surface-hover h-[3rem] px-[1rem] rounded-12 text-text-primary font-bold text-preset-3 transition-all cursor-pointer outline-none shrink-0 select-none"
               aria-haspopup="dialog"
               aria-expanded={isOpen}
               aria-label={`Select ${label.toLowerCase()} currency. Current: ${currencyCode}`}

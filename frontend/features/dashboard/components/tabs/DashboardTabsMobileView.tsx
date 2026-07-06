@@ -48,13 +48,13 @@ export function DashboardTabsMobileView({
         aria-expanded={isOpen}
         aria-controls={menuId}
         aria-label="Select dashboard tab"
-        className="w-full h-[40px] px-[var(--spacing-300)] bg-neutral-700 border border-border-subtle rounded-8 flex items-center justify-between text-preset-5 text-text-primary uppercase font-bold tracking-wider"
+        className="w-full h-[40px] px-[var(--spacing-300)] bg-surface-card border border-border-subtle rounded-8 flex items-center justify-between text-preset-5 text-text-primary uppercase font-bold tracking-wider"
       >
         <span className="text-preset-3 text-foreground flex gap-2">
           {currentTabLabel}
 
           {currentBadgeLabel !== undefined && (
-            <span className="text-preset-6 px-[6px] py-[2px] rounded-full bg-brand-muted text-brand font-bold tabular-nums">
+            <span className="text-preset-6 px-[6px] py-[2px] rounded-full bg-surface-hover text-text-secondary font-bold tabular-nums flex items-center">
               {currentBadgeLabel}
             </span>
           )}
@@ -79,7 +79,7 @@ export function DashboardTabsMobileView({
           id={menuId}
           role="menu"
           aria-labelledby={buttonId}
-          className="absolute w-full left-0 right-0 mt-[var(--spacing-050)] bg-neutral-700 border border-border-subtle rounded-8 overflow-hidden z-50 shadow-xl divide-y divide-border-subtle"
+          className="absolute w-full left-0 right-0 mt-[var(--spacing-050)] bg-surface-card border border-border-subtle rounded-8 overflow-hidden z-50 shadow-xl divide-y divide-border-subtle"
         >
           {tabItems.map((tab, idx) => {
             const isActive = tab.id === activeTab;
@@ -98,15 +98,15 @@ export function DashboardTabsMobileView({
                   triggerRef.current?.focus();
                 }}
                 className={cn(
-                  "w-full px-[var(--spacing-300)] py-[var(--spacing-200)] text-left text-preset-5 uppercase tracking-wider flex items-center justify-between outline-none focus:bg-neutral-600",
+                  "w-full px-[var(--spacing-300)] py-[var(--spacing-200)] text-left text-preset-5 uppercase tracking-wider flex items-center justify-between outline-none focus:bg-surface-input",
                   isActive
-                    ? "text-brand font-bold bg-neutral-600"
+                    ? "text-brand font-bold bg-surface-input"
                     : "text-text-secondary",
                 )}
               >
                 <span className="text-preset-3">{tab.label}</span>
                 {tab.badge !== undefined && (
-                  <span className="text-preset-6 px-[6px] py-[2px] rounded-full bg-brand-muted text-brand font-bold tabular-nums">
+                  <span className="text-preset-6 px-[6px] py-[4px] rounded-full bg-surface-hover text-text-secondary font-bold tabular-nums flex items-center">
                     {tab.badge}
                   </span>
                 )}

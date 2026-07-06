@@ -33,7 +33,7 @@ export function FavoritesView({
             return (
               <li
                 key={pair.id}
-                className="flex items-center justify-between bg-neutral-800 border border-border-subtle rounded-8 p-[var(--spacing-100)] hover:border-neutral-600 transition-colors"
+                className="flex items-center justify-between bg-surface-main border border-border-subtle rounded-8 p-[var(--spacing-100)] hover:border-neutral-600 transition-colors"
               >
                 <div className="flex items-center gap-[var(--spacing-150)] text-preset-4 text-text-primary font-bold uppercase tracking-wide">
                   <span>{pair.fromCode}</span>
@@ -55,7 +55,7 @@ export function FavoritesView({
                     <span
                       className={cn(
                         "text-preset-6 font-bold tabular-nums flex items-center gap-1",
-                        isPositive ? "text-emerald-500" : "text-rose-500",
+                        isPositive ? "text-text-accent" : "text-rose-500",
                       )}
                       aria-label={`Daily change: ${isPositive ? "up" : "down"} ${Math.abs(pair.changePercent)}%`}
                     >

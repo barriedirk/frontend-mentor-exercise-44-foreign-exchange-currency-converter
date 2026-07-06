@@ -66,10 +66,10 @@ export function DashboardTabsView({
                 <span
                   aria-label={`${tab.badge} items`}
                   className={cn(
-                    "text-preset-6 px-[6px] py-[2px] rounded-full font-bold tabular-nums transition-colors",
+                    "text-preset-6 px-[6px] py-[4px] rounded-full font-bold tabular-nums transition-colors",
                     isActive
                       ? "bg-brand text-neutral-950"
-                      : "bg-neutral-500 text-text-secondary",
+                      : "bg-surface-hover text-text-secondary",
                   )}
                 >
                   {tab.badge}

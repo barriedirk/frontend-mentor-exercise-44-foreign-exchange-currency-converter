@@ -35,7 +35,7 @@ export function MarketStatCard({
           "text-preset-2 md:text-preset-4 tracking-tight flex items-center gap-[0.25rem] uppercase",
           {
             "text-text-primary": trend === "neutral",
-            "text-green-500": trend === "up",
+            "text-text-accent": trend === "up",
             "text-red-500": trend === "down",
           },
         )}

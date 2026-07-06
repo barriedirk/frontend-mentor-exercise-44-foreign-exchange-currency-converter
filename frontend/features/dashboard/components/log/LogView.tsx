@@ -25,7 +25,7 @@ export function LogView({ logs, onDeleteEntry, onClearAll }: LogViewProps) {
               type="button"
               onClick={onClearAll}
               aria-label="Clear all conversion logs"
-              className="px-[var(--spacing-200)] py-[var(--spacing-100)] border border-border-subtle bg-neutral-800 rounded-6 text-preset-6 text-text-secondary font-bold uppercase tracking-wider hover:bg-neutral-700 hover:text-text-primary transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand"
+              className="px-[var(--spacing-200)] py-[var(--spacing-100)] border border-border-subtle bg-surface-main rounded-6 text-preset-6 text-text-secondary font-bold uppercase tracking-wider hover:bg-surface-card hover:text-text-primary transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand"
             >
               Clear All
             </button>
@@ -42,7 +42,7 @@ export function LogView({ logs, onDeleteEntry, onClearAll }: LogViewProps) {
           {logs.map((log) => (
             <li
               key={log.id}
-              className="flex items-center bg-neutral-800 border border-border-subtle rounded-8 p-[var(--spacing-300)] text-text-secondary text-preset-4 font-medium transition-colors hover:border-neutral-600"
+              className="flex items-center bg-surface-main border border border-border-subtle rounded-8 p-[var(--spacing-300)] text-text-secondary text-preset-4 font-medium transition-colors hover:border-neutral-600"
             >
               <div className="w-16 tabular-nums text-text-secondary font-bold text-preset-5 uppercase">
                 {log.formattedDate}
@@ -62,7 +62,7 @@ export function LogView({ logs, onDeleteEntry, onClearAll }: LogViewProps) {
                     minimumFractionDigits: 2,
                   }).format(log.amountFrom)}
                 </span>
-                <span className="text-brand">
+                <span className="text-text-accent">
                   {Intl.NumberFormat("en-US", {
                     minimumFractionDigits: 2,
                   }).format(log.amountTo)}

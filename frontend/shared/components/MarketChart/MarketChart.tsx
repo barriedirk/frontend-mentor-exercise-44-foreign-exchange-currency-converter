@@ -35,7 +35,7 @@ export function MarketChart({
     <section
       aria-label={`Market historical trend chart - ${baseCurrency}/${quoteCurrency}`}
       className={cn(
-        "w-full bg-neutral-950 p-[1.5rem] rounded-12 border border-border-subtle font-mono flex flex-col gap-[1.5rem]",
+        "w-full bg-surface-main p-[1.5rem] rounded-12 border border-border-subtle font-mono flex flex-col gap-[1.5rem]",
         className,
       )}
     >
@@ -117,7 +117,7 @@ export function MarketChart({
             <Area
               type="linear"
               dataKey="rate"
-              stroke="var(--color-brand, #bef264)"
+              stroke="var(--color-border-accent, #bef264)"
               strokeWidth={2}
               fillOpacity={1}
               fill="url(#chartGradient)"

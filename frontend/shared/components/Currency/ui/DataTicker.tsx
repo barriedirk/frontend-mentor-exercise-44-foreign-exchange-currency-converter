@@ -1,7 +1,9 @@
 import { cn } from "@/shared/utils/cn";
-import type { TickerItem } from "../ticker";
+
 import { TrendUpLinearIcon } from "@/shared/assets/icons/TrendUpLinearIcon";
 import { TrendDownLinearIcon } from "@/shared/assets/icons/TrendDownLinearIcon";
+import type { TickerItem } from "../ticker";
+import { useId } from "react";
 
 interface DataTickerProps extends Readonly<
   React.HTMLAttributes<HTMLDivElement>
@@ -10,6 +12,8 @@ interface DataTickerProps extends Readonly<
 }
 
 export function DataTicker({ className, rates, ...props }: DataTickerProps) {
+  const baseId = useId();
+
   return (
     <div
       className={cn(
@@ -26,9 +30,9 @@ export function DataTicker({ className, rates, ...props }: DataTickerProps) {
       </div>
 
       <div className="flex w-max items-center animate-ticker hover:[animation-play-state:paused] cursor-pointer">
-        {[...new Array(2)].map((_, i) => (
+        {Array.from({ length: 2 }).map((_, i) => (
           <div
-            key={i}
+            key={`${baseId}-item-${i}`}
             aria-hidden={i > 0}
             className="flex items-center h-full divide-x divide-border-subtle shrink-0 text-preset-6 sm:text-preset-5"
           >
@@ -47,7 +51,7 @@ export function DataTicker({ className, rates, ...props }: DataTickerProps) {
                   <span
                     className={cn(
                       "flex items-center gap-[0.2rem] font-bold transition-colors h-full",
-                      isPositive ? "text-success" : "text-danger",
+                      isPositive ? "text-text-accent" : "text-danger",
                     )}
                   >
                     {isPositive ? (
@@ -56,7 +60,6 @@ export function DataTicker({ className, rates, ...props }: DataTickerProps) {
                       <TrendDownLinearIcon className="w-[0.55rem] h-[0.55rem] shrink-0" />
                     )}
 
-                    {/* Porcentaje */}
                     <span className="tabular-nums">
                       {isPositive ? "+" : ""}
                       {item.change}%
