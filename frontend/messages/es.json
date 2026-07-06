@@ -1,0 +1,11 @@
+{
+  "Header": {
+    "title": "FX_CHECKER",
+    "currencies": "165 DIVISAS"
+  },
+  "Dashboard": {
+    "title": "VERIFICA LA TASA",
+    "send": "ENVIAR",
+    "receive": "RECIBIR"
+  }
+}

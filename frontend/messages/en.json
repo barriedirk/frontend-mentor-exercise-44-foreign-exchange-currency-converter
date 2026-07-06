@@ -1,0 +1,11 @@
+{
+  "Header": {
+    "title": "FX_CHECKER",
+    "currencies": "165 CURRENCIES"
+  },
+  "Dashboard": {
+    "title": "CHECK THE RATE",
+    "send": "SEND",
+    "receive": "RECEIVE"
+  }
+}

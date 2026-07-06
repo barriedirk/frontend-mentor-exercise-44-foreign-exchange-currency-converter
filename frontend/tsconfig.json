@@ -28,7 +28,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts"
-, "app/ui-sandbox/page-copy.tsx.text"  ],
+    "**/*.mts"],
   "exclude": ["node_modules"]
 }

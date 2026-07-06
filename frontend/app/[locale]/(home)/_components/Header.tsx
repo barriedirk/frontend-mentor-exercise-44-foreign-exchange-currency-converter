@@ -4,6 +4,7 @@ import { Logo } from "@/shared/ui/Logo";
 import { useHeaderData } from "./hooks/useHeaderData";
 import { InfoButton } from "./InfoButton";
 import { ThemeToggle } from "./ThemeToggle";
+import { LanguageToggle } from "./LanguageToggle";
 
 export default function Header() {
   const { totalCurrencies } = useHeaderData();
@@ -32,7 +33,7 @@ export default function Header() {
         />
         <div className="flex flex-row items-center gap-2 p-1 rounded-md border border-gray-900">
           <ThemeToggle />
-          {/*<LanguageToggle />*/}
+          <LanguageToggle />
           <InfoButton />
         </div>
       </div>

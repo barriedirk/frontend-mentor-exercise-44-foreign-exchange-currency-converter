@@ -18,7 +18,7 @@ export function ThemeToggle() {
       savedTheme || (systemPrefersLight ? "light" : "dark");
 
     setTheme(initialTheme);
-    document.documentElement.setAttribute("data-theme", initialTheme);
+    document.documentElement.dataset.theme = initialTheme;
     setMounted(true);
   }, []);
 
@@ -27,7 +27,7 @@ export function ThemeToggle() {
 
     setTheme(nextTheme);
     localStorage.setItem("theme", nextTheme);
-    document.documentElement.setAttribute("data-theme", nextTheme);
+    document.documentElement.dataset.theme = nextTheme;
   };
 
   if (!mounted) {
