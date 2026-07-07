@@ -6,6 +6,7 @@ import { MarketStatCard } from "@/shared/components/MarketStatCard";
 import { SandboxStat } from "./types";
 import { MarketChartBase } from "@/shared/types/MarketChartRate";
 import { formatToCETStyle } from "@/shared/utils/formatToCETStyle";
+import { useEffect, useState } from "react";
 
 const MarketChart = dynamic(
   () =>
@@ -24,6 +25,12 @@ export default function HistoryChartView({
   sandboxStats,
   chartData,
 }: HistoryChartViewProps) {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   return (
     <section
       aria-label="History Chart section"
@@ -45,7 +52,14 @@ export default function HistoryChartView({
         </div>
       </div>
       <div className="border border-border-subtle rounded-12 overflow-hidden">
-        <MarketChart updatedAt={formatToCETStyle(new Date())} {...chartData} />
+        {isMounted ? (
+          <MarketChart
+            updatedAt={formatToCETStyle(new Date())}
+            {...chartData}
+          />
+        ) : (
+          <div className="w-full h-full animate-pulse bg-background-subtle" />
+        )}
       </div>
     </section>
   );
