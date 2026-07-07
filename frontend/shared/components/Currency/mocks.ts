@@ -1,5 +1,5 @@
 import type { CurrencyGroup } from "./currency";
-import type { TickerRate } from "./ticker";
+import type { TickerRate } from "./TickerItem";
 
 export const MOCK_TICKER_RATES: readonly TickerRate[] = [
   { id: "1", pair: "EUR/USD", value: "1.0924", change: 0.12 },

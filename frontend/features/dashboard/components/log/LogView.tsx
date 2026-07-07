@@ -2,6 +2,7 @@
 
 import { DeleteIcon } from "@/shared/assets/icons";
 import { LogEntry } from "./types";
+import { useTranslations } from "next-intl";
 
 export interface LogViewProps {
   readonly logs: readonly LogEntry[];
@@ -10,15 +11,17 @@ export interface LogViewProps {
 }
 
 export function LogView({ logs, onDeleteEntry, onClearAll }: LogViewProps) {
+  const t = useTranslations("Dashboard.Log");
+
   return (
     <div className="w-full bg-surface-card border border-border-subtle rounded-12 p-[var(--spacing-200)] shadow-2xl flex flex-col gap-[var(--spacing-200)]">
       <div className="flex items-start justify-between text-text-secondary gap-[var(--spacing-100)] text-preset-4 font-bold tracking-widest uppercase">
         <h2 className="text-text-primary text-preset-4 font-bold uppercase tracking-wide">
-          Conversion Log
+          {t("conversionLog")}
         </h2>
         <div className="flex items-center gap-[var(--spacing-300)]">
           <span className="text-text-secondary text-preset-6 font-bold uppercase tracking-wider tabular-nums">
-            {logs.length} Logged
+            {logs.length} {t("logged")}
           </span>
           {logs.length > 0 && (
             <button
@@ -27,7 +30,7 @@ export function LogView({ logs, onDeleteEntry, onClearAll }: LogViewProps) {
               aria-label="Clear all conversion logs"
               className="px-[var(--spacing-200)] py-[var(--spacing-100)] border border-border-subtle bg-surface-main rounded-6 text-preset-6 text-text-secondary font-bold uppercase tracking-wider hover:bg-surface-card hover:text-text-primary transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand"
             >
-              Clear All
+              {t("clearAll")}
             </button>
           )}
         </div>
@@ -35,7 +38,7 @@ export function LogView({ logs, onDeleteEntry, onClearAll }: LogViewProps) {
 
       {logs.length === 0 ? (
         <div className="text-center py-[var(--spacing-800)] text-text-secondary text-preset-4">
-          No logs recorded yet.
+          {t("noLogs")}
         </div>
       ) : (
         <ul className="flex flex-col gap-[var(--spacing-200)]">

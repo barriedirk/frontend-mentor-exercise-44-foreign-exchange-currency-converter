@@ -13,7 +13,6 @@ import { CurrencyCode } from "@/shared/types/CurrencyCode";
 
 export default function CurrencyExchange() {
   const { data: currencyGroups = [] } = useCurrencyGroups();
-
   const store = useExchangeStore();
   const sendCurrencyCode =
     (useHydratedStore(
@@ -92,6 +91,7 @@ export default function CurrencyExchange() {
       amountFrom: Number(sendAmount),
       amountTo: Number(receiveAmount),
       rate,
+      formattedDate: "",
     });
   };
 

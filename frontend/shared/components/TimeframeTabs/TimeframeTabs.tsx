@@ -1,6 +1,7 @@
 import { cn } from "@/shared/utils/cn";
 import type { UITimeframe } from "@/shared/types/UITimeframe";
 import { TIMEFRAMES } from "@/shared/constants/timeFrames";
+import { useTranslations } from "next-intl";
 
 interface TimeframeTabsProps extends Readonly<
   Omit<React.HTMLAttributes<HTMLDivElement>, "onChange">
@@ -15,6 +16,8 @@ export function TimeframeTabs({
   onChange,
   ...props
 }: TimeframeTabsProps) {
+  const t = useTranslations("Dashboard.Timeframes");
+
   return (
     <div
       className={cn(
@@ -41,7 +44,7 @@ export function TimeframeTabs({
               },
             )}
           >
-            {tf}
+            {t(tf)}
           </button>
         );
       })}

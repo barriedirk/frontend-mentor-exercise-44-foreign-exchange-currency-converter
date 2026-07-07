@@ -4,8 +4,11 @@ import { FrankfurterCurrencyMeta } from "@/shared/api/types";
 import { CurrencyGroup } from "@/shared/components/Currency/currency";
 import { CurrencyMetadata } from "@/shared/types/CurrencyMetadata";
 import { POPULAR_CURRENCY_CODES } from "@/shared/constants/popularCurrencies";
+import { useTranslations } from "next-intl";
 
 export function useCurrencyGroups() {
+  const t = useTranslations("Dashboard");
+
   return useQuery<CurrencyGroup[]>({
     queryKey: ["currencies", "groups"],
     queryFn: async (): Promise<CurrencyGroup[]> => {
@@ -32,12 +35,12 @@ export function useCurrencyGroups() {
       return [
         {
           id: "popular-currencies",
-          title: "POPULAR",
+          title: t("popular"),
           currencies: popular,
         },
         {
           id: "other-currencies",
-          title: "OTHER CURRENCIES",
+          title: t("otherCurrencies"),
           currencies: others,
         },
       ];

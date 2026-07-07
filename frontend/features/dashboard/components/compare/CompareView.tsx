@@ -5,24 +5,29 @@ import { ComparePanelProps } from "./types";
 import { IconButton } from "@/shared/ui/IconButton";
 import { StarFilledIcon, StarIcon } from "@/shared/assets/icons";
 import { CurrencyBadge } from "@/shared/ui/CurrencyBadge";
+import { useTranslations } from "next-intl";
 
 export function CompareView({
   conversion,
   pairs,
   onToggleFavorite,
 }: ComparePanelProps) {
+  const t = useTranslations("Dashboard.Compare");
   const { baseAmount, baseCurrency } = conversion;
 
   return (
     <div className="w-full bg-surface-card border border-border-subtle rounded-12 p-[var(--spacing-200)] shadow-2xl flex flex-col gap-[var(--spacing-200)]">
       <div className="flex flex-col items-start sm:flex-row sm:items-center justify-between text-text-secondary gap-[var(--spacing-100)] text-preset-4 font-bold tracking-widest uppercase">
         <p>
-          <span>Multi-Currency</span>{" "}
+          <span>{t("multiCurrency")}</span>{" "}
           <span className="text-text-primary tabular-nums font-extrabold">
-            {Intl.NumberFormat("en-US").format(baseAmount)} From {baseCurrency}
+            {Intl.NumberFormat("en-US").format(baseAmount)} {t("from")}{" "}
+            {baseCurrency}
           </span>
         </p>
-        <div className="tabular-nums">{pairs.length} Pairs</div>
+        <div className="tabular-nums">
+          {pairs.length} {t("pairs")}
+        </div>
       </div>
 
       <ul className="flex flex-col gap-[var(--spacing-200)]">

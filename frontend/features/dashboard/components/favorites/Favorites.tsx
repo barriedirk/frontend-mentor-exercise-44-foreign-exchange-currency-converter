@@ -30,7 +30,7 @@ export function Favorites() {
   return (
     <FavoritesView
       favoritePairs={favoritePairs}
-      onToggleFavorite={(id) => toggleFavorite(id)} // Modifica el array global en Zustand
+      onToggleFavorite={(id) => toggleFavorite(id)}
     />
   );
 }

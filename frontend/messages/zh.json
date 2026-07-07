@@ -1,0 +1,66 @@
+{
+  "Header": {
+    "currencies": "货币"
+  },
+  "InfoButton": {
+    "title": "数据源信息",
+    "ariaLabel": "切换数据模拟提示",
+    "heading": "数据模拟",
+    "disclaimer": "免责声明",
+    "apiNotice": "本仪表盘使用免费的<codeStyle>Frankfurter API</codeStyle>（欧洲央行 EOD 收盘汇率）。",
+    "simulationNotice": "为提供高保真体验，已启用以下客户端模拟逻辑：",
+    "liveMarketsLabel": "● 实时市场：",
+    "liveMarketsText": "每 4 秒注入一次微幅波动 <italicStyle>(jitter)</italicStyle>。",
+    "historicalTrendsLabel": "● 历史趋势：",
+    "historicalTrendsText": "采用 4 天回溯窗口以获取开盘基准指标。"
+  },
+  "DataTicker": {
+    "label": "实时市场"
+  },
+  "Dashboard": {
+    "title": "查看汇率",
+    "send": "发送",
+    "receive": "接收",
+    "swapCurrencies": "调换币种",
+    "favorited": "已收藏",
+    "logConversion": "记录兑换",
+    "popular": "热门货币",
+    "otherCurrencies": "其他货币",
+    "Tabs": {
+      "history": "历史记录",
+      "compare": "对比",
+      "favorites": "自选",
+      "log": "日志"
+    },
+    "History": {
+      "open": "开盘",
+      "last": "最新",
+      "change": "涨跌",
+      "percentageChange": "涨跌幅"
+    },
+    "Compare": {
+      "multiCurrency": "多币种",
+      "pairs": "货币对",
+      "from": "从"
+    },
+    "Favorites": {
+      "pinnedPairs": "已固定交易对",
+      "favorites": "自选",
+      "noPinnedPairs": "暂无已固定的交易对"
+    },
+    "Log": {
+      "conversionLog": "兑换日志",
+      "logged": "已记录",
+      "clearAll": "清空全部",
+      "noLogs": "暂无记录"
+    },
+    "Timeframes": {
+      "1D": "1日",
+      "1W": "1周",
+      "1M": "1月",
+      "3M": "3月",
+      "1Y": "1年",
+      "5Y": "5年"
+    }
+  }
+}

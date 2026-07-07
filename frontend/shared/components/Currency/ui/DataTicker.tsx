@@ -1,9 +1,10 @@
+import { useId } from "react";
 import { cn } from "@/shared/utils/cn";
 
 import { TrendUpLinearIcon } from "@/shared/assets/icons/TrendUpLinearIcon";
 import { TrendDownLinearIcon } from "@/shared/assets/icons/TrendDownLinearIcon";
-import type { TickerItem } from "../ticker";
-import { useId } from "react";
+import type { TickerItem } from "@/shared/components/Currency/TickerItem";
+import { useTranslations } from "next-intl";
 
 interface DataTickerProps extends Readonly<
   React.HTMLAttributes<HTMLDivElement>
@@ -13,6 +14,7 @@ interface DataTickerProps extends Readonly<
 
 export function DataTicker({ className, rates, ...props }: DataTickerProps) {
   const baseId = useId();
+  const t = useTranslations("DataTicker");
 
   return (
     <div
@@ -25,7 +27,7 @@ export function DataTicker({ className, rates, ...props }: DataTickerProps) {
       <div className="h-full bg-brand px-[var(--spacing-250)] flex items-center gap-[var(--spacing-100)] shrink-0 z-10">
         <span className="size-[var(--spacing-100)] bg-neutral-900 rounded-full animate-pulse" />
         <span className="font-mono text-preset-6 sm:text-preset-4 text-neutral-900 uppercase font-bold tracking-wider">
-          Live Markets
+          {t("label")}
         </span>
       </div>
 

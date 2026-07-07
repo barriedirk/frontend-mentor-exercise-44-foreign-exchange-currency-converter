@@ -1,11 +1,66 @@
 {
   "Header": {
-    "title": "FX_CHECKER",
-    "currencies": "165 CURRENCIES"
+    "currencies": "CURRENCIES"
+  },
+  "InfoButton": {
+    "title": "Data Source Information",
+    "ariaLabel": "Toggle data simulation notice",
+    "heading": "Data Simulation",
+    "disclaimer": "Disclaimer",
+    "apiNotice": "This dashboard consumes the free <codeStyle>Frankfurter API</codeStyle> (ECB EOD rates).",
+    "simulationNotice": "To deliver a high-fidelity experience, the following client-side simulations are active:",
+    "liveMarketsLabel": "● Live Markets:",
+    "liveMarketsText": "Micro-fluctuations <italicStyle>(jitter)</italicStyle> are injected every 4 seconds.",
+    "historicalTrendsLabel": "● Historical Trends:",
+    "historicalTrendsText": "A 4-day lookback window is used to obtain opening baseline metrics."
+  },
+  "DataTicker": {
+    "label": "Live Markets"
   },
   "Dashboard": {
     "title": "CHECK THE RATE",
     "send": "SEND",
-    "receive": "RECEIVE"
+    "receive": "RECEIVE",
+    "swapCurrencies": "Swap currencies",
+    "favorited": "Favorited",
+    "logConversion": "Log conversion",
+    "popular": "POPULAR",
+    "otherCurrencies": "OTHER CURRENCIES",
+    "Tabs": {
+      "history": "History",
+      "compare": "Compare",
+      "favorites": "Favorites",
+      "log": "Log"
+    },
+    "History": {
+      "open": "Open",
+      "last": "Last",
+      "change": "Change",
+      "percentageChange": "% Change"
+    },
+    "Compare": {
+      "multiCurrency": "Multi-Currency",
+      "pairs": "Pairs",
+      "from": "From"
+    },
+    "Favorites": {
+      "pinnedPairs": "Pinned Pairs",
+      "favorites": "Favorite(s)",
+      "noPinnedPairs": "No pinned pairs available"
+    },
+    "Log": {
+      "conversionLog": "Conversion Log",
+      "logged": "Logged",
+      "clearAll": "Clear All",
+      "noLogs": "No logs recorded yet"
+    },
+    "Timeframes": {
+      "1D": "1D",
+      "1W": "1W",
+      "1M": "1M",
+      "3M": "3M",
+      "1Y": "1Y",
+      "5Y": "5Y"
+    }
   }
 }

@@ -4,6 +4,7 @@ import { cn } from "@/shared/utils/cn";
 import { FavoritePairItem } from "./types";
 import { IconButton } from "@/shared/ui/IconButton";
 import { StarFilledIcon, StarIcon } from "@/shared/assets/icons";
+import { useTranslations } from "next-intl";
 
 export interface FavoritesViewProps {
   readonly favoritePairs: readonly FavoritePairItem[];
@@ -14,16 +15,20 @@ export function FavoritesView({
   favoritePairs,
   onToggleFavorite,
 }: FavoritesViewProps) {
+  const t = useTranslations("Dashboard.Favorites");
+
   return (
     <div className="w-full bg-surface-card border border-border-subtle rounded-12 p-[var(--spacing-200)] shadow-2xl flex flex-col gap-[var(--spacing-200)]">
       <div className="flex items-start justify-between text-text-secondary gap-[var(--spacing-100)] text-preset-4 font-bold tracking-widest uppercase">
-        <span>Pinned Pairs</span>
-        <div className="tabular-nums">{favoritePairs.length} Favorites</div>
+        <span>{t("pinnedPairs")}</span>
+        <div className="tabular-nums">
+          {favoritePairs.length} {t("favorites")}
+        </div>
       </div>
 
       {favoritePairs.length === 0 ? (
         <div className="text-center py-[var(--spacing-800)] text-text-secondary text-preset-4">
-          No pinned pairs available.
+          {t("noPinnedPairs")}
         </div>
       ) : (
         <ul className="flex flex-col gap-[var(--spacing-200)]">

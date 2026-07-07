@@ -4,8 +4,12 @@ import HistoryChartView from "./HistoryChartView";
 import { useHistoricalRates } from "./hooks/useHistoricalRates";
 import { MarketChartBase, SandboxStat } from "./types";
 import HistoryChartSkeleton from "./HistoryChartSkeleton";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function HistoryChart() {
+  const locale = useLocale();
+  const t = useTranslations("Dashboard.History");
+
   const sendCurrencyCode = useExchangeStore((s) => s.sendCurrencyCode);
   const receiveCurrencyCode = useExchangeStore((s) => s.receiveCurrencyCode);
   const { data, isPending, error } = useHistoricalRates();
@@ -17,7 +21,7 @@ export default function HistoryChart() {
       const dateObj = new Date(`${point.date}T00:00:00`);
       const formattedDate = Number.isNaN(dateObj.getTime())
         ? point.date
-        : dateObj.toLocaleDateString("en-US", {
+        : dateObj.toLocaleDateString(locale, {
             month: "short",
             day: "numeric",
           });
@@ -48,22 +52,22 @@ export default function HistoryChart() {
 
     return [
       {
-        label: "Open",
+        label: t("open"),
         value: open.toFixed(4),
         trend: "neutral",
       },
       {
-        label: "Last",
+        label: t("last"),
         value: last.toFixed(4),
         trend: "neutral",
       },
       {
-        label: "Change",
+        label: t("change"),
         value: `${changePrefix}${change.toFixed(4)}`,
         trend,
       },
       {
-        label: "% Change",
+        label: t("percentageChange"),
         value: `${changePrefix}${percentageChange.toFixed(2)}%`,
         trend,
       },

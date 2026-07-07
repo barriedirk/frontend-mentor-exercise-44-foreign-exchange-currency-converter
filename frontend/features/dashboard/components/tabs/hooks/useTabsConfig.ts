@@ -1,8 +1,10 @@
 import { useMemo } from "react";
 import { useExchangeStore } from "@/app/_store/useExchangeStore";
 import { TabItem } from "../types";
+import { useTranslations } from "next-intl";
 
 export function useTabsConfig() {
+  const t = useTranslations("Dashboard.Tabs");
   const baseCurrency = useExchangeStore((state) => state.sendCurrencyCode);
   const favorites = useExchangeStore((state) => state.favorites);
   const logCount = useExchangeStore((state) => state.logs.length);
@@ -16,21 +18,21 @@ export function useTabsConfig() {
     return [
       {
         id: "history",
-        label: "History",
+        label: t("history"),
       },
       {
         id: "compare",
-        label: "Compare",
+        label: t("compare"),
         badge: compareFavoritesCount > 0 ? compareFavoritesCount : undefined,
       },
       {
         id: "favorites",
-        label: "Favorites",
+        label: t("favorites"),
         badge: favorites.length > 0 ? favorites.length : undefined,
       },
       {
         id: "log",
-        label: "Log",
+        label: t("log"),
         badge: logCount > 0 ? logCount : undefined,
       },
     ] as const;

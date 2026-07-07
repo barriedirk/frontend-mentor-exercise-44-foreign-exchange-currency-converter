@@ -6,6 +6,7 @@ import { SwapButton } from "@/shared/components/SwapButton";
 import { CurrencyGroup } from "@/shared/components/Currency/currency";
 import { Button } from "@/shared/ui/Button";
 import { StarIcon, StarFilledIcon } from "@/shared/assets/icons";
+import { useTranslations } from "next-intl";
 
 interface CurrencyExchangeProps {
   readonly conversionRate: string;
@@ -40,6 +41,8 @@ export default function CurrencyExchangeView({
   onToggleFavorite,
   onLogConversion,
 }: CurrencyExchangeProps) {
+  const t = useTranslations("Dashboard");
+
   return (
     <section
       aria-label="Currency converter calculator"
@@ -47,7 +50,7 @@ export default function CurrencyExchangeView({
     >
       <div className="flex flex-col sm:flex-row items-center gap-[var(--spacing-200)] w-full px-[var(--spacing-300)] mb-[var(--spacing-300)]">
         <CurrencyInputPanel
-          label="SEND"
+          label={t("send") as "SEND"}
           value={sendAmount}
           currencyCode={sendCurrencyCode}
           onValueChange={(value) => setSendAmount(value)}
@@ -60,7 +63,7 @@ export default function CurrencyExchangeView({
         </div>
 
         <CurrencyInputPanel
-          label="RECEIVE"
+          label={t("receive") as "RECEIVE"}
           value={receiveAmount}
           currencyCode={receiveCurrencyCode}
           readOnly
@@ -74,10 +77,10 @@ export default function CurrencyExchangeView({
         <div className="flex flex-row gap-2 w-full justify-center gap-5">
           <Button variant="actionActive" onClick={onToggleFavorite}>
             {isFavorited ? <StarFilledIcon /> : <StarIcon />}
-            Favorited
+            {t("favorited")}
           </Button>
           <Button variant="actionDoubleBorder" onClick={onLogConversion}>
-            LOG CONVERSION
+            {t("logConversion")}
           </Button>
         </div>
       </div>

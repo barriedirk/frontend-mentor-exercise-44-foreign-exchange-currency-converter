@@ -1,11 +1,66 @@
 {
   "Header": {
-    "title": "FX_CHECKER",
-    "currencies": "165 DIVISAS"
+    "currencies": "DIVISAS"
+  },
+  "InfoButton": {
+    "title": "Información de la fuente de datos",
+    "ariaLabel": "Alternar aviso de simulación de datos",
+    "heading": "Simulación de Datos",
+    "disclaimer": "Aviso legal",
+    "apiNotice": "Este panel consume la <codeStyle>Frankfurter API</codeStyle> gratuita (tasas EOD del BCE).",
+    "simulationNotice": "Para ofrecer una experiencia de alta fidelidad, las siguientes simulaciones del lado del cliente están activas:",
+    "liveMarketsLabel": "● Mercados en vivo:",
+    "liveMarketsText": "Se inyectan microfluctuaciones <italicStyle>(jitter)</italicStyle> cada 4 segundos.",
+    "historicalTrendsLabel": "● Tendencias históricas:",
+    "historicalTrendsText": "Se utiliza una ventana de retrospectiva de 4 días para obtener métricas base de apertura."
+  },
+  "DataTicker": {
+    "label": "Mercados en vivo"
   },
   "Dashboard": {
     "title": "VERIFICA LA TASA",
     "send": "ENVIAR",
-    "receive": "RECIBIR"
+    "receive": "RECIBIR",
+    "swapCurrencies": "Intercambiar divisas",
+    "favorited": "Favorito",
+    "logConversion": "Registrar conversión",
+    "popular": "POPULAR",
+    "otherCurrencies": "OTRAS DIVISAS",
+    "Tabs": {
+      "history": "Historial",
+      "compare": "Comparar",
+      "favorites": "Favoritos",
+      "log": "Registro"
+    },
+    "History": {
+      "open": "Apertura",
+      "last": "Último",
+      "change": "Cambio",
+      "percentageChange": "% Cambio"
+    },
+    "Compare": {
+      "multiCurrency": "Multidivisa",
+      "pairs": "Pares",
+      "from": "De"
+    },
+    "Favorites": {
+      "pinnedPairs": "Pares anclados",
+      "favorites": "Favorito(s)",
+      "noPinnedPairs": "No hay pares anclados disponibles"
+    },
+    "Log": {
+      "conversionLog": "Historial de conversiones",
+      "logged": "Registrados",
+      "clearAll": "Limpiar todo",
+      "noLogs": "Aún no hay registros"
+    },
+    "Timeframes": {
+      "1D": "1D",
+      "1W": "1S",
+      "1M": "1M",
+      "3M": "3M",
+      "1Y": "1A",
+      "5Y": "5A"
+    }
   }
 }

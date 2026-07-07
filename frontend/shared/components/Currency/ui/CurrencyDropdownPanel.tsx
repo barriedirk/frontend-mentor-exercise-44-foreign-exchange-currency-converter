@@ -35,7 +35,8 @@ export function CurrencyDropdownPanel({
         placeholder="Search currencies..."
         value={searchValue}
         onChange={(e) => onSearchChange(e.target.value)}
-        className="h-[3.5rem]"
+        className="h-[3.5rem] uppercase"
+        maxLength={15}
       />
 
       <div className="flex-1 overflow-y-auto max-h-[28rem] pr-[0.25rem] space-y-[1.25rem] no-scrollbar">

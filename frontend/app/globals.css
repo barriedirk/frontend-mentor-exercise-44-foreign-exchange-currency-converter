@@ -163,6 +163,10 @@
   --font-size-preset-6--line-height: 1;
   --font-size-preset-6--letter-spacing: 0px;
 
+  --font-size-preset-7: 0.5rem;
+  --font-size-preset-7--line-height: 1;
+  --font-size-preset-7--letter-spacing: 0px;
+
   --radius-2: var(--radius-2);
   --radius-4: var(--radius-4);
   --radius-6: var(--radius-6);
@@ -256,4 +260,10 @@ body {
   font-size: var(--font-size-preset-6);
   line-height: var(--font-size-preset-6--line-height);
   letter-spacing: var(--font-size-preset-6--letter-spacing);
+}
+
+@utility text-preset-7 {
+  font-size: var(--font-size-preset-7);
+  line-height: var(--font-size-preset-7--line-height);
+  letter-spacing: var(--font-size-preset-7--letter-spacing);
 }

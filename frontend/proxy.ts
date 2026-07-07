@@ -6,5 +6,5 @@ const handleI18nRouting = createMiddleware(routing);
 export default handleI18nRouting;
 
 export const config = {
-  matcher: ["/", "/(en|es)/:path*"],
+  matcher: ["/", "/(en|es|zh)/:path*"],
 };
