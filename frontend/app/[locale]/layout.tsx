@@ -43,6 +43,23 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
 
+  const jsonLdData = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Barrie Freyre",
+    sameAs: [
+      "https://www.linkedin.com/in/barriefreyre/",
+      "https://github.com/barriedirk",
+      "https://www.frontendmentor.io/profile/barriedirk",
+    ],
+  };
+
+  const safeJsonLd = JSON.stringify(jsonLdData)
+    .replaceAll("<", String.raw`\u003c`)
+    .replaceAll(">", String.raw`\u003e`)
+    .replaceAll("\u2028", String.raw`\u2028`)
+    .replaceAll("\u2029", String.raw`\u2029`);
+
   return (
     <html
       lang={locale}
@@ -52,18 +69,7 @@ export default async function LocaleLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Barrie Freyre",
-              sameAs: [
-                "https://www.linkedin.com/in/barriefreyre/",
-                "https://github.com/barriedirk",
-                "https://www.frontendmentor.io/profile/barriedirk",
-              ],
-            }),
-          }}
+          dangerouslySetInnerHTML={{ __html: safeJsonLd }}
         />
         <link rel="me" href="https://www.linkedin.com/in/barriefreyre/" />
         <link rel="me" href="https://github.com/barriedirk" />

@@ -21,6 +21,7 @@ export function InfoButton() {
       <Popover>
         <PopoverTrigger asChild>
           <button
+            type="button"
             className="w-8 h-8 flex items-center justify-center rounded transition-colors font-mono font-bold border border-transparent text-text-secondary hover:text-text-primary hover:bg-surface-hover hover:bg-surface-input data-[state=open]:text-text-primary data-[state=open]:bg-surface-hover data-[state=open]:bg-surface-input"
             title={t("title")}
             aria-label={t("ariaLabel")}

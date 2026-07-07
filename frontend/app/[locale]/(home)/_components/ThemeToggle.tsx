@@ -1,46 +1,71 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore, useEffect } from "react";
 
 type Theme = "dark" | "light";
 
+let isMounted = false;
+
+const themeStore = {
+  subscribe(callback: () => void) {
+    if (typeof globalThis === "undefined") return () => {};
+
+    const media = globalThis.matchMedia("(prefers-color-scheme: dark)");
+    const handleToggle = () => callback();
+
+    media.addEventListener("change", handleToggle);
+    globalThis.addEventListener("theme-change", handleToggle);
+
+    if (!isMounted) {
+      isMounted = true;
+      setTimeout(callback, 0);
+    }
+
+    return () => {
+      media.removeEventListener("change", handleToggle);
+      globalThis.removeEventListener("theme-change", handleToggle);
+    };
+  },
+
+  getSnapshot() {
+    if (!isMounted || typeof globalThis === "undefined") {
+      return "dark";
+    }
+
+    return (
+      (localStorage.getItem("theme") as Theme) ||
+      (globalThis.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light")
+    );
+  },
+
+  getServerSnapshot() {
+    return "dark";
+  },
+};
+
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>("dark");
-  const [mounted, setMounted] = useState(false);
+  const theme = useSyncExternalStore(
+    themeStore.subscribe,
+    themeStore.getSnapshot,
+    themeStore.getServerSnapshot,
+  );
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") as Theme | null;
-    const systemPrefersLight = globalThis.matchMedia(
-      "(prefers-color-scheme: light)",
-    ).matches;
-
-    const initialTheme: Theme =
-      savedTheme || (systemPrefersLight ? "light" : "dark");
-
-    setTheme(initialTheme);
-    document.documentElement.dataset.theme = initialTheme;
-    setMounted(true);
-  }, []);
+    document.documentElement.dataset.theme = theme;
+  }, [theme]);
 
   const toggleTheme = () => {
-    const nextTheme: Theme = theme === "dark" ? "light" : "dark";
-
-    setTheme(nextTheme);
+    const nextTheme = theme === "dark" ? "light" : "dark";
     localStorage.setItem("theme", nextTheme);
-    document.documentElement.dataset.theme = nextTheme;
-  };
 
-  if (!mounted) {
-    return (
-      <div
-        className="w-8 h-8 rounded border border-transparent"
-        aria-hidden="true"
-      />
-    );
-  }
+    globalThis.dispatchEvent(new Event("theme-change"));
+  };
 
   return (
     <button
+      type="button"
       onClick={toggleTheme}
       className="w-8 h-8 flex items-center justify-center rounded text-text-secondary hover:text-text-primary hover:bg-surface-hover border border-transparent hover:border-border-subtle transition-colors font-mono font-bold"
       title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}

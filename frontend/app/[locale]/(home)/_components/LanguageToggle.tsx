@@ -9,7 +9,6 @@ const SUPPORTED_LOCALES = ["en", "es", "zh"] as const;
 export function LanguageToggle() {
   const locale = useLocale();
   const router = useRouter();
-  const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
 
   const handleLanguageChange = () => {
@@ -17,8 +16,11 @@ export function LanguageToggle() {
     const nextIndex = (currentIndex + 1) % SUPPORTED_LOCALES.length;
     const nextLocale = SUPPORTED_LOCALES[nextIndex];
 
+    const currentPathname = globalThis.location.pathname;
+    const unlocalizedPath = currentPathname.replace(/^\/(en|es|zh)/, "") || "/";
+
     startTransition(() => {
-      router.replace(pathname, { locale: nextLocale });
+      router.replace(unlocalizedPath, { locale: nextLocale });
     });
   };
 
