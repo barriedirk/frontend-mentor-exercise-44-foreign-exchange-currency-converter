@@ -36,7 +36,7 @@ export function useTabsConfig() {
         badge: logCount > 0 ? logCount : undefined,
       },
     ] as const;
-  }, [favorites.length, compareFavoritesCount, logCount]);
+  }, [favorites.length, compareFavoritesCount, logCount, t]);
 
   return tabsConfig;
 }

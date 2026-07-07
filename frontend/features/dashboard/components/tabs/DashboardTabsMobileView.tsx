@@ -100,7 +100,7 @@ export function DashboardTabsMobileView({
                 className={cn(
                   "w-full px-[var(--spacing-300)] py-[var(--spacing-200)] text-left text-preset-5 uppercase tracking-wider flex items-center justify-between outline-none focus:bg-surface-input",
                   isActive
-                    ? "text-brand font-bold bg-surface-input"
+                    ? "text-text-accent font-bold bg-surface-input"
                     : "text-text-secondary",
                 )}
               >

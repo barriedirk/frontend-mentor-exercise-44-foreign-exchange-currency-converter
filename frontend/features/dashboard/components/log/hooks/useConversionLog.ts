@@ -6,14 +6,13 @@ import { LogEntry } from "../types";
 import { formatLogTimestamp } from "@/shared/utils/formatLogTimestamp";
 
 export function useConversionLog() {
+  const [now, setNow] = useState(() => Date.now());
   const logs = useHydratedStore<ExchangeState, readonly LogEntry[]>(
     useExchangeStore,
     (state) => state.logs,
   );
   const clearLogs = useExchangeStore((state) => state.clearLogs);
   const deleteLogEntry = useExchangeStore((state) => state.deleteLogEntry);
-
-  const [now, setNow] = useState(() => Date.now());
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -28,7 +27,7 @@ export function useConversionLog() {
       ...log,
       formattedDate: formatLogTimestamp(log.timestamp, now),
     }));
-  }, [logs]);
+  }, [logs, now]);
 
   return {
     logs: formattedLogs,
