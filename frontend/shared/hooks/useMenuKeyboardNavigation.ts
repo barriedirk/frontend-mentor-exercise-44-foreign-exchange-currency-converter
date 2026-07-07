@@ -1,4 +1,4 @@
-import { useRef, KeyboardEvent, useEffect } from "react";
+import { useRef, KeyboardEvent, useEffect, useCallback } from "react";
 
 interface UseMenuKeyboardNavigationProps {
   itemCount: number;
@@ -15,6 +15,62 @@ export function useMenuKeyboardNavigation({
   const triggerRef = useRef<HTMLButtonElement>(null);
   const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent<HTMLElement>) => {
+      const currentIdx = itemRefs.current.findIndex(
+        (el) => el === document.activeElement,
+      );
+
+      switch (e.key) {
+        case "ArrowDown":
+          e.preventDefault();
+          if (isOpen) {
+            const nextIdx = (currentIdx + 1) % itemCount;
+            itemRefs.current[nextIdx]?.focus();
+          } else {
+            setIsOpen(true);
+            setTimeout(() => itemRefs.current[0]?.focus(), 0);
+          }
+          break;
+
+        case "ArrowUp":
+          e.preventDefault();
+          if (isOpen) {
+            const prevIdx = (currentIdx - 1 + itemCount) % itemCount;
+            itemRefs.current[prevIdx]?.focus();
+          }
+          break;
+
+        case "Home":
+          e.preventDefault();
+          if (isOpen) itemRefs.current[0]?.focus();
+          break;
+
+        case "End":
+          e.preventDefault();
+          if (isOpen) itemRefs.current[itemCount - 1]?.focus();
+          break;
+
+        case "Escape":
+          if (isOpen) {
+            setIsOpen(false);
+            triggerRef.current?.focus();
+          }
+          break;
+
+        case "Tab":
+          if (isOpen) {
+            setIsOpen(false);
+          }
+          break;
+
+        default:
+          break;
+      }
+    },
+    [isOpen, itemCount, setIsOpen],
+  );
+
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -25,60 +81,7 @@ export function useMenuKeyboardNavigation({
 
     container.addEventListener("keydown", listener);
     return () => container.removeEventListener("keydown", listener);
-  }, [isOpen, itemCount]);
-
-  const handleKeyDown = (e: KeyboardEvent<HTMLElement>) => {
-    const currentIdx = itemRefs.current.findIndex(
-      (el) => el === document.activeElement,
-    );
-
-    switch (e.key) {
-      case "ArrowDown":
-        e.preventDefault();
-        if (isOpen) {
-          const nextIdx = (currentIdx + 1) % itemCount;
-          itemRefs.current[nextIdx]?.focus();
-        } else {
-          setIsOpen(true);
-          setTimeout(() => itemRefs.current[0]?.focus(), 0);
-        }
-        break;
-
-      case "ArrowUp":
-        e.preventDefault();
-        if (isOpen) {
-          const prevIdx = (currentIdx - 1 + itemCount) % itemCount;
-          itemRefs.current[prevIdx]?.focus();
-        }
-        break;
-
-      case "Home":
-        e.preventDefault();
-        if (isOpen) itemRefs.current[0]?.focus();
-        break;
-
-      case "End":
-        e.preventDefault();
-        if (isOpen) itemRefs.current[itemCount - 1]?.focus();
-        break;
-
-      case "Escape":
-        if (isOpen) {
-          setIsOpen(false);
-          triggerRef.current?.focus();
-        }
-        break;
-
-      case "Tab":
-        if (isOpen) {
-          setIsOpen(false);
-        }
-        break;
-
-      default:
-        break;
-    }
-  };
+  }, [handleKeyDown]);
 
   const toggleMenu = (activeIdx?: number) => {
     const nextState = !isOpen;

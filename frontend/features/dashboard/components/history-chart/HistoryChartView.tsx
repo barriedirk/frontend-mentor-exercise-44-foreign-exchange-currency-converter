@@ -1,11 +1,19 @@
 "use client";
 
 import Timeframe from "../time-frame/TimeFrame";
+import dynamic from "next/dynamic";
 import { MarketStatCard } from "@/shared/components/MarketStatCard";
 import { SandboxStat } from "./types";
-import { MarketChart } from "@/shared/components/MarketChart/MarketChart";
 import { MarketChartBase } from "@/shared/types/MarketChartRate";
 import { formatToCETStyle } from "@/shared/utils/formatToCETStyle";
+
+const MarketChart = dynamic(
+  () =>
+    import("@/shared/components/MarketChart/MarketChart").then(
+      (mod) => mod.MarketChart,
+    ),
+  { ssr: false },
+);
 
 interface HistoryChartViewProps {
   readonly sandboxStats: readonly SandboxStat[];
@@ -36,10 +44,7 @@ export default function HistoryChartView({
           <Timeframe />
         </div>
       </div>
-      <div
-        className="border border-border-subtle rounded-12 overflow-hidden"
-        suppressHydrationWarning
-      >
+      <div className="border border-border-subtle rounded-12 overflow-hidden">
         <MarketChart updatedAt={formatToCETStyle(new Date())} {...chartData} />
       </div>
     </section>
