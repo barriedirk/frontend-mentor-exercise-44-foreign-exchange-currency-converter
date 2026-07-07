@@ -11,8 +11,11 @@ import { useExchangeStore } from "@/app/_store/useExchangeStore";
 import { useExchangeRate } from "./hooks/useExchangeRate";
 import { CurrencyCode } from "@/shared/types/CurrencyCode";
 
+const EMPTY_FAVORITES: string[] = [];
+const DEFAULT_GROUPS: any[] = [];
+
 export default function CurrencyExchange() {
-  const { data: currencyGroups = [] } = useCurrencyGroups();
+  const { data: currencyGroups = DEFAULT_GROUPS } = useCurrencyGroups();
   const store = useExchangeStore();
   const sendCurrencyCode =
     (useHydratedStore(
@@ -24,8 +27,10 @@ export default function CurrencyExchange() {
       useExchangeStore,
       (s) => s.receiveCurrencyCode,
     ) as CurrencyCode) ?? "EUR";
+
   const favorites =
-    (useHydratedStore(useExchangeStore, (s) => s.favorites) as string[]) ?? [];
+    (useHydratedStore(useExchangeStore, (s) => s.favorites) as string[]) ??
+    EMPTY_FAVORITES;
 
   const [amount, setAmount] = useState<string>("1000");
   const [independentField, setIndependentField] = useState<"send" | "receive">(

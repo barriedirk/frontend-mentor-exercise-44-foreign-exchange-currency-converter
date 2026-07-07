@@ -26,6 +26,17 @@ export const metadata: Metadata = {
   },
 };
 
+const JSON_LD_DATA = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Barrie Freyre",
+  sameAs: [
+    "https://www.linkedin.com/in/barriefreyre/",
+    "https://github.com/barriedirk",
+    "https://www.frontendmentor.io/profile/barriedirk",
+  ],
+};
+
 interface LocaleLayoutProps {
   readonly children: React.ReactNode;
   readonly params: Promise<{ locale: string }>;
@@ -43,18 +54,7 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
 
-  const jsonLdData = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Barrie Freyre",
-    sameAs: [
-      "https://www.linkedin.com/in/barriefreyre/",
-      "https://github.com/barriedirk",
-      "https://www.frontendmentor.io/profile/barriedirk",
-    ],
-  };
-
-  const safeJsonLd = JSON.stringify(jsonLdData)
+  const safeJsonLd = JSON.stringify(JSON_LD_DATA)
     .replaceAll("<", String.raw`\u003c`)
     .replaceAll(">", String.raw`\u003e`)
     .replaceAll("\u2028", String.raw`\u2028`)
