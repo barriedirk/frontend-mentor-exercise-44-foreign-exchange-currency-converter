@@ -25,7 +25,7 @@ interface FrankfurterV2Rate {
   readonly rate: number;
 }
 
-export function calculateDateRange(timeframe: UITimeframe): {
+function calculateDateRange(timeframe: UITimeframe): {
   readonly startDate: string;
   readonly endDate: string;
 } {

@@ -6,6 +6,7 @@ import { SandboxStat } from "./types";
 import { MarketChart } from "@/shared/components/MarketChart/MarketChart";
 import { MarketChartBase } from "@/shared/types/MarketChartRate";
 import { formatToCETStyle } from "@/shared/utils/formatToCETStyle";
+import { useEffect, useState } from "react";
 
 interface HistoryChartViewProps {
   readonly sandboxStats: readonly SandboxStat[];
@@ -16,6 +17,12 @@ export default function HistoryChartView({
   sandboxStats,
   chartData,
 }: HistoryChartViewProps) {
+  const [clientUpdatedAt, setClientUpdatedAt] = useState<string>("");
+
+  useEffect(() => {
+    setClientUpdatedAt(formatToCETStyle(new Date()));
+  }, []);
+
   return (
     <section
       aria-label="History Chart section"
@@ -37,7 +44,7 @@ export default function HistoryChartView({
         </div>
       </div>
       <div className="border border-border-subtle rounded-12 overflow-hidden">
-        <MarketChart updatedAt={formatToCETStyle(new Date())} {...chartData} />
+        <MarketChart updatedAt={clientUpdatedAt} {...chartData} />
       </div>
     </section>
   );
