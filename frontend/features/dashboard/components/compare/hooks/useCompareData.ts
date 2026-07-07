@@ -11,9 +11,15 @@ export function useCompareData() {
   );
 
   const favoriteCodesSet = useMemo(() => {
-    const targetsForBase = globalFavorites
-      .filter((pair) => pair.startsWith(`${baseCurrency}-`))
-      .map((pair) => pair.split("-")[1] as CurrencyCode);
+    const targetsForBase = globalFavorites.reduce<CurrencyCode[]>(
+      (acc, pair) => {
+        if (pair.startsWith(`${baseCurrency}-`)) {
+          acc.push(pair.split("-")[1]);
+        }
+        return acc;
+      },
+      [],
+    );
 
     return new Set<CurrencyCode>(targetsForBase);
   }, [globalFavorites, baseCurrency]);

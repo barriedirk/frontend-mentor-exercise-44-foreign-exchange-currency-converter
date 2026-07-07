@@ -1,6 +1,15 @@
 import { cn } from "@/shared/utils/cn";
 import { useId } from "react";
 
+const formatDisplayValue = (val: string): string => {
+  if (!val) return "";
+
+  const parts = val.split(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  return parts.join(".");
+};
+
 interface AmountInputProps extends Readonly<
   Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange" | "value">
 > {
@@ -16,16 +25,6 @@ export function AmountInput({
   ...props
 }: AmountInputProps) {
   const inputId = useId();
-
-  const formatDisplayValue = (val: string): string => {
-    if (!val) return "";
-
-    const parts = val.split(".");
-
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-    return parts.join(".");
-  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputVal = e.target.value;

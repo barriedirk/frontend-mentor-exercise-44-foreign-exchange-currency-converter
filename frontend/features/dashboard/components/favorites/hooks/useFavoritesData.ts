@@ -2,6 +2,8 @@ import { useQueries } from "@tanstack/react-query";
 import { useExchangeStore } from "@/app/_store/useExchangeStore";
 import { apiClient } from "@/shared/api/apiClient";
 
+const formatDate = (d: Date) => d.toISOString().split("T")[0];
+
 export interface FavoritePairData {
   readonly id: string;
   readonly fromCode: string;
@@ -23,8 +25,6 @@ export function useFavoritesData() {
   const startDate = new Date();
   startDate.setDate(endDate.getDate() - 4);
 
-  const format = (d: Date) => d.toISOString().split("T")[0];
-
   const queries = useQueries({
     queries: favorites.map((pairId) => {
       const [fromCode, toCode] = pairId.split("-");
@@ -36,8 +36,8 @@ export function useFavoritesData() {
             "/rates",
             {
               params: {
-                from: format(startDate),
-                to: format(endDate),
+                from: formatDate(startDate),
+                to: formatDate(endDate),
                 base: fromCode,
                 quotes: toCode,
               },

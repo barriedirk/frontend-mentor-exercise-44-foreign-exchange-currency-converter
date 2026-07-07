@@ -11,7 +11,10 @@ export function CurrencySelectField() {
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
-        <button className="flex items-center gap-2 p-2 bg-neutral-900 rounded-8">
+        <button
+          type="button"
+          className="flex items-center gap-2 p-2 bg-neutral-900 rounded-8"
+        >
           {selected ? selected.code : "Select Currency"}
         </button>
       </PopoverTrigger>

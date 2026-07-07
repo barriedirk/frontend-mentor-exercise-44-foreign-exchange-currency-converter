@@ -17,6 +17,7 @@ export function Compare() {
           Failed to load real-time currency comparisons.
         </p>
         <button
+          type="button"
           onClick={() => refetch()}
           className="px-4 py-1.5 text-xs font-semibold text-white bg-red-500 hover:bg-red-600 rounded-lg transition-colors focus:outline-none"
         >
