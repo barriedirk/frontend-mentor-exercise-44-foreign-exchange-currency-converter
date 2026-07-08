@@ -41,7 +41,7 @@ export function RechartsRenderEngine({ data }: RechartsRenderEngineProps) {
           axisLine={false}
           stroke="var(--color-text-secondary, #737373)"
           style={{
-            fontSize: "0.75rem", // 12px cumpliendo la regla de accesibilidad
+            fontSize: "0.65rem",
             fontFamily: "JetBrains Mono, monospace",
           }}
           dy={10}
@@ -54,7 +54,7 @@ export function RechartsRenderEngine({ data }: RechartsRenderEngineProps) {
           axisLine={false}
           stroke="var(--color-text-secondary, #737373)"
           style={{
-            fontSize: "0.75rem", // 12px cumpliendo la regla de accesibilidad
+            fontSize: "0.65rem",
             fontFamily: "JetBrains Mono, monospace",
           }}
           dx={-10}

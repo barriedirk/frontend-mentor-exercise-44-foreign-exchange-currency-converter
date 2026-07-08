@@ -41,11 +41,16 @@ export function MarketChart({
   return (
     <section
       aria-label={`Market historical trend chart - ${baseCurrency}/${quoteCurrency}`}
+      aria-describedby="chart-summary-data"
       className={cn(
         "w-full bg-surface-main p-[1.5rem] rounded-12 border border-border-subtle font-mono flex flex-col gap-[1.5rem]",
         className,
       )}
     >
+      <div id="chart-summary-data" className="sr-only">
+        base/quote: {baseCurrency}/{quoteCurrency} - last Rate:{" "}
+        {latestRate.toFixed(4)} - updated at: {updatedAt}
+      </div>
       <div className="flex items-center justify-between w-full">
         <div className="flex flex-col gap-[0.25rem]">
           <h2 className="text-preset-3 font-bold text-text-primary tracking-wider uppercase">
