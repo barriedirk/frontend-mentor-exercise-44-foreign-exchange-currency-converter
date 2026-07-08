@@ -31,7 +31,7 @@ export function DataTicker({ className, rates, ...props }: DataTickerProps) {
         </span>
       </div>
 
-      <div className="flex w-max items-center animate-ticker hover:[animation-play-state:paused] cursor-pointer">
+      <div className="flex w-max items-center animate-ticker hover:[animation-play-state:paused]">
         {Array.from({ length: 2 }).map((_, i) => (
           <div
             key={`${baseId}-item-${i}`}
