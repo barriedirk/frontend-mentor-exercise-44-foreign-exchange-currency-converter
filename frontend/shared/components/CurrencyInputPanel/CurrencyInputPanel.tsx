@@ -106,7 +106,7 @@ export function CurrencyInputPanel({
           <PopoverTrigger asChild>
             <button
               type="button"
-              className="flex items-center gap-[0.5rem] bg-surface-card border border-surface-hover/50 hover:bg-surface-hover h-[3rem] px-[1rem] rounded-12 text-text-primary font-bold text-preset-3 transition-all cursor-pointer outline-none shrink-0 select-none"
+              className="flex items-center gap-[0.5rem] bg-surface-card border border-surface-hover/50 hover:bg-surface-hover h-[3rem] px-[1rem] rounded-12 text-text-primary font-bold text-preset-3 transition-all cursor-pointer shrink-0 select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
               aria-haspopup="dialog"
               aria-expanded={isOpen}
               aria-label={`Select ${label.toLowerCase()} currency. Current: ${currencyCode}`}
