@@ -1,17 +1,24 @@
 "use client";
 
 import { useMemo } from "react";
-
+import dynamic from "next/dynamic";
 import { MarketChartBase } from "@/shared/types/MarketChartRate";
 import { cn } from "@/shared/utils/cn";
-import {
-  ResponsiveContainer,
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  Tooltip,
-} from "recharts";
+
+const RechartsRenderEngine = dynamic(
+  () =>
+    import("@/shared/ui/RechartsRenderEngine").then(
+      (mod) => mod.RechartsRenderEngine,
+    ),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-full animate-pulse bg-neutral-800/20 rounded-12" />
+    ),
+  },
+);
+
+const EMPTY_CHART_DATA: any[] = [];
 
 interface MarketChartProps extends MarketChartBase {
   readonly className?: string;
@@ -23,7 +30,7 @@ export function MarketChart({
   quoteCurrency,
   updatedAt = "Just now",
   className,
-  data = [],
+  data = EMPTY_CHART_DATA,
 }: MarketChartProps) {
   const latestRate = useMemo(() => {
     if (data.length === 0) return 0;
@@ -57,73 +64,7 @@ export function MarketChart({
       </div>
 
       <div className="w-full h-[300px] -ml-[0.5rem] sm:-ml-[2rem]">
-        <ResponsiveContainer width="100%" height="100%">
-          <AreaChart
-            data={data}
-            margin={{ top: 10, right: 10, left: 10, bottom: 0 }}
-          >
-            <defs>
-              <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="0%"
-                  stopColor="var(--color-brand, #bef264)"
-                  stopOpacity={0.25}
-                />
-                <stop
-                  offset="100%"
-                  stopColor="var(--color-brand, #bef264)"
-                  stopOpacity={0}
-                />
-              </linearGradient>
-            </defs>
-
-            <XAxis
-              dataKey="date"
-              tickLine={false}
-              axisLine={false}
-              stroke="var(--color-text-secondary, #737373)"
-              style={{
-                fontSize: "0.625rem",
-                fontFamily: "JetBrains Mono, monospace",
-              }}
-              dy={10}
-            />
-
-            <YAxis
-              domain={["dataMin - 0.005", "dataMax + 0.005"]}
-              orientation="left"
-              tickLine={false}
-              axisLine={false}
-              stroke="var(--color-text-secondary, #737373)"
-              style={{
-                fontSize: "0.625rem",
-                fontFamily: "JetBrains Mono, monospace",
-              }}
-              dx={-10}
-              tickCount={4}
-            />
-
-            <Tooltip
-              contentStyle={{
-                backgroundColor: "#0a0a0a",
-                borderColor: "var(--color-border-subtle, #1f1f1f)",
-                fontFamily: "JetBrains Mono, monospace",
-                fontSize: "10px",
-              }}
-              labelStyle={{ color: "var(--color-text-muted)" }}
-              itemStyle={{ color: "var(--color-brand)" }}
-            />
-
-            <Area
-              type="linear"
-              dataKey="rate"
-              stroke="var(--color-border-accent, #bef264)"
-              strokeWidth={2}
-              fillOpacity={1}
-              fill="url(#chartGradient)"
-            />
-          </AreaChart>
-        </ResponsiveContainer>
+        <RechartsRenderEngine data={data} />
       </div>
     </section>
   );

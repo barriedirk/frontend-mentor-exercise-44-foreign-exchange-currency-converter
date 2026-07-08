@@ -37,7 +37,7 @@ export default function HistoryChart() {
       quoteCurrency: receiveCurrencyCode,
       data: formattedPoints,
     };
-  }, [data?.points, sendCurrencyCode, receiveCurrencyCode, locale, t]);
+  }, [data?.points, sendCurrencyCode, receiveCurrencyCode, locale]);
 
   const stats = useMemo<SandboxStat[]>(() => {
     if (!data?.metrics) return [];
@@ -72,7 +72,7 @@ export default function HistoryChart() {
         trend,
       },
     ];
-  }, [data?.metrics]);
+  }, [data?.metrics, t]);
 
   if (isPending) {
     return <HistoryChartSkeleton />;

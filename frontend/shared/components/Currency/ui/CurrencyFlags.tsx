@@ -3,8 +3,6 @@ import * as React from "react";
 export const CurrencyFlags = {
   AE: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -54,13 +52,11 @@ export const CurrencyFlags = {
   )),
   AR: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
+      width="1em"
+      height="1em"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      width="1em"
-      height="1em"
       fill="none"
       viewBox="0 0 100 100"
       {...props}
@@ -105,8 +101,6 @@ export const CurrencyFlags = {
   )),
   AU: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -156,8 +150,6 @@ export const CurrencyFlags = {
   )),
   BD: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -207,8 +199,6 @@ export const CurrencyFlags = {
   )),
   BG: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -258,8 +248,6 @@ export const CurrencyFlags = {
   )),
   BH: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -309,8 +297,6 @@ export const CurrencyFlags = {
   )),
   BR: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -360,8 +346,6 @@ export const CurrencyFlags = {
   )),
   CA: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -411,8 +395,6 @@ export const CurrencyFlags = {
   )),
   CH: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -462,8 +444,6 @@ export const CurrencyFlags = {
   )),
   CL: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -513,8 +493,6 @@ export const CurrencyFlags = {
   )),
   CN: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -564,8 +542,6 @@ export const CurrencyFlags = {
   )),
   CO: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -615,8 +591,6 @@ export const CurrencyFlags = {
   )),
   CY: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -666,8 +640,6 @@ export const CurrencyFlags = {
   )),
   CZ: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -717,8 +689,6 @@ export const CurrencyFlags = {
   )),
   DK: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -768,8 +738,6 @@ export const CurrencyFlags = {
   )),
   EG: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -819,8 +787,6 @@ export const CurrencyFlags = {
   )),
   EU: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -870,8 +836,6 @@ export const CurrencyFlags = {
   )),
   GB: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -921,8 +885,6 @@ export const CurrencyFlags = {
   )),
   HK: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -972,8 +934,6 @@ export const CurrencyFlags = {
   )),
   HM: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -1023,8 +983,6 @@ export const CurrencyFlags = {
   )),
   HN: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -1074,8 +1032,6 @@ export const CurrencyFlags = {
   )),
   HR: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -1125,8 +1081,6 @@ export const CurrencyFlags = {
   )),
   HT: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -1176,8 +1130,6 @@ export const CurrencyFlags = {
   )),
   HU: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -1227,8 +1179,6 @@ export const CurrencyFlags = {
   )),
   ID: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -1278,8 +1228,6 @@ export const CurrencyFlags = {
   )),
   IN: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -1329,8 +1277,6 @@ export const CurrencyFlags = {
   )),
   IS: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -1380,8 +1326,6 @@ export const CurrencyFlags = {
   )),
   JO: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -1431,8 +1375,6 @@ export const CurrencyFlags = {
   )),
   JP: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -1482,8 +1424,6 @@ export const CurrencyFlags = {
   )),
   KE: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -1533,8 +1473,6 @@ export const CurrencyFlags = {
   )),
   KR: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -1584,8 +1522,6 @@ export const CurrencyFlags = {
   )),
   KW: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -1635,8 +1571,6 @@ export const CurrencyFlags = {
   )),
   LB: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -1686,8 +1620,6 @@ export const CurrencyFlags = {
   )),
   LC: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -1737,8 +1669,6 @@ export const CurrencyFlags = {
   )),
   LK: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -1788,8 +1718,6 @@ export const CurrencyFlags = {
   )),
   MA: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -1839,8 +1767,6 @@ export const CurrencyFlags = {
   )),
   MX: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -1890,8 +1816,6 @@ export const CurrencyFlags = {
   )),
   MY: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -1941,8 +1865,6 @@ export const CurrencyFlags = {
   )),
   NG: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -1992,8 +1914,6 @@ export const CurrencyFlags = {
   )),
   NO: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -2043,8 +1963,6 @@ export const CurrencyFlags = {
   )),
   NP: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -2094,8 +2012,6 @@ export const CurrencyFlags = {
   )),
   NZ: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -2145,8 +2061,6 @@ export const CurrencyFlags = {
   )),
   OM: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -2196,8 +2110,6 @@ export const CurrencyFlags = {
   )),
   PE: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -2247,8 +2159,6 @@ export const CurrencyFlags = {
   )),
   PH: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -2298,8 +2208,6 @@ export const CurrencyFlags = {
   )),
   PK: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -2349,8 +2257,6 @@ export const CurrencyFlags = {
   )),
   PL: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -2400,8 +2306,6 @@ export const CurrencyFlags = {
   )),
   QA: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -2451,8 +2355,6 @@ export const CurrencyFlags = {
   )),
   RO: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -2502,8 +2404,6 @@ export const CurrencyFlags = {
   )),
   RU: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -2553,8 +2453,6 @@ export const CurrencyFlags = {
   )),
   SA: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -2604,8 +2502,6 @@ export const CurrencyFlags = {
   )),
   SE: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -2655,8 +2551,6 @@ export const CurrencyFlags = {
   )),
   SG: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -2706,8 +2600,6 @@ export const CurrencyFlags = {
   )),
   TH: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -2757,8 +2649,6 @@ export const CurrencyFlags = {
   )),
   TR: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -2808,8 +2698,6 @@ export const CurrencyFlags = {
   )),
   TW: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -2859,8 +2747,6 @@ export const CurrencyFlags = {
   )),
   UA: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -2910,8 +2796,6 @@ export const CurrencyFlags = {
   )),
   US: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -2961,8 +2845,6 @@ export const CurrencyFlags = {
   )),
   VN: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -3012,8 +2894,6 @@ export const CurrencyFlags = {
   )),
   ZA: React.memo((props: React.ComponentPropsWithoutRef<"svg">) => (
     <svg
-      width="100%"
-      height="100%"
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"

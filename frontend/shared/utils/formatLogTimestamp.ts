@@ -1,3 +1,8 @@
+const logDateFormatter = new Intl.DateTimeFormat("en-GB", {
+  day: "numeric",
+  month: "short",
+});
+
 export function formatLogTimestamp(
   timestampStr: string,
   nowMs: number,
@@ -17,8 +22,5 @@ export function formatLogTimestamp(
     return `${diffHours}H`;
   }
 
-  return new Intl.DateTimeFormat("en-GB", {
-    day: "numeric",
-    month: "short",
-  }).format(logDate);
+  return logDateFormatter.format(logDate);
 }

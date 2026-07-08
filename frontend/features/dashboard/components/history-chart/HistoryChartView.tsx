@@ -2,19 +2,11 @@
 
 import { useSyncExternalStore } from "react";
 import Timeframe from "../time-frame/TimeFrame";
-import dynamic from "next/dynamic";
 import { MarketStatCard } from "@/shared/components/MarketStatCard";
 import { SandboxStat } from "./types";
 import { MarketChartBase } from "@/shared/types/MarketChartRate";
 import { formatToCETStyle } from "@/shared/utils/formatToCETStyle";
-
-const MarketChart = dynamic(
-  () =>
-    import("@/shared/components/MarketChart/MarketChart").then(
-      (mod) => mod.MarketChart,
-    ),
-  { ssr: false },
-);
+import { MarketChart } from "@/shared/components/MarketChart/MarketChart";
 
 const emptySubscribe = () => () => {};
 
