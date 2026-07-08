@@ -22,6 +22,8 @@ export interface LogoProps
 export function Logo({ className, theme, ...props }: LogoProps) {
   return (
     <svg
+      role="img"
+      aria-label="FX Checker Home Logo"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 139 26"
       className={cn(
