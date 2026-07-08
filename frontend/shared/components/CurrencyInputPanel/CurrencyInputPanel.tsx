@@ -5,7 +5,6 @@ import { useId, useMemo, useState } from "react";
 import { ChevronDownIcon } from "lucide-react";
 import { Popover, PopoverTrigger, PopoverContent } from "@/shared/ui/Popover";
 import { CurrencyGroup } from "@/shared/components/Currency/currency";
-import { ALLOWED_CURRENCIES } from "@/shared/constants/currencies";
 import { CurrencyDropdownPanel } from "@/shared/components/Currency/ui/CurrencyDropdownPanel";
 import { AmountInput } from "@/shared/ui/AmountInput";
 import { CurrencyBadge } from "@/shared/ui/CurrencyBadge";
@@ -40,8 +39,13 @@ export function CurrencyInputPanel({
   const [searchQuery, setSearchQuery] = useState("");
 
   const activeCurrency = useMemo(() => {
-    return ALLOWED_CURRENCIES.find((c) => c.code === currencyCode);
-  }, [currencyCode]);
+    for (const group of currencyGroups) {
+      const found = group.currencies.find((c) => c.code === currencyCode);
+
+      if (found) return found;
+    }
+    return undefined;
+  }, [currencyCode, currencyGroups]);
 
   const filteredGroups = useMemo(() => {
     const cleanSearch = searchQuery.toLowerCase().trim();
@@ -111,7 +115,6 @@ export function CurrencyInputPanel({
                 size="sm"
                 code={activeCurrency?.code.slice(0, 2).toLowerCase()}
               />
-
               <span className="uppercase tracking-wide">
                 {activeCurrency?.code}
               </span>
