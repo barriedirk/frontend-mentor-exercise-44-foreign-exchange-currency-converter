@@ -3,7 +3,7 @@
 ![Design preview for the FX Checker coding challenge](./preview.jpg)
 
 Links:
-🔗 Frontend Mentor profile: https://lnkd.in/e76faCnw
+🔗 Frontend Mentor profile: https://www.frontendmentor.io/solutions/foreign-exchange-currency-converter-p_QA1w9ac6
 🔗 GitHub: https://github.com/barriedirk/frontend-mentor-exercise-44-foreign-exchange-currency-converter  
 🔗 Live Demo: https://foreign-exchange-currency-converter-eta.vercel.app/en
 
