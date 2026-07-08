@@ -1,9 +1,8 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/shared/utils/cn";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-3 font-mono uppercase tracking-wider transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-30 cursor-pointer h-fit w-fit select-none rounded-8",
+  "inline-flex items-center justify-center gap-3 font-mono uppercase tracking-wider transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 disabled:pointer-events-none disabled:opacity-30 cursor-pointer h-fit w-fit select-none rounded-8",
   {
     variants: {
       variant: {
