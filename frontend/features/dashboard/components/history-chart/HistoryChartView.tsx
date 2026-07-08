@@ -1,12 +1,12 @@
 "use client";
 
+import { useSyncExternalStore } from "react";
 import Timeframe from "../time-frame/TimeFrame";
 import dynamic from "next/dynamic";
 import { MarketStatCard } from "@/shared/components/MarketStatCard";
 import { SandboxStat } from "./types";
 import { MarketChartBase } from "@/shared/types/MarketChartRate";
 import { formatToCETStyle } from "@/shared/utils/formatToCETStyle";
-import { useEffect, useState } from "react";
 
 const MarketChart = dynamic(
   () =>
@@ -15,6 +15,8 @@ const MarketChart = dynamic(
     ),
   { ssr: false },
 );
+
+const emptySubscribe = () => () => {};
 
 interface HistoryChartViewProps {
   readonly sandboxStats: readonly SandboxStat[];
@@ -25,11 +27,11 @@ export default function HistoryChartView({
   sandboxStats,
   chartData,
 }: HistoryChartViewProps) {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const isClient = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  );
 
   return (
     <section
@@ -52,7 +54,7 @@ export default function HistoryChartView({
         </div>
       </div>
       <div className="border border-border-subtle rounded-12 overflow-hidden">
-        {isMounted ? (
+        {isClient ? (
           <MarketChart
             updatedAt={formatToCETStyle(new Date())}
             {...chartData}
