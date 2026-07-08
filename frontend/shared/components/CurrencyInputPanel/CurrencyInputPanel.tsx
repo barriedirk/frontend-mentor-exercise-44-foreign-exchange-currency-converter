@@ -47,16 +47,25 @@ export function CurrencyInputPanel({
     const cleanSearch = searchQuery.toLowerCase().trim();
     if (!cleanSearch) return currencyGroups;
 
-    return currencyGroups
-      .map((group) => ({
-        title: group.title,
-        currencies: group.currencies.filter(
-          (item) =>
-            item.code.toLowerCase().startsWith(cleanSearch) ||
-            item.name.toLowerCase().startsWith(cleanSearch),
-        ),
-      }))
-      .filter((group) => group.currencies.length > 0);
+    const result: CurrencyGroup[] = [];
+
+    for (const group of currencyGroups) {
+      const matchedCurrencies = group.currencies.filter(
+        (item) =>
+          item.code.toLowerCase().startsWith(cleanSearch) ||
+          item.name.toLowerCase().startsWith(cleanSearch),
+      );
+
+      if (matchedCurrencies.length > 0) {
+        result.push({
+          id: group.title,
+          title: group.title,
+          currencies: matchedCurrencies,
+        });
+      }
+    }
+
+    return result;
   }, [searchQuery, currencyGroups]);
 
   return (
@@ -112,7 +121,7 @@ export function CurrencyInputPanel({
           </PopoverTrigger>
           <PopoverContent className="z-50 animate-in fade-in-50 duration-200">
             <CurrencyDropdownPanel
-              groups={filteredGroups as readonly CurrencyGroup[]}
+              groups={filteredGroups}
               selectedCode={activeCurrency?.code}
               searchValue={searchQuery}
               onSearchChange={setSearchQuery}
